@@ -129,9 +129,16 @@ namespace 震动监测系统
             Console.WriteLine(cmd.CommandText);
             cmd.Connection = conn;
             cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Dispose();
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                //conn.Dispose();
+            }
+            catch (Exception)
+            {
+
+            }
 
             Console.WriteLine("new table has create!!");
             Console.WriteLine(cmd.CommandText);
@@ -238,6 +245,7 @@ namespace 震动监测系统
         /// </summary>
         public void ClearDataSet()
         {
+            dtst.Clear();
             dtst.Dispose();
         }
 

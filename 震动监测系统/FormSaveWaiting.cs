@@ -13,9 +13,9 @@ namespace 震动监测系统
 {
     public partial class FormSaveWaiting : Form
     {
-        static public int pv1 = 0, pv2 = 0;
+        static public int pv1 = 0;
         CTMySql cm = new CTMySql();
-        static public object tLock;
+        static public object tLock = new object();
 
         public FormSaveWaiting()
         {
@@ -26,6 +26,10 @@ namespace 震动监测系统
             T2.IsBackground = true;
             T1.Start();
             T2.Start();
+
+            Thread wt = new Thread(w);
+            wt.IsBackground = true;
+            wt.Start();
         }
 
         void D1()
@@ -37,6 +41,21 @@ namespace 震动监测系统
         {
             SaveDelet sd2 = new SaveDelet(CTMySql.dtst.Tables[0].TableName);
             sd2.Savep();
+        }
+
+        void w()
+        {
+            int o = pv1, v = 0;
+            while (pv1 != 100)
+            {
+                if (0 != pv1)
+                {
+                    v = (pv1 + o) / 2;
+                    o = pv1;
+                }
+                progressBar1.Value = v;
+                Thread.Sleep(100);
+            }
         }
     }
 
@@ -55,6 +74,7 @@ namespace 震动监测系统
 
         public void Savep()
         {
+            cm.CreateNewTable(tn);
             int num = 100, start = 0, all, loop;
             all = dt.Rows.Count;
             if (all <= 100)
@@ -71,7 +91,10 @@ namespace 震动监测系统
                 {
                     if (i == loop - 1)
                     {
-                        cm.AddOrUpdataTableFromDataset2Databass(tn, all % (loop - 1), start);
+                        if (loop != 1)
+                        {
+                            cm.AddOrUpdataTableFromDataset2Databass(tn, all % (loop - 1), start);
+                        }
                     }
                     else
                     {

@@ -111,14 +111,15 @@ namespace 震动监测系统
             DialogResult dg = MessageBox.Show("是：保留本次采集数据\n否：不保留本次采集数据", "储存数据确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dg == DialogResult.No)
             {
-                dg = MessageBox.Show("是：不保留本采集数据！\n否：保留本次采集数据", "确认不保留数据");
+                dg = MessageBox.Show("是：不保留本采集数据！\n否：保留本次采集数据", "确认不保留数据", MessageBoxButtons.YesNo);
                 if (dg == DialogResult.Yes)
                 {
-                    cTMySql.dttb.Clear();
+                    cTMySql.ClearDataSet();
                     return;
                 }
             }
-            
+            FormSaveWaiting fsw = new FormSaveWaiting();
+            fsw.ShowDialog();
         }
 
 
