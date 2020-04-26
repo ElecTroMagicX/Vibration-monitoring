@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.IO.Ports;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace 震动监测系统
+namespace �𶯼��ϵͳ
 {
     public partial class Form_SP_Set : Form
     {
@@ -17,10 +17,10 @@ namespace 震动监测系统
         
         private void Form_SP_Set_Shown(object sender, EventArgs e)
         {
-            //端口号选择
+            //�˿ں�ѡ��
             string[] str = SerialPort.GetPortNames();
             if (str == null)
-                MessageBox.Show("未检测到串口", "串口选择错误");
+                MessageBox.Show("δ��⵽����", "����ѡ�����");
 
             foreach (string com in SerialPort.GetPortNames())
             {
@@ -36,7 +36,7 @@ namespace 震动监测系统
             else
                 com_list.SelectedIndex = 0;
 
-            //波特率选择
+            //������ѡ��
             int[] bode = { 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200 };
             for (int x = 0; x < 8; x++)
             {
@@ -47,7 +47,7 @@ namespace 震动监测系统
             else 
                 bode_list.SelectedIndex = 0;
 
-            //设置默认数据位，停止位
+            //����Ĭ������λ��ֹͣλ
             if (controlconfig.existItem("datanum"))
                 data_box.Text = controlconfig.valueItem("datanum");
             else
@@ -58,7 +58,7 @@ namespace 震动监测系统
                 stop_box.Text = "1";
         }
 
-        //打开端口按钮
+        //�򿪶˿ڰ�ť
         private void Opencom_button_Click(object sender, EventArgs e)
         {
             bool a, b;
@@ -66,8 +66,8 @@ namespace 震动监测系统
             b = CTSerialPort.OpenSP();
             if (a && b)
             {
-                MessageBox.Show("打开成功");
-                //保存串口参数
+                MessageBox.Show("�򿪳ɹ�");
+                //���洮�ڲ���
                 controlconfig.AddOrModifyItem("portnum", com_list.Text);
                 controlconfig.AddOrModifyItem("bodenum", bode_list.Text);
                 controlconfig.AddOrModifyItem("datanum", data_box.Text);

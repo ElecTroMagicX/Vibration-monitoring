@@ -1,4 +1,4 @@
-﻿namespace 震动监测系统
+namespace 震动监测系统
 {
     partial class FormWave
     {
@@ -164,6 +164,7 @@
             this.ButtonStop.TabIndex = 2;
             this.ButtonStop.Text = "停止";
             this.ButtonStop.UseVisualStyleBackColor = true;
+            this.ButtonStop.Click += new System.EventHandler(this.ButtonStop_Click);
             // 
             // ButtonStart
             // 

@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +12,17 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
 using System.Collections;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
     public partial class FormWave : Form
     {
         CTMySql cTMySql = new CTMySql();
         DataSet dtst = CTMySql.dtst;
 
-        static string tablename = "";//å®šä¹‰æ•°æ®è¡¨åæ—¶é—´å‰ç¼€
-        static bool manageReadDataFlag = false;//å®šä¹‰manageReadDataçº¿ç¨‹ä¿¡å·ç¯æ ‡å¿—
-        public static bool reflashWave1ThreadFlag = false, reflashWave2ThreadFlag = false;
+        static string tablename = "";//¶¨ÒåÊı¾İ±íÃûÊ±¼äÇ°×º
+        static bool manageReadDataFlag = false;//¶¨ÒåmanageReadDataÏß³ÌĞÅºÅµÆ±êÖ¾
+        static bool reflashWave1ThreadFlag = false;
+        static bool reflashWave2ThreadFlag = false;
 
         public ArrayList list1 = new ArrayList(4500000);
         public ArrayList list2 = new ArrayList(4500000);
@@ -45,12 +46,16 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             wave2_timegap_TrackBar_Scroll(null, null);
         }
 
-        //å¼€å§‹æŒ‰é’®  ç‚¹å‡»
+        /// <summary>
+        /// ¿ªÊ¼°´Å¥  µã»÷
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonStart_Click(object sender, EventArgs e)
         {
-            //åˆ¤æ–­manageReadDataçº¿ç¨‹æ˜¯å¦åœ¨è¿è¡Œ
-            //å¦‚æœæ˜¯ï¼Œåˆ™ç›´æ¥return
-            //å¦‚æœä¸æ˜¯ï¼Œç»§ç»­ä¸‹è¾¹åŠ¨ä½œ
+            //ÅĞ¶ÏmanageReadDataÏß³ÌÊÇ·ñÔÚÔËĞĞ
+            //Èç¹ûÊÇ£¬ÔòÖ±½Óreturn
+            //Èç¹û²»ÊÇ£¬¼ÌĞøÏÂ±ß¶¯×÷
             if (manageReadDataFlag)
             {
                 MessageBox.Show("already start!");
@@ -58,47 +63,62 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             }
 
 
-            if (CTSerialPort.SetSP() && CTSerialPort.OpenSP())//åˆ¤æ–­ä¸²å£æ˜¯å¦èƒ½å¼€å¯
+            if (CTSerialPort.SetSP() && CTSerialPort.OpenSP())//ÅĞ¶Ï´®¿ÚÊÇ·ñÄÜ¿ªÆô
             {
-                tablename = DateTime.Now.ToString();//å®šä¹‰å†…å­˜è¡¨åæ—¶é—´å‰ç¼€
-                cTMySql.CreateDSTable(tablename + "_channel1");//åˆ›å»ºå†…å­˜è¡¨
-                cTMySql.CreateDSTable(tablename + "_channel2");//åˆ›å»ºå†…å­˜è¡¨
+                tablename = DateTime.Now.ToString();//¶¨ÒåÄÚ´æ±íÃûÊ±¼äÇ°×º
+                cTMySql.CreateDSTable(tablename + "_channel1");//´´½¨ÄÚ´æ±í
+                cTMySql.CreateDSTable(tablename + "_channel2");//´´½¨ÄÚ´æ±í
                 CTSerialPort.SendSP("E");
                 Thread.Sleep(10);
                 CTSerialPort.ClearInBuffer();
 
-                manageReadDataFlag = true;//çº¿ç¨‹çº¢ç»¿ç¯ä¿¡å· é€šè¿‡
-                Thread mrd = new Thread(ManageReadDataThread);//å®ä¾‹åŒ–ManageReadDataçº¿ç¨‹
-                mrd.IsBackground = true;//è®¾ä¸ºåå°çº¿ç¨‹
-                mrd.Start();//çº¿ç¨‹å¼€å§‹
-                CTSerialPort.SendSP("A");//ç»™ä¸‹ä½æœºå‘é€å¼€å§‹ä¿¡å·
+                manageReadDataFlag = true;//Ïß³ÌºìÂÌµÆĞÅºÅ Í¨¹ı
+                Thread mrd = new Thread(ManageReadDataThread);//ÊµÀı»¯ManageReadDataÏß³Ì
+                mrd.IsBackground = true;//ÉèÎªºóÌ¨Ïß³Ì
+                mrd.Start();//Ïß³Ì¿ªÊ¼
+                CTSerialPort.SendSP("A");//¸øÏÂÎ»»ú·¢ËÍ¿ªÊ¼ĞÅºÅ
 
-                //æ³¢å½¢1ç»˜åˆ¶çº¿ç¨‹
+                //²¨ĞÎ1»æÖÆÏß³Ì
                 reflashWave1ThreadFlag = true;
                 Thread rfwave1 = new Thread(ReflashWave1Thread);
                 rfwave1.IsBackground = true;
                 rfwave1.Start();
 
-                //æ³¢å½¢2ç»˜åˆ¶çº¿ç¨‹
+                //²¨ĞÎ2»æÖÆÏß³Ì
                 reflashWave2ThreadFlag = true;
                 Thread rfwave2 = new Thread(ReflashWave2Thread);
                 rfwave2.IsBackground = true;
                 rfwave2.Start();
 
-                Console.WriteLine("å¼€å§‹æ¥æ”¶æ•°æ®");
+                Console.WriteLine("¿ªÊ¼½ÓÊÕÊı¾İ");
             }
             else
             {
-                MessageBox.Show("ä¸²å£é€šä¿¡å‚æ•°æœ‰è¯¯ï¼Œè¯·é‡æ–°è®¾ç½®");
+                MessageBox.Show("´®¿ÚÍ¨ĞÅ²ÎÊıÓĞÎó£¬ÇëÖØĞÂÉèÖÃ");
             }
         }
 
-        //è¯»å–å¹¶è½¬æ¢ä¸²å£æ•°æ®çš„çº¿ç¨‹
+        /// <summary>
+        /// Í£Ö¹°´Å¥    µã»÷
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonStop_Click(object sender, EventArgs e)
+        {
+            manageReadDataFlag = false;
+            reflashWave1ThreadFlag = false;
+            reflashWave2ThreadFlag = false;
+            MessageBox.Show("ÊÇ·ñ´¢´æ±¾´ÎÊı¾İ£¿", "´¢´æÊı¾İ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+        }
+
+
+        //¶ÁÈ¡²¢×ª»»´®¿ÚÊı¾İµÄÏß³Ì
         void ManageReadDataThread()
         {
-            Console.WriteLine("å¼€å§‹æ¥æ”¶æ•°æ®çº¿ç¨‹");
-            int dataID = 0, oldID = 0;//å®šä¹‰é€šé“ä¸€å’ŒäºŒçš„æ•°æ®IDå˜é‡
-            byte[] bt = new byte[200];//å®šä¹‰æ¥æ”¶æ•°æ®çš„byteæ•°ç»„
+            Console.WriteLine("¿ªÊ¼½ÓÊÕÊı¾İÏß³Ì");
+            int dataID = 0, oldID = 0;//¶¨ÒåÍ¨µÀÒ»ºÍ¶şµÄÊı¾İID±äÁ¿
+            byte[] bt = new byte[200];//¶¨Òå½ÓÊÕÊı¾İµÄbyteÊı×é
             string dateTime = "";
             UInt16[] channel1 = new UInt16[50];
             UInt16[] channel2 = new UInt16[50];
@@ -147,7 +167,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
                 //}
             }
-            manageReadDataFlag = false;//çº¿ç¨‹ç»“æŸåå°†ä¿¡å·ç¯æ ‡å¿—ç½®ä¸ºç¦æ­¢
+            manageReadDataFlag = false;//Ïß³Ì½áÊøºó½«ĞÅºÅµÆ±êÖ¾ÖÃÎª½ûÖ¹
         }
 
         public void ReflashWave1Thread()
@@ -283,6 +303,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
                     break;
             }
         }
+
         private void wave2_timegap_TrackBar_Scroll(object sender, EventArgs e)
         {
             int trackbarValue = wave2_timegap_TrackBar.Value;

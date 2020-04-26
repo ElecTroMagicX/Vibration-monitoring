@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Windows.Forms;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
     static class CTSerialPort
     {
@@ -14,12 +14,12 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         static SerialPort sp = new SerialPort();
 
         /// <summary>
-        /// è®¾ç½®ä¸²å£é€šä¿¡å‚æ•°
+        /// ÉèÖÃ´®¿ÚÍ¨ĞÅ²ÎÊı
         /// </summary>
-        /// <param name="comnum"ä¸²å£å·></param>
-        /// <param name="bodenum"æ³¢ç‰¹ç‡></param>
-        /// <param name="datanum"æ•°æ®ä½></param>
-        /// <param name="stopnum"åœæ­¢ä½></param>
+        /// <param name="comnum"´®¿ÚºÅ></param>
+        /// <param name="bodenum"²¨ÌØÂÊ></param>
+        /// <param name="datanum"Êı¾İÎ»></param>
+        /// <param name="stopnum"Í£Ö¹Î»></param>
         public static bool SetSP()
         {
             if (controlconfig.existItem("portnum")
@@ -49,7 +49,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             }
             if (datanum > 8 || datanum < 5)
             {
-                MessageBox.Show("æ•°æ®ä½å‚æ•°èŒƒå›´ä¸º[5,8]");
+                MessageBox.Show("Êı¾İÎ»²ÎÊı·¶Î§Îª[5,8]");
                 return false;
             }
             sp.ReadBufferSize = 1;
@@ -68,7 +68,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
                     sp.StopBits = StopBits.OnePointFive;
                     break;
                 default:
-                    MessageBox.Show("åœæ­¢ä½å‚æ•°é”™è¯¯");
+                    MessageBox.Show("Í£Ö¹Î»²ÎÊı´íÎó");
                     break;
             }
             //sp.Encoding = UTF8Encoding.UTF8;
@@ -83,17 +83,17 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             int bodenumInt, datanumInt;
             if (!int.TryParse(bodenum, out bodenumInt))
             {
-                MessageBox.Show("æ³¢ç‰¹ç‡å‚æ•°é”™è¯¯");
+                MessageBox.Show("²¨ÌØÂÊ²ÎÊı´íÎó");
                 return false;
             }
             if (!int.TryParse(datanum, out datanumInt))
             {
-                MessageBox.Show("æ•°æ®ä½å‚æ•°é”™è¯¯");
+                MessageBox.Show("Êı¾İÎ»²ÎÊı´íÎó");
                 return false;
             }
             if (datanumInt > 8 || datanumInt < 5)
             {
-                MessageBox.Show("æ•°æ®ä½å‚æ•°èŒƒå›´ä¸º[5,8]");
+                MessageBox.Show("Êı¾İÎ»²ÎÊı·¶Î§Îª[5,8]");
                 return false;
             }
             //sp.ReadBufferSize = 1;
@@ -112,7 +112,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
                     sp.StopBits = StopBits.OnePointFive;
                     break;
                 default:
-                    MessageBox.Show("åœæ­¢ä½å‚æ•°é”™è¯¯");
+                    MessageBox.Show("Í£Ö¹Î»²ÎÊı´íÎó");
                     return false;
             }
             return true;
@@ -120,7 +120,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
 
         /// <summary>
-        /// æ‰“å¼€ä¸²å£
+        /// ´ò¿ª´®¿Ú
         /// </summary>
         /// <param name="comnum"></param>
         /// <param name="bodenum"></param>
@@ -150,9 +150,9 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
 
         /// <summary>
-        /// å…³é—­ä¸²å£
-        /// trueï¼šå…³é—­æˆåŠŸ
-        /// falseï¼šå…³é—­å¤±è´¥
+        /// ¹Ø±Õ´®¿Ú
+        /// true£º¹Ø±Õ³É¹¦
+        /// false£º¹Ø±ÕÊ§°Ü
         /// </summary>
         /// <returns></returns>
         public static bool CloseSP()
@@ -163,9 +163,9 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
 
         /// <summary>
-        /// åˆ¤æ–­ä¸²å£å¼€é—­çŠ¶æ€
-        /// trueï¼šæ‰“å¼€çŠ¶æ€
-        /// falseï¼šå…³é—­çŠ¶æ€
+        /// ÅĞ¶Ï´®¿Ú¿ª±Õ×´Ì¬
+        /// true£º´ò¿ª×´Ì¬
+        /// false£º¹Ø±Õ×´Ì¬
         /// </summary>
         /// <returns></returns>
         public static bool IsComOpen()
@@ -175,7 +175,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
 
         /// <summary>
-        /// è¯»å–ä¸²å£æ•°æ®ï¼Œç¼“å†²åŒºè¶³å¤ŸbfSizeå­—èŠ‚è¯»å–ä¸€æ¬¡
+        /// ¶ÁÈ¡´®¿ÚÊı¾İ£¬»º³åÇø×ã¹»bfSize×Ö½Ú¶ÁÈ¡Ò»´Î
         /// </summary>
         /// <returns></returns>
         public static bool ReadSP(ref byte[] readData, int bfSize)
@@ -183,7 +183,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             if (sp.BytesToRead >= bfSize)
             {
                 sp.Read(readData, 0, bfSize);
-                //Console.WriteLine("è¿™æ˜¯readExisting:" + sp.BytesToRead.ToString() + "\r\n" + readData);
+                //Console.WriteLine("ÕâÊÇreadExisting:" + sp.BytesToRead.ToString() + "\r\n" + readData);
                 //sp.DiscardInBuffer();
                 return true;
             }
@@ -198,7 +198,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             {
                 time = DateTime.Now.ToString() + DateTime.Now.Millisecond.ToString();
                 sp.Read(readData, 0, bfSize);
-                //Console.WriteLine("è¿™æ˜¯readExisting:" + sp.BytesToRead.ToString() + "\r\n" + readData);
+                //Console.WriteLine("ÕâÊÇreadExisting:" + sp.BytesToRead.ToString() + "\r\n" + readData);
                 //sp.DiscardInBuffer();
                 return true;
             }
@@ -209,7 +209,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// å‘é€ä¸²å£æ•°æ®
+        /// ·¢ËÍ´®¿ÚÊı¾İ
         /// </summary>
         /// <param name="sendData"></param>
         /// <returns></returns>
@@ -220,7 +220,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// æ¸…ç©ºè¾“å…¥ç¼“å­˜åŒº
+        /// Çå¿ÕÊäÈë»º´æÇø
         /// </summary>
         public static void ClearInBuffer()
         {

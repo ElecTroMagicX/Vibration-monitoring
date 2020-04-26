@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -10,22 +10,22 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
     public class CTMySql
     {
-        static public bool isSignIn = false;//ç”¨æˆ·æ˜¯å¦ç™»å½•æ ‡å¿—
-        static public bool isUserAdmin = false;//ç”¨æˆ·æ˜¯å¦ä¸ºç®¡ç†å‘˜è´¦æˆ·æ ‡å¿—
+        static public bool isSignIn = false;//ÓÃ»§ÊÇ·ñµÇÂ¼±êÖ¾
+        static public bool isUserAdmin = false;//ÓÃ»§ÊÇ·ñÎª¹ÜÀíÔ±ÕË»§±êÖ¾
 
         static MySqlConnection conn;
         static MySqlCommand cmd = new MySqlCommand();
         static MySqlCommandBuilder cmdb = new MySqlCommandBuilder();
         static MySqlDataAdapter dtadp = new MySqlDataAdapter();
-        static public DataSet dtst = new DataSet("éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ");//åˆ›å»ºå†…å­˜åº“
+        static public DataSet dtst = new DataSet("Õğ¶¯¼à²âÏµÍ³");//´´½¨ÄÚ´æ¿â
         public DataTable dttb;
 
         /// <summary>
-        /// æ„é€ å‡½æ•°ï¼Œè®¾ç½®æ•°æ®åº“å‚æ•°
+        /// ¹¹Ôìº¯Êı£¬ÉèÖÃÊı¾İ¿â²ÎÊı
         /// </summary>
         /// <param name="server"></param>
         /// <param name="user"></param>
@@ -47,7 +47,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// è¿æ¥æ•°æ®åº“
+        /// Á¬½ÓÊı¾İ¿â
         /// </summary>
         /// <returns></returns>
         public bool ConnectDatabass()
@@ -65,10 +65,10 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// åˆ¤æ–­ç”¨æˆ·ç™»å½•å¯†ç æ˜¯å¦æ­£ç¡®
+        /// ÅĞ¶ÏÓÃ»§µÇÂ¼ÃÜÂëÊÇ·ñÕıÈ·
         /// </summary>
-        /// <param name="account">ç”¨æˆ·å</param>
-        /// <param name="password">å¯†ç </param>
+        /// <param name="account">ÓÃ»§Ãû</param>
+        /// <param name="password">ÃÜÂë</param>
         /// <returns></returns>
         public bool CheckSignInPassword(string account, string password)
         {
@@ -80,10 +80,10 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             while (reader.Read())
             {
                 Console.WriteLine(string.Format("{0} {1} {2} {3}", reader[0], reader[1], reader[2], reader[3]));
-                if (reader[1].ToString() == password && reader[2].ToString() == account)//åˆ¤æ–­ç”¨æˆ·åå’Œå¯†ç æ˜¯å¦æ­£ç¡®
+                if (reader[1].ToString() == password && reader[2].ToString() == account)//ÅĞ¶ÏÓÃ»§ÃûºÍÃÜÂëÊÇ·ñÕıÈ·
                 {
                     isSignIn = true;
-                    if (reader[3].ToString() == "1")//åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ä¸ºç®¡ç†å‘˜ç”¨æˆ·
+                    if (reader[3].ToString() == "1")//ÅĞ¶ÏÓÃ»§ÊÇ·ñÎª¹ÜÀíÔ±ÓÃ»§
                     {
                         isUserAdmin = true;
                     }
@@ -102,7 +102,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// æ–­å¼€æ•°æ®åº“è¿æ¥
+        /// ¶Ï¿ªÊı¾İ¿âÁ¬½Ó
         /// </summary>
         /// <returns></returns>
         static public bool CloseConnect()
@@ -116,12 +116,12 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// åˆ›å»ºæ–°è¡¨ï¼Œä¼ å…¥è¡¨å
+        /// ´´½¨ĞÂ±í£¬´«Èë±íÃû
         /// </summary>
-        /// <param name="tablename">è¡¨å</param>
+        /// <param name="tablename">±íÃû</param>
         public void CreateNewTable(string tablename)
         {
-            cmd.CommandText = string.Format("CREATE TABLE `éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ`.`{0}` (" +
+            cmd.CommandText = string.Format("CREATE TABLE `Õğ¶¯¼à²âÏµÍ³`.`{0}` (" +
                 "`DataID` INT NOT NULL, " +
                 "`DataTime` CHAR(23) NOT NULL, " +
                 "`DataValue` UNSIGNED SMALLINT NOT NULL, " +
@@ -139,29 +139,29 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// æ–°å»ºå†…å­˜è¡¨
+        /// ĞÂ½¨ÄÚ´æ±í
         /// </summary>
-        /// <param name="tablename">è¡¨å</param>
+        /// <param name="tablename">±íÃû</param>
         public void CreateDSTable(string tablename)
         {
-            dttb = new DataTable(tablename);//åˆ›å»ºå†…å­˜è¡¨
-            dtst.Tables.Add(dttb);//æŠŠå†…å­˜è¡¨æ·»åŠ åˆ°å†…å­˜åº“
+            dttb = new DataTable(tablename);//´´½¨ÄÚ´æ±í
+            dtst.Tables.Add(dttb);//°ÑÄÚ´æ±íÌí¼Óµ½ÄÚ´æ¿â
 
-            //åˆ›å»ºå†…å­˜åˆ—
+            //´´½¨ÄÚ´æÁĞ
             DataColumn dtclID = new DataColumn("DataID", typeof(int));
             DataColumn dtclTime = new DataColumn("DataTime", typeof(string));
             DataColumn dtclValue = new DataColumn("DataValue", typeof(UInt16));
 
-            dttb.Columns.AddRange(new DataColumn[] { dtclID, dtclTime, dtclValue });//æŠŠå†…å­˜åˆ—æ·»åŠ åˆ°å†…å­˜è¡¨
+            dttb.Columns.AddRange(new DataColumn[] { dtclID, dtclTime, dtclValue });//°ÑÄÚ´æÁĞÌí¼Óµ½ÄÚ´æ±í
         }
 
         /// <summary>
-        /// ç»™å†…å­˜è¡¨æ’å…¥ä¸€è¡Œæ•°æ®
+        /// ¸øÄÚ´æ±í²åÈëÒ»ĞĞÊı¾İ
         /// </summary>
-        /// <param name="tablename">strin è¡¨å</param>
+        /// <param name="tablename">strin ±íÃû</param>
         /// <param name="dataid">uint32 ID</param>
-        /// <param name="datatime">string æ—¶é—´</param>
-        /// <param name="datavalue">uint16 æ•°å€¼</param>
+        /// <param name="datatime">string Ê±¼ä</param>
+        /// <param name="datavalue">uint16 ÊıÖµ</param>
         public void InsertData2DSTable(string tablename, int dataid, string datatime, ref UInt16[] datavalue)
         {
             dttb = dtst.Tables[tablename];
@@ -170,9 +170,9 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// ä»å†…å­˜è¡¨å¢åŠ ã€æ›´æ–°æ•°æ®è¡¨
+        /// ´ÓÄÚ´æ±íÔö¼Ó¡¢¸üĞÂÊı¾İ±í
         /// </summary>
-        /// <param name="tablename">string è¡¨å</param>
+        /// <param name="tablename">string ±íÃû</param>
         public void AddOrUpdataTableFromDataset2Databass(string tablename)
         {
             StringBuilder sb = new StringBuilder();
@@ -205,7 +205,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// æ¸…ç©ºå†…å­˜åº“
+        /// Çå¿ÕÄÚ´æ¿â
         /// </summary>
         public void ClearDataSet()
         {
@@ -213,7 +213,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// æ¸…ç©ºæŒ‡å®šå†…å­˜è¡¨
+        /// Çå¿ÕÖ¸¶¨ÄÚ´æ±í
         /// </summary>
         /// <param name="tablename"></param>
         public void ClearDataTable(string tablename)
@@ -222,7 +222,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// è·å–æŒ‡å®šå†…å­˜è¡¨è¡Œæ•°
+        /// »ñÈ¡Ö¸¶¨ÄÚ´æ±íĞĞÊı
         /// </summary>
         /// <param name="tablename"></param>
         /// <returns></returns>
@@ -238,7 +238,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// è·å–æ€»å†…å­˜åº“å­—èŠ‚æ•°
+        /// »ñÈ¡×ÜÄÚ´æ¿â×Ö½ÚÊı
         /// </summary>
         /// <returns></returns>
         public UInt32 SizeOfDataSet()
@@ -248,7 +248,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// æ§åˆ¶å°æ‰“å°å†…å­˜åº“æ€»å¤§å°
+        /// ¿ØÖÆÌ¨´òÓ¡ÄÚ´æ¿â×Ü´óĞ¡
         /// </summary>
         public void PrintSizeOfDataSet()
         {

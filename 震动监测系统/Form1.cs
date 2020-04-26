@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
     public partial class Form1 : Form
     {
@@ -40,32 +40,32 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         //    dw.DrawYaxis(ref fw.pictureBox2, 2, 1, 5);
         //}
 
-        //ä¸»ç•Œé¢æ˜¾ç¤º
+        //Ö÷½çÃæÏÔÊ¾
         private void Form1_Shown(object sender, EventArgs e)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
-            //åˆå§‹éœ€å¤„äºé”å®šçŠ¶æ€çš„åŠŸèƒ½
-            {//ç”¨æˆ·ç»„
-                UserManage.Enabled = false;//ç”¨æˆ·ç®¡ç†æŒ‰é’® é”å®š
-                UserLogOut.Enabled = false;//é€€å‡ºç™»å½•æŒ‰é’® é”å®š
-                UserSwitch.Enabled = false;//åˆ‡æ¢ç”¨æˆ·æŒ‰é’® é”å®š
+            //³õÊ¼Ğè´¦ÓÚËø¶¨×´Ì¬µÄ¹¦ÄÜ
+            {//ÓÃ»§×é
+                UserManage.Enabled = false;//ÓÃ»§¹ÜÀí°´Å¥ Ëø¶¨
+                UserLogOut.Enabled = false;//ÍË³öµÇÂ¼°´Å¥ Ëø¶¨
+                UserSwitch.Enabled = false;//ÇĞ»»ÓÃ»§°´Å¥ Ëø¶¨
             }
-            {//é€šä¿¡ç»„
-                SP_Set.Enabled = false;//ä¸²å£è®¾ç½®æŒ‰é’®     é”å®š
-                SP_Ttest.Enabled = false;//è¿æ¥æµ‹è¯•æŒ‰é’®   é”å®š
-                SP_Close.Enabled = false;//æ–­å¼€è¿æ¥æŒ‰é’®   é”å®š
+            {//Í¨ĞÅ×é
+                SP_Set.Enabled = false;//´®¿ÚÉèÖÃ°´Å¥     Ëø¶¨
+                SP_Ttest.Enabled = false;//Á¬½Ó²âÊÔ°´Å¥   Ëø¶¨
+                SP_Close.Enabled = false;//¶Ï¿ªÁ¬½Ó°´Å¥   Ëø¶¨
             }
             //FormSignIn formSignIn = new FormSignIn();
             //formSignIn.ShowDialog();
 
-            //çª—å£æ§ä»¶åˆ·æ–°
+            //´°¿Ú¿Ø¼şË¢ĞÂ
             Thread formreflash = new Thread(Form1Reflash);
             formreflash.IsBackground = true;
             formreflash.Start();
         }
 
         int xxxxxxx = 0;
-        //æ§ä»¶åˆ·æ–°
+        //¿Ø¼şË¢ĞÂ
         void Form1Reflash()
         {
             while (true)
@@ -73,124 +73,124 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
                 Thread.Sleep(500);
                 xxxxxxx++;
                 //Console.WriteLine("From1 Reflash:{0}", xxxxxxx);
-                /******************ç”¨æˆ·ç™»å½•ã€ç®¡ç†å‘˜æƒé™æ£€æµ‹************************************************************************************/
-                if (CTMySql.isSignIn)   //ç”¨æˆ·å·²ç™»å½•æ—¶
+                /******************ÓÃ»§µÇÂ¼¡¢¹ÜÀíÔ±È¨ÏŞ¼ì²â************************************************************************************/
+                if (CTMySql.isSignIn)   //ÓÃ»§ÒÑµÇÂ¼Ê±
                 {
-                    UserLogOut.Enabled = true;//é€€å‡ºç™»å½•æŒ‰é’® è§£é”
-                    UserSwitch.Enabled = true;//åˆ‡æ¢ç”¨æˆ·æŒ‰é’® è§£é”
-                    UserSignIn.Enabled = false;//ç”¨æˆ·ç™»å½•æŒ‰é’® é”å®š
+                    UserLogOut.Enabled = true;//ÍË³öµÇÂ¼°´Å¥ ½âËø
+                    UserSwitch.Enabled = true;//ÇĞ»»ÓÃ»§°´Å¥ ½âËø
+                    UserSignIn.Enabled = false;//ÓÃ»§µÇÂ¼°´Å¥ Ëø¶¨
 
-                    SP_Set.Enabled = true;//ä¸²å£è®¾ç½®æŒ‰é’® è§£é”
+                    SP_Set.Enabled = true;//´®¿ÚÉèÖÃ°´Å¥ ½âËø
                 }
-                else    //ç”¨æˆ·æœªç™»å½•æ—¶
+                else    //ÓÃ»§Î´µÇÂ¼Ê±
                 {
-                    UserManage.Enabled = false;//ç”¨æˆ·ç®¡ç†æŒ‰é’® é”å®š
-                    UserLogOut.Enabled = false;//é€€å‡ºç™»å½•æŒ‰é’® é”å®š
-                    UserSwitch.Enabled = false;//åˆ‡æ¢ç”¨æˆ·æŒ‰é’® é”å®š
-                    UserSignIn.Enabled = true;//ç”¨æˆ·ç™»å½•æŒ‰é’® è§£é”
+                    UserManage.Enabled = false;//ÓÃ»§¹ÜÀí°´Å¥ Ëø¶¨
+                    UserLogOut.Enabled = false;//ÍË³öµÇÂ¼°´Å¥ Ëø¶¨
+                    UserSwitch.Enabled = false;//ÇĞ»»ÓÃ»§°´Å¥ Ëø¶¨
+                    UserSignIn.Enabled = true;//ÓÃ»§µÇÂ¼°´Å¥ ½âËø
 
-                    SP_Set.Enabled = false;//ä¸²å£è®¾ç½®æŒ‰é’®     é”å®š
+                    SP_Set.Enabled = false;//´®¿ÚÉèÖÃ°´Å¥     Ëø¶¨
                 }
-                if (CTMySql.isUserAdmin)    //ç”¨æˆ·æ˜¯ç®¡ç†å‘˜ç”¨æˆ·æ—¶
+                if (CTMySql.isUserAdmin)    //ÓÃ»§ÊÇ¹ÜÀíÔ±ÓÃ»§Ê±
                 {
-                    UserManage.Enabled = true;//ç”¨æˆ·ç®¡ç†æŒ‰é’® è§£é”
+                    UserManage.Enabled = true;//ÓÃ»§¹ÜÀí°´Å¥ ½âËø
                 }
-                else    //ç”¨æˆ·éç®¡ç†å‘˜ç”¨æˆ·æ—¶
+                else    //ÓÃ»§·Ç¹ÜÀíÔ±ÓÃ»§Ê±
                 {
-                    UserManage.Enabled = false;//ç”¨æˆ·ç®¡ç†æŒ‰é’® é”å®š
+                    UserManage.Enabled = false;//ÓÃ»§¹ÜÀí°´Å¥ Ëø¶¨
                 }
-                /****************ä¸²å£å¼€å¯æ£€æµ‹*************************************************************************************/
-                if (CTSerialPort.IsComOpen())   //ä¸²å£å¼€å¯æ—¶
+                /****************´®¿Ú¿ªÆô¼ì²â*************************************************************************************/
+                if (CTSerialPort.IsComOpen())   //´®¿Ú¿ªÆôÊ±
                 {
-                    this.SP_Ttest.Enabled = true;//è¿æ¥æµ‹è¯•æŒ‰é’®  è§£é”
-                    this.SP_Close.Enabled = true;//æ–­å¼€è¿æ¥æŒ‰é’®  è§£é”
+                    this.SP_Ttest.Enabled = true;//Á¬½Ó²âÊÔ°´Å¥  ½âËø
+                    this.SP_Close.Enabled = true;//¶Ï¿ªÁ¬½Ó°´Å¥  ½âËø
                 }
-                else//ä¸²å£å…³é—­æ—¶
+                else//´®¿Ú¹Ø±ÕÊ±
                 {
-                    this.SP_Ttest.Enabled = false;//è¿æ¥æµ‹è¯•æŒ‰é’®  é”å®š
-                    this.SP_Close.Enabled = false;//æ–­å¼€è¿æ¥æŒ‰é’®  é”å®š
+                    this.SP_Ttest.Enabled = false;//Á¬½Ó²âÊÔ°´Å¥  Ëø¶¨
+                    this.SP_Close.Enabled = false;//¶Ï¿ªÁ¬½Ó°´Å¥  Ëø¶¨
                 }
             }
         }
 
-        //é¼ æ ‡è¿›å…¥
+        //Êó±ê½øÈë
         private void Form1_MouseEnter(object sender, EventArgs e)
         {
             //Console.WriteLine("mouse enter!!!");
-            ///******************ç”¨æˆ·ç™»å½•ã€ç®¡ç†å‘˜æƒé™æ£€æµ‹************************************************************************************/
-            //if (CTMySql.isSignIn)   //ç”¨æˆ·å·²ç™»å½•æ—¶
+            ///******************ÓÃ»§µÇÂ¼¡¢¹ÜÀíÔ±È¨ÏŞ¼ì²â************************************************************************************/
+            //if (CTMySql.isSignIn)   //ÓÃ»§ÒÑµÇÂ¼Ê±
             //{
-            //    UserLogOut.Enabled = true;//é€€å‡ºç™»å½•æŒ‰é’® è§£é”
-            //    UserSwitch.Enabled = true;//åˆ‡æ¢ç”¨æˆ·æŒ‰é’® è§£é”
-            //    UserSignIn.Enabled = false;//ç”¨æˆ·ç™»å½•æŒ‰é’® é”å®š
+            //    UserLogOut.Enabled = true;//ÍË³öµÇÂ¼°´Å¥ ½âËø
+            //    UserSwitch.Enabled = true;//ÇĞ»»ÓÃ»§°´Å¥ ½âËø
+            //    UserSignIn.Enabled = false;//ÓÃ»§µÇÂ¼°´Å¥ Ëø¶¨
 
-            //    SP_Set.Enabled = true;//ä¸²å£è®¾ç½®æŒ‰é’® è§£é”
+            //    SP_Set.Enabled = true;//´®¿ÚÉèÖÃ°´Å¥ ½âËø
             //}
-            //else    //ç”¨æˆ·æœªç™»å½•æ—¶
+            //else    //ÓÃ»§Î´µÇÂ¼Ê±
             //{
-            //    UserManage.Enabled = false;//ç”¨æˆ·ç®¡ç†æŒ‰é’® é”å®š
-            //    UserLogOut.Enabled = false;//é€€å‡ºç™»å½•æŒ‰é’® é”å®š
-            //    UserSwitch.Enabled = false;//åˆ‡æ¢ç”¨æˆ·æŒ‰é’® é”å®š
-            //    UserSignIn.Enabled = true;//ç”¨æˆ·ç™»å½•æŒ‰é’® è§£é”
+            //    UserManage.Enabled = false;//ÓÃ»§¹ÜÀí°´Å¥ Ëø¶¨
+            //    UserLogOut.Enabled = false;//ÍË³öµÇÂ¼°´Å¥ Ëø¶¨
+            //    UserSwitch.Enabled = false;//ÇĞ»»ÓÃ»§°´Å¥ Ëø¶¨
+            //    UserSignIn.Enabled = true;//ÓÃ»§µÇÂ¼°´Å¥ ½âËø
 
-            //    SP_Set.Enabled = false;//ä¸²å£è®¾ç½®æŒ‰é’®     é”å®š
+            //    SP_Set.Enabled = false;//´®¿ÚÉèÖÃ°´Å¥     Ëø¶¨
             //}
-            //if (CTMySql.isUserAdmin)    //ç”¨æˆ·æ˜¯ç®¡ç†å‘˜ç”¨æˆ·æ—¶
+            //if (CTMySql.isUserAdmin)    //ÓÃ»§ÊÇ¹ÜÀíÔ±ÓÃ»§Ê±
             //{
-            //    UserManage.Enabled = true;//ç”¨æˆ·ç®¡ç†æŒ‰é’® è§£é”
+            //    UserManage.Enabled = true;//ÓÃ»§¹ÜÀí°´Å¥ ½âËø
             //}
-            //else    //ç”¨æˆ·éç®¡ç†å‘˜ç”¨æˆ·æ—¶
+            //else    //ÓÃ»§·Ç¹ÜÀíÔ±ÓÃ»§Ê±
             //{
-            //    UserManage.Enabled = false;//ç”¨æˆ·ç®¡ç†æŒ‰é’® é”å®š
+            //    UserManage.Enabled = false;//ÓÃ»§¹ÜÀí°´Å¥ Ëø¶¨
             //}
-            ///****************ä¸²å£å¼€å¯æ£€æµ‹*************************************************************************************/
-            //if (CTSerialPort.IsComOpen())   //ä¸²å£å¼€å¯æ—¶
+            ///****************´®¿Ú¿ªÆô¼ì²â*************************************************************************************/
+            //if (CTSerialPort.IsComOpen())   //´®¿Ú¿ªÆôÊ±
             //{
-            //    this.SP_Ttest.Enabled = true;//è¿æ¥æµ‹è¯•æŒ‰é’®  è§£é”
-            //    this.SP_Close.Enabled = true;//æ–­å¼€è¿æ¥æŒ‰é’®  è§£é”
+            //    this.SP_Ttest.Enabled = true;//Á¬½Ó²âÊÔ°´Å¥  ½âËø
+            //    this.SP_Close.Enabled = true;//¶Ï¿ªÁ¬½Ó°´Å¥  ½âËø
             //}
-            //else//ä¸²å£å…³é—­æ—¶
+            //else//´®¿Ú¹Ø±ÕÊ±
             //{
-            //    this.SP_Ttest.Enabled = false;//è¿æ¥æµ‹è¯•æŒ‰é’®  é”å®š
-            //    this.SP_Close.Enabled = false;//æ–­å¼€è¿æ¥æŒ‰é’®  é”å®š
+            //    this.SP_Ttest.Enabled = false;//Á¬½Ó²âÊÔ°´Å¥  Ëø¶¨
+            //    this.SP_Close.Enabled = false;//¶Ï¿ªÁ¬½Ó°´Å¥  Ëø¶¨
             //}
         }
 
-        //å‚æ•°è®¾ç½®æŒ‰é’®    ç‚¹å‡»
+        //²ÎÊıÉèÖÃ°´Å¥    µã»÷
         private void SP_Set_Click(object sender, EventArgs e)
         {
             Form_SP_Set form_SP_Set = new Form_SP_Set();
             form_SP_Set.ShowDialog();
         }
         
-        //æµ‹è¯•è¿æ¥æŒ‰é’®    ç‚¹å‡»
+        //²âÊÔÁ¬½Ó°´Å¥    µã»÷
         private void SP_Ttest_Click(object sender, EventArgs e)
         {
             Form_SP_Test form_sp_test = new Form_SP_Test();
             form_sp_test.ShowDialog();
         }
 
-        //æ–­å¼€è¿æ¥æŒ‰é’®    ç‚¹å‡»
+        //¶Ï¿ªÁ¬½Ó°´Å¥    µã»÷
         private void SP_Close_Click(object sender, EventArgs e)
         {
             CTSerialPort.CloseSP();
         }
 
-        //ç”¨æˆ·ç™»å½•æŒ‰é’®    ç‚¹å‡»
+        //ÓÃ»§µÇÂ¼°´Å¥    µã»÷
         private void UserSignIn_Click(object sender, EventArgs e)
         {
             FormSignIn formSignIn = new FormSignIn();
             formSignIn.ShowDialog();
         }
 
-        //é€€å‡ºç™»å½•æŒ‰é’®    ç‚¹å‡»
+        //ÍË³öµÇÂ¼°´Å¥    µã»÷
         private void UserLogOut_Click(object sender, EventArgs e)
         {
             CTMySql.isSignIn = false;
             CTMySql.isUserAdmin = false;
         }
 
-        //åˆ‡æ¢ç”¨æˆ·æŒ‰é’®    ç‚¹å‡»
+        //ÇĞ»»ÓÃ»§°´Å¥    µã»÷
         private void UserSwitch_Click(object sender, EventArgs e)
         {
             CTMySql.isSignIn = false;
@@ -198,7 +198,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             formSignIn.ShowDialog();
         }
 
-        //ç”¨æˆ·ç®¡ç†æŒ‰é’®    ç‚¹å‡»
+        //ÓÃ»§¹ÜÀí°´Å¥    µã»÷
         private void UserManage_Click(object sender, EventArgs e)
         {
             if (CTMySql.isUserAdmin)
@@ -207,11 +207,11 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             }
             else
             {
-                MessageBox.Show("æ­¤ç”¨æˆ·æ²¡æœ‰ç®¡ç†æƒé™");
+                MessageBox.Show("´ËÓÃ»§Ã»ÓĞ¹ÜÀíÈ¨ÏŞ");
             }
         }
 
-        //å®æ—¶æ•°æ®æŒ‰é’®    ç‚¹å‡»
+        //ÊµÊ±Êı¾İ°´Å¥    µã»÷
         private void ButtonRealData_MyButtonClickEvent(object sender, EventArgs e)
         {
             Console.WriteLine("FormWave RealData have show.");

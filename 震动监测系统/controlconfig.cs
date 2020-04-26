@@ -1,60 +1,60 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
     static class controlconfig
     {
-        //æ·»åŠ é”®ä¸ºkeyNameã€å€¼ä¸ºkeyValueçš„é¡¹ï¼š
+        //Ìí¼Ó¼üÎªkeyName¡¢ÖµÎªkeyValueµÄÏî£º
         public static void addItem(string keyName, string keyValue)
         {
-            //æ·»åŠ é…ç½®æ–‡ä»¶çš„é¡¹ï¼Œé”®ä¸ºkeyNameï¼Œå€¼ä¸ºkeyValue
+            //Ìí¼ÓÅäÖÃÎÄ¼şµÄÏî£¬¼üÎªkeyName£¬ÖµÎªkeyValue
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings.Add(keyName, keyValue);
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        //åˆ¤æ–­é”®ä¸ºkeyNameçš„é¡¹æ˜¯å¦å­˜åœ¨ï¼š
+        //ÅĞ¶Ï¼üÎªkeyNameµÄÏîÊÇ·ñ´æÔÚ£º
         public static bool existItem(string keyName)
         {
-            //åˆ¤æ–­é…ç½®æ–‡ä»¶ä¸­æ˜¯å¦å­˜åœ¨é”®ä¸ºkeyNameçš„é¡¹
+            //ÅĞ¶ÏÅäÖÃÎÄ¼şÖĞÊÇ·ñ´æÔÚ¼üÎªkeyNameµÄÏî
             foreach (string key in ConfigurationManager.AppSettings)
             {
                 if (key == keyName)
                 {
-                    //å­˜åœ¨
+                    //´æÔÚ
                     return true;
                 }
             }
             return false;
         }
 
-        //è·å–é”®ä¸ºkeyNameçš„é¡¹çš„å€¼ï¼š
+        //»ñÈ¡¼üÎªkeyNameµÄÏîµÄÖµ£º
         public static string valueItem(string keyName)
         {
-            //è¿”å›é…ç½®æ–‡ä»¶ä¸­é”®ä¸ºkeyNameçš„é¡¹çš„å€¼
+            //·µ»ØÅäÖÃÎÄ¼şÖĞ¼üÎªkeyNameµÄÏîµÄÖµ
             return ConfigurationManager.AppSettings[keyName];
         }
 
-        //ä¿®æ”¹é”®ä¸ºkeyNameçš„é¡¹çš„å€¼ï¼š
+        //ĞŞ¸Ä¼üÎªkeyNameµÄÏîµÄÖµ£º
         public static void modifyItem(string keyName, string newKeyValue)
         {
-            //ä¿®æ”¹é…ç½®æ–‡ä»¶ä¸­é”®ä¸ºkeyNameçš„é¡¹çš„å€¼
+            //ĞŞ¸ÄÅäÖÃÎÄ¼şÖĞ¼üÎªkeyNameµÄÏîµÄÖµ
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings[keyName].Value = newKeyValue;
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        //åˆ é™¤é”®ä¸ºkeyNameçš„é¡¹ï¼š
+        //É¾³ı¼üÎªkeyNameµÄÏî£º
         public static void removeItem(string keyName)
         {
-            //åˆ é™¤é…ç½®æ–‡ä»¶é”®ä¸ºkeyNameçš„é¡¹
+            //É¾³ıÅäÖÃÎÄ¼ş¼üÎªkeyNameµÄÏî
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             config.AppSettings.Settings.Remove(keyName);
             config.Save(ConfigurationSaveMode.Modified);
@@ -62,9 +62,9 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// è‡ªåŠ¨åˆ¤æ–­æ˜¯å¦å­˜åœ¨Item
-        /// è‹¥å­˜åœ¨ï¼Œä¿®æ”¹å€¼
-        /// ä¸å­˜åœ¨ï¼Œæ·»åŠ å€¼
+        /// ×Ô¶¯ÅĞ¶ÏÊÇ·ñ´æÔÚItem
+        /// Èô´æÔÚ£¬ĞŞ¸ÄÖµ
+        /// ²»´æÔÚ£¬Ìí¼ÓÖµ
         /// </summary>
         /// <param name="keyName"></param>
         public static void AddOrModifyItem(string keyName, string newKeyValue)

@@ -1,11 +1,11 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
     class DrawWave
     {
@@ -27,25 +27,25 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// ç»˜åˆ¶Xåæ ‡åˆ»åº¦çº¿çš„æ–¹æ³•
+        /// »æÖÆX×ø±ê¿Ì¶ÈÏßµÄ·½·¨
         /// </summary>
-        /// <param name="box">æ‰€éœ€ç»˜åˆ¶çš„pictureBoxçª—ä½“</param>
-        /// <param name="axisType">è½´ç±»å‹ï¼š0 ç›´çº¿+ä¸»åæ ‡ï¼Œ1 ç›´çº¿+ä¸»åæ ‡+å‰¯åæ ‡ï¼Œ2 ä¸»åæ ‡ï¼Œ3 ä¸»åæ ‡+å‰¯åæ ‡</param>
-        /// <param name="axisMark">è½´åˆ»åº¦</param>
+        /// <param name="box">ËùĞè»æÖÆµÄpictureBox´°Ìå</param>
+        /// <param name="axisType">ÖáÀàĞÍ£º0 Ö±Ïß+Ö÷×ø±ê£¬1 Ö±Ïß+Ö÷×ø±ê+¸±×ø±ê£¬2 Ö÷×ø±ê£¬3 Ö÷×ø±ê+¸±×ø±ê</param>
+        /// <param name="axisMark">Öá¿Ì¶È</param>
         public void DrawXaxis(ref System.Windows.Forms.PictureBox box, int axisType, int axisMark)
         {
             Graphics g;
-            g = Graphics.FromImage(bp);//åˆ›å»ºç”»æ¿
+            g = Graphics.FromImage(bp);//´´½¨»­°å
             
-            Pen py1 = new Pen(Color.Yellow, 1);//å®šä¹‰ç”»ç¬”
+            Pen py1 = new Pen(Color.Yellow, 1);//¶¨Òå»­±Ê
 
-            Point axisStart = new Point();//è½´åæ ‡èµ·ç‚¹
+            Point axisStart = new Point();//Öá×ø±êÆğµã
             axisStart.X = 20;
             axisStart.Y = boxSize.Y - 20;
 
-            int axisLenth = boxSize.X - 40;//è½´é•¿åº¦
+            int axisLenth = boxSize.X - 40;//Öá³¤¶È
 
-            //ç”»ä¸»åæ ‡
+            //»­Ö÷×ø±ê
             for (int i = 0; i < axisLenth; i+=axisMark*5)
             {
                 g.DrawLine(py1, axisStart.X + i, axisStart.Y - 4, axisStart.X + i, axisStart.Y + 4);
@@ -53,7 +53,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
             if (axisType == 1 || axisType == 3)
             {
-                //ç”»å‰¯åæ ‡
+                //»­¸±×ø±ê
                 for (int i = 0; i < axisLenth; i += axisMark)
                 {
                     g.DrawLine(py1, axisStart.X + i, axisStart.Y - 2, axisStart.X + i, axisStart.Y + 2);
@@ -62,7 +62,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
             if (axisType == 0 || axisType == 1)
             {
-                //ç”»ç›´çº¿
+                //»­Ö±Ïß
                 g.DrawLine(py1, axisStart.X, axisStart.Y, axisStart.X + axisLenth, axisStart.Y);
             }
 
@@ -73,24 +73,24 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// ç»˜åˆ¶Yåæ ‡åˆ»åº¦çº¿çš„æ–¹æ³•
+        /// »æÖÆY×ø±ê¿Ì¶ÈÏßµÄ·½·¨
         /// </summary>
-        /// <param name="box">æ‰€éœ€ç»˜åˆ¶çš„pictureBoxçª—ä½“</param>
-        /// <param name="axisType">è½´ç±»å‹ï¼š0 ç›´çº¿+ä¸»åæ ‡ï¼Œ1 ç›´çº¿+ä¸»åæ ‡+å‰¯åæ ‡ï¼Œ2 ä¸»åæ ‡ï¼Œ3 ä¸»åæ ‡+å‰¯åæ ‡</param>
-        /// <param name="axisMark">è½´åˆ»åº¦</param>
+        /// <param name="box">ËùĞè»æÖÆµÄpictureBox´°Ìå</param>
+        /// <param name="axisType">ÖáÀàĞÍ£º0 Ö±Ïß+Ö÷×ø±ê£¬1 Ö±Ïß+Ö÷×ø±ê+¸±×ø±ê£¬2 Ö÷×ø±ê£¬3 Ö÷×ø±ê+¸±×ø±ê</param>
+        /// <param name="axisMark">Öá¿Ì¶È</param>
         public void DrawYaxis(ref System.Windows.Forms.PictureBox box, int axisType, int axisMark)
         {
             Graphics g;
-            g = Graphics.FromImage(bp);//åˆ›å»ºç”»æ¿
+            g = Graphics.FromImage(bp);//´´½¨»­°å
             Pen py1 = new Pen(Color.Yellow, 1);
 
-            Point axisStart = new Point();//è½´åæ ‡èµ·ç‚¹
+            Point axisStart = new Point();//Öá×ø±êÆğµã
             axisStart.X = 20;
             axisStart.Y = boxSize.Y - 20;
 
-            int axisLenth = boxSize.Y - 40;//è½´é•¿åº¦
+            int axisLenth = boxSize.Y - 40;//Öá³¤¶È
 
-            //ç”»ä¸»åæ ‡
+            //»­Ö÷×ø±ê
             for (int i = 0; i < axisLenth; i += axisMark*5)
             {
                 g.DrawLine(py1, axisStart.X - 4, axisStart.Y - i, axisStart.X + 4, axisStart.Y - i);
@@ -98,7 +98,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
             if (axisType == 1 || axisType == 3)
             {
-                //ç”»å‰¯åæ ‡
+                //»­¸±×ø±ê
                 for (int i = 0; i < axisLenth; i += axisMark)
                 {
                     g.DrawLine(py1, axisStart.X - 2, axisStart.Y - i, axisStart.X + 2, axisStart.Y - i);
@@ -107,7 +107,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
 
             if (axisType == 0 || axisType == 1)
             {
-                //ç”»ç›´çº¿
+                //»­Ö±Ïß
                 g.DrawLine(py1, axisStart.X, axisStart.Y, axisStart.X, axisStart.Y - axisLenth);
             }
 
@@ -118,16 +118,16 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// ç»˜åˆ¶æ³¢å½¢çš„æ–¹æ³•
+        /// »æÖÆ²¨ĞÎµÄ·½·¨
         /// </summary>
-        /// <param name="data">æ•°æ®</param>
-        /// <param name="box">éœ€è¦ç»˜åˆ¶çš„å›¾ç‰‡ç›’å­</param>
-        /// <param name="Xmark">æ—¶é—´è½´ä¸»åæ ‡æ ‡åº¦</param>
-        /// <param name="timeType">æ—¶é—´ç±»å‹</param>
+        /// <param name="data">Êı¾İ</param>
+        /// <param name="box">ĞèÒª»æÖÆµÄÍ¼Æ¬ºĞ×Ó</param>
+        /// <param name="Xmark">Ê±¼äÖáÖ÷×ø±ê±ê¶È</param>
+        /// <param name="timeType">Ê±¼äÀàĞÍ</param>
         public void Wave(ref UInt16[] data, ref System.Windows.Forms.PictureBox box, int Xmark, int timeType)
         {
             Graphics g;
-            g = Graphics.FromImage(bp);//åˆ›å»ºç”»æ¿
+            g = Graphics.FromImage(bp);//´´½¨»­°å
             Pen pwave = new Pen(Color.YellowGreen, 1);
 
             int num = data.Length;
@@ -167,7 +167,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         public void Wave(ref UInt16 data, ref System.Windows.Forms.PictureBox box, int Xmark, int timeType)
         {
             Graphics g;
-            g = Graphics.FromImage(bp);//åˆ›å»ºç”»æ¿
+            g = Graphics.FromImage(bp);//´´½¨»­°å
             Pen pwave = new Pen(Color.YellowGreen, 1);
 
             Point startPoint = new Point(20, boxSize.Y - 20);
@@ -192,7 +192,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         public void ClearToBackcolor(ref System.Windows.Forms.PictureBox box)
         {
             Graphics g;
-            g = Graphics.FromImage(bp);//åˆ›å»ºç”»æ¿
+            g = Graphics.FromImage(bp);//´´½¨»­°å
 
             g.Clear(box.BackColor);
 

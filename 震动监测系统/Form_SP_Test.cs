@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,67 +10,67 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
 
     public partial class Form_SP_Test : Form
     {
-        static bool flag1 = false;  //è¯»ä¸²å£æ•°æ®çº¿ç¨‹ä¿¡å·ç¯
+        static bool flag1 = false;  //¶Á´®¿ÚÊı¾İÏß³ÌĞÅºÅµÆ
         
         public Form_SP_Test()
         {
             InitializeComponent();
         }
 
-        //å¼€å§‹æµ‹è¯•æŒ‰é’®    ç‚¹å‡»
+        //¿ªÊ¼²âÊÔ°´Å¥    µã»÷
         public void Button_sp_test_Click(object sender, EventArgs e)
         {
-            button_sp_test_close.Focus();//ç„¦ç‚¹ç½®äºåœæ­¢æµ‹è¯•æŒ‰é’®
-            button_sp_test_close.Enabled = true;//åœæ­¢æµ‹è¯•æŒ‰é’®    è§£é”
-            button_sp_tests_start.Enabled = false;//å¼€å§‹æµ‹è¯•æŒ‰é’®  é”å®š
+            button_sp_test_close.Focus();//½¹µãÖÃÓÚÍ£Ö¹²âÊÔ°´Å¥
+            button_sp_test_close.Enabled = true;//Í£Ö¹²âÊÔ°´Å¥    ½âËø
+            button_sp_tests_start.Enabled = false;//¿ªÊ¼²âÊÔ°´Å¥  Ëø¶¨
 
-            //å¼€å§‹è¯»å–ä¸²å£æ•°æ®çº¿ç¨‹
-            Thread readData = new Thread(ReadSpData);//å®ä¾‹ä¸€ä¸ªè¯»å–æ•°æ®çº¿ç¨‹
-            readData.IsBackground = true;//è®¾ç½®ä¸ºåå°çº¿ç¨‹
-            readData.Priority = ThreadPriority.Highest;//è®¾ç½®çº¿ç¨‹ä¼˜å…ˆçº§ä¸ºé«˜
-            flag1 = true;//è¯»æ•°æ®çº¿ç¨‹ä¿¡å·ç¯é€šè¿‡
-            readData.Start(4);//å¼€å§‹çº¿ç¨‹
+            //¿ªÊ¼¶ÁÈ¡´®¿ÚÊı¾İÏß³Ì
+            Thread readData = new Thread(ReadSpData);//ÊµÀıÒ»¸ö¶ÁÈ¡Êı¾İÏß³Ì
+            readData.IsBackground = true;//ÉèÖÃÎªºóÌ¨Ïß³Ì
+            readData.Priority = ThreadPriority.Highest;//ÉèÖÃÏß³ÌÓÅÏÈ¼¶Îª¸ß
+            flag1 = true;//¶ÁÊı¾İÏß³ÌĞÅºÅµÆÍ¨¹ı
+            readData.Start(4);//¿ªÊ¼Ïß³Ì
 
-            SendSpData("A");//ç»™ä¸‹ä½æœºå‘é€å¼€å§‹å‘é€æ•°æ®ä¿¡å·
+            SendSpData("A");//¸øÏÂÎ»»ú·¢ËÍ¿ªÊ¼·¢ËÍÊı¾İĞÅºÅ
         }
 
-        //è¿æ¥æµ‹è¯•çª—å£    å‡ºç°
+        //Á¬½Ó²âÊÔ´°¿Ú    ³öÏÖ
         public void Form_SP_Test_Shown(object sender, EventArgs e)
         {
-            button_sp_tests_start.Focus();//ç„¦ç‚¹ç½®äºå¼€å§‹æµ‹è¯•æŒ‰é’®
-            button_sp_test_close.Enabled = false;//åœæ­¢æµ‹è¯•æŒ‰é’®    é”å®š
+            button_sp_tests_start.Focus();//½¹µãÖÃÓÚ¿ªÊ¼²âÊÔ°´Å¥
+            button_sp_test_close.Enabled = false;//Í£Ö¹²âÊÔ°´Å¥    Ëø¶¨
             boxtest_com_num.Text = controlconfig.valueItem("portnum");
             boxtest_bode_num.Text = controlconfig.valueItem("bodenum");
         }
 
-        //åœæ­¢æµ‹è¯•æŒ‰é’®    ç‚¹å‡»
+        //Í£Ö¹²âÊÔ°´Å¥    µã»÷
         private void button_sp_test_close_Click(object sender, EventArgs e)
         {
-            flag1 = false;//åœæ­¢è¯»æ•°æ®çº¿ç¨‹
+            flag1 = false;//Í£Ö¹¶ÁÊı¾İÏß³Ì
             button_sp_test_close.Enabled = false;
             button_sp_tests_start.Enabled = true;
             //this.Close();
         }
 
 
-        //è¿æ¥æµ‹è¯•çª—å£    å…³é—­ä¸­
+        //Á¬½Ó²âÊÔ´°¿Ú    ¹Ø±ÕÖĞ
         private void Form_SP_Test_FormClosing(object sender, FormClosingEventArgs e)
         {
-            flag1 = false;//åœæ­¢è¯»æ•°æ®çº¿ç¨‹
+            flag1 = false;//Í£Ö¹¶ÁÊı¾İÏß³Ì
         }
 
-        //å‘é€ä¸²å£æ•°æ®
+        //·¢ËÍ´®¿ÚÊı¾İ
         public void SendSpData(string sendData)
         {
             CTSerialPort.SendSP(sendData);
         }
 
-        //è¯»å–ä¸²å£æ•°æ®    å¼€å§‹ä¹‹å‰è¦å…ˆè®©ä¿¡å·ç¯é€šè¿‡
+        //¶ÁÈ¡´®¿ÚÊı¾İ    ¿ªÊ¼Ö®Ç°ÒªÏÈÈÃĞÅºÅµÆÍ¨¹ı
         public void ReadSpData(object readSize)
         {
             byte[] spData = new byte[4];
@@ -86,14 +86,14 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
                     {
                         boxtest_result.AppendText(spData[n].ToString() + " ");
                         //boxtest_result.Text += spData[n].ToString();
-                        //this.boxtest_result.Focus();//è·å–ç„¦ç‚¹
-                        //this.boxtest_result.Select(this.boxtest_result.TextLength, 0);//å…‰æ ‡å®šä½åˆ°æ–‡æœ¬æœ€å
-                        //this.boxtest_result.ScrollToCaret();//æ»šåŠ¨åˆ°å…‰æ ‡å¤„
+                        //this.boxtest_result.Focus();//»ñÈ¡½¹µã
+                        //this.boxtest_result.Select(this.boxtest_result.TextLength, 0);//¹â±ê¶¨Î»µ½ÎÄ±¾×îºó
+                        //this.boxtest_result.ScrollToCaret();//¹ö¶¯µ½¹â±ê´¦
                     }
                     //boxtest_result.Text += "  ";
-                    //this.boxtest_result.Focus();//è·å–ç„¦ç‚¹
-                    //this.boxtest_result.Select(this.boxtest_result.TextLength, 0);//å…‰æ ‡å®šä½åˆ°æ–‡æœ¬æœ€å
-                    //this.boxtest_result.ScrollToCaret();//æ»šåŠ¨åˆ°å…‰æ ‡å¤„
+                    //this.boxtest_result.Focus();//»ñÈ¡½¹µã
+                    //this.boxtest_result.Select(this.boxtest_result.TextLength, 0);//¹â±ê¶¨Î»µ½ÎÄ±¾×îºó
+                    //this.boxtest_result.ScrollToCaret();//¹ö¶¯µ½¹â±ê´¦
                     System.DateTime currentTime = new System.DateTime();
                     currentTime = System.DateTime.Now;
                     Console.WriteLine("Min:" + currentTime.Minute.ToString() + "  Sec:" + currentTime.Second.ToString()
@@ -102,13 +102,13 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
                 }
                 if (num >= 10)
                 {
-                    boxtest_result.Text += "\r\næµ‹è¯•æˆåŠŸ\r\n";
+                    boxtest_result.Text += "\r\n²âÊÔ³É¹¦\r\n";
                     flag1 = false;
                     SendSpData("E");
                     return;
                 }
             }
-            boxtest_result.Text += "\r\næµ‹è¯•å¤±è´¥ï¼Œæœªæ¥æ”¶åˆ°å®Œæ•´æ•°æ®\r\n";
+            boxtest_result.Text += "\r\n²âÊÔÊ§°Ü£¬Î´½ÓÊÕµ½ÍêÕûÊı¾İ\r\n";
             SendSpData("E");
             return;
         }

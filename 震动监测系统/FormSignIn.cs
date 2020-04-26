@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
+namespace Õğ¶¯¼à²âÏµÍ³
 {
     public partial class FormSignIn : Form
     {
@@ -21,22 +21,22 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
         }
 
         /// <summary>
-        /// æ˜¯å¦ç™»å½•ä¿¡å·ç¯
+        /// ÊÇ·ñµÇÂ¼ĞÅºÅµÆ
         ///</summary>
         public bool signInFlag { get; set; }
         public bool adminFlag { get; set; }
 
         static Form1 f1 = new Form1();
         static Thread f1t = new Thread(F1Show);
-        //ç™»å½•æŒ‰é’®  ç‚¹å‡»
+        //µÇÂ¼°´Å¥  µã»÷
         private void btmSignIn_Click(object sender, EventArgs e)
         {
             string userAccount = txtbxAccount.Text;
             string userPassword = txtbxPassword.Text;
-            bool a = cTMySql.CheckSignInPassword(userAccount, userPassword);//åˆ¤æ–­å¯†ç æ˜¯å¦æ­£ç¡®
+            bool a = cTMySql.CheckSignInPassword(userAccount, userPassword);//ÅĞ¶ÏÃÜÂëÊÇ·ñÕıÈ·
             if (a)
             {
-                MessageBox.Show("ç™»é™†æˆåŠŸ");
+                MessageBox.Show("µÇÂ½³É¹¦");
                 if (f1t.IsAlive)
                 {
                     this.Close();
@@ -51,7 +51,7 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             }
             else
             {
-                MessageBox.Show("ç™»é™†å¤±è´¥");
+                MessageBox.Show("µÇÂ½Ê§°Ü");
             }
         }
 
@@ -60,11 +60,11 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             f1.ShowDialog();
         }
 
-        //ç™»é™†é¡µé¢  é¦–æ¬¡å‡ºç°
+        //µÇÂ½Ò³Ãæ  Ê×´Î³öÏÖ
         private void FormSignIn_Shown(object sender, EventArgs e)
         {
-            cTMySql = new CTMySql("localhost", "root", "éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ", "000000", "3306");//è®¾ç½®è¿æ¥å‚æ•°
-            if (cTMySql.ConnectDatabass())//æ‰“å¼€è¿æ¥ï¼Œåˆ¤æ–­è¿æ¥æ˜¯å¦æˆåŠŸ
+            cTMySql = new CTMySql("localhost", "root", "Õğ¶¯¼à²âÏµÍ³", "000000", "3306");//ÉèÖÃÁ¬½Ó²ÎÊı
+            if (cTMySql.ConnectDatabass())//´ò¿ªÁ¬½Ó£¬ÅĞ¶ÏÁ¬½ÓÊÇ·ñ³É¹¦
             {
                 //MessageBox.Show("Success To Connect MySQL");
             }
@@ -74,25 +74,25 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             }
         }
 
-        //ç”¨æˆ·åè¾“å…¥æ¡†    æŒ‰é”®æŒ‰ä¸‹
+        //ÓÃ»§ÃûÊäÈë¿ò    °´¼ü°´ÏÂ
         private void txtbxAccount_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //åˆ¤æ–­ç”¨æˆ·åè¾“å…¥æ˜¯å¦åˆæ³•
+            //ÅĞ¶ÏÓÃ»§ÃûÊäÈëÊÇ·ñºÏ·¨
             Byte[] a = { 0 };
-            Encoding.ASCII.GetBytes(e.KeyChar.ToString(), 0, 1, a, 0);//å°†æŒ‰é”®å­—ç¬¦è½¬ä¸ºASCIIç ï¼Œå­˜å…¥æ•°ç»„a
+            Encoding.ASCII.GetBytes(e.KeyChar.ToString(), 0, 1, a, 0);//½«°´¼ü×Ö·û×ªÎªASCIIÂë£¬´æÈëÊı×éa
             Console.WriteLine("keychar:" + e.KeyChar);
             Console.WriteLine("keyascii:" + a[0]);
             Console.WriteLine();
             int x = a[0];
-            //åˆ¤æ–­å­—ç¬¦æ˜¯å¦åˆæ³•
+            //ÅĞ¶Ï×Ö·ûÊÇ·ñºÏ·¨
             if (
-                   (x >= 65 && x <= 90)//å…è®¸å¤§å†™å­—æ¯
-                   || (x >= 97 && x <= 122)//å…è®¸å°å†™å­—æ¯
-                   || (x >= 48 && x <= 57)//å…è®¸æ•°å­—
-                   || (x == 8)//å…è®¸é€€æ ¼
-                   || (x == 32)//å…è®¸ç©ºæ ¼
-                   //|| (x == 46)//å…è®¸å°æ•°ç‚¹
-                   || (x == 95)//å…è®¸ä¸‹åˆ’çº¿
+                   (x >= 65 && x <= 90)//ÔÊĞí´óĞ´×ÖÄ¸
+                   || (x >= 97 && x <= 122)//ÔÊĞíĞ¡Ğ´×ÖÄ¸
+                   || (x >= 48 && x <= 57)//ÔÊĞíÊı×Ö
+                   || (x == 8)//ÔÊĞíÍË¸ñ
+                   || (x == 32)//ÔÊĞí¿Õ¸ñ
+                   //|| (x == 46)//ÔÊĞíĞ¡Êıµã
+                   || (x == 95)//ÔÊĞíÏÂ»®Ïß
                )
             {
                 e.Handled = false;
@@ -104,25 +104,25 @@ namespace éœ‡åŠ¨ç›‘æµ‹ç³»ç»Ÿ
             }
         }
 
-        //å¯†ç è¾“å…¥æ¡†     æŒ‰é”®æŒ‰ä¸‹
+        //ÃÜÂëÊäÈë¿ò     °´¼ü°´ÏÂ
         private void txtbxPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //åˆ¤æ–­å¯†ç è¾“å…¥æ˜¯å¦åˆæ³•
+            //ÅĞ¶ÏÃÜÂëÊäÈëÊÇ·ñºÏ·¨
             Byte[] a = { 0 };
-            Encoding.ASCII.GetBytes(e.KeyChar.ToString(), 0, 1, a, 0);//å°†æŒ‰é”®å­—ç¬¦è½¬ä¸ºASCIIç ï¼Œå­˜å…¥æ•°ç»„a
+            Encoding.ASCII.GetBytes(e.KeyChar.ToString(), 0, 1, a, 0);//½«°´¼ü×Ö·û×ªÎªASCIIÂë£¬´æÈëÊı×éa
             Console.WriteLine("keychar:" + e.KeyChar);
             Console.WriteLine("keyascii:" + a[0]);
             Console.WriteLine();
             int x = a[0];
-            //åˆ¤æ–­å­—ç¬¦æ˜¯å¦åˆæ³•
+            //ÅĞ¶Ï×Ö·ûÊÇ·ñºÏ·¨
             if (
-                   (x >= 65 && x <= 90)//å…è®¸å¤§å†™å­—æ¯
-                   || (x >= 97 && x <= 122)//å…è®¸å°å†™å­—æ¯
-                   || (x >= 48 && x <= 57)//å…è®¸æ•°å­—
-                   || (x == 8)//å…è®¸é€€æ ¼
-                   //|| (x == 32)//å…è®¸ç©ºæ ¼
-                   || (x == 46)//å…è®¸å°æ•°ç‚¹
-                   || (x == 95)//å…è®¸ä¸‹åˆ’çº¿
+                   (x >= 65 && x <= 90)//ÔÊĞí´óĞ´×ÖÄ¸
+                   || (x >= 97 && x <= 122)//ÔÊĞíĞ¡Ğ´×ÖÄ¸
+                   || (x >= 48 && x <= 57)//ÔÊĞíÊı×Ö
+                   || (x == 8)//ÔÊĞíÍË¸ñ
+                   //|| (x == 32)//ÔÊĞí¿Õ¸ñ
+                   || (x == 46)//ÔÊĞíĞ¡Êıµã
+                   || (x == 95)//ÔÊĞíÏÂ»®Ïß
                )
             {
                 e.Handled = false;
