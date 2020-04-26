@@ -124,7 +124,7 @@ namespace 震动监测系统
             cmd.CommandText = string.Format("CREATE TABLE `震动监测系统`.`{0}` (" +
                 "`DataID` INT NOT NULL, " +
                 "`DataTime` CHAR(23) NOT NULL, " +
-                "`DataValue` UNSIGNED SMALLINT NOT NULL, " +
+                "`DataValue` SMALLINT UNSIGNED NOT NULL, " +
                 "PRIMARY KEY(`DataID`)); ", tablename);
             Console.WriteLine(cmd.CommandText);
             cmd.Connection = conn;
@@ -170,7 +170,7 @@ namespace 震动监测系统
         }
 
         /// <summary>
-        /// 从内存表增加、更新数据表
+        /// 将内存表末尾100个增加、更新到数据表
         /// </summary>
         /// <param name="tablename">string 表名</param>
         public void AddOrUpdataTableFromDataset2Databass(string tablename)
@@ -202,6 +202,35 @@ namespace 震动监测系统
             cmd.ExecuteNonQuery();
             sb.Clear();
             conn.Dispose();
+        }
+        /// <summary>
+        /// 将指定位置和数量的内存表增加、更新到数据表
+        /// </summary>
+        /// <param name="tablename"></param>
+        /// <param name="num"></param>
+        /// <param name="start"></param>
+        public void AddOrUpdataTableFromDataset2Databass(string tablename, int num, int start)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("INSERT INTO `" + tablename + "` (");
+            for (int i = 0; i < dtst.Tables[tablename].Columns.Count; i++)
+            {
+                sb.Append(dtst.Tables[tablename].Columns[i].ColumnName + ",");
+            }
+            sb.Remove(sb.ToString().LastIndexOf(','), 1);
+            sb.Append(") VALUES ");
+            for (int i = 0; i < num; i++)
+            {
+                sb.Append("(");
+                for (int j = 0; j < dtst.Tables[tablename].Columns.Count; j++)
+                {
+                    sb.Append("'" + dtst.Tables[tablename].Rows[start + i][j] + "',");
+                }
+                sb.Remove(sb.ToString().LastIndexOf(','), 1);
+                sb.Append("),");
+            }
+            sb.Remove(sb.ToString().LastIndexOf(','), 1);
+            sb.Append(";");
         }
 
         /// <summary>

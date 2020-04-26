@@ -50,6 +50,12 @@ namespace 震动监测系统
             this.wave1_timeshow_label = new System.Windows.Forms.Label();
             this.wave1_timegap_TrackBar = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wave2_timegap_TrackBar)).BeginInit();
@@ -59,6 +65,8 @@ namespace 震动监测系统
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wave1_timegap_TrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -97,7 +105,10 @@ namespace 震动监测系统
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.wave2_timeshow_label);
+            this.panel2.Controls.Add(this.trackBar2);
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.wave2_timegap_TrackBar);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -286,6 +297,9 @@ namespace 震动监测系统
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.trackBar1);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.wave1_timeshow_label);
             this.panel1.Controls.Add(this.wave1_timegap_TrackBar);
             this.panel1.Controls.Add(this.label1);
@@ -308,8 +322,8 @@ namespace 震动监测系统
             // wave1_timegap_TrackBar
             // 
             this.wave1_timegap_TrackBar.LargeChange = 1;
-            this.wave1_timegap_TrackBar.Location = new System.Drawing.Point(0, 19);
-            this.wave1_timegap_TrackBar.Margin = new System.Windows.Forms.Padding(0);
+            this.wave1_timegap_TrackBar.Location = new System.Drawing.Point(0, 24);
+            this.wave1_timegap_TrackBar.Margin = new System.Windows.Forms.Padding(5);
             this.wave1_timegap_TrackBar.Maximum = 8;
             this.wave1_timegap_TrackBar.Minimum = 1;
             this.wave1_timegap_TrackBar.Name = "wave1_timegap_TrackBar";
@@ -329,6 +343,77 @@ namespace 震动监测系统
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "时间轴主刻度：";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(127, 69);
+            this.label2.Margin = new System.Windows.Forms.Padding(5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "1000 ms";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(0, 83);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(0);
+            this.trackBar1.Maximum = 8;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(180, 45);
+            this.trackBar1.TabIndex = 5;
+            this.trackBar1.TickFrequency = 100;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBar1.Value = 8;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(2, 69);
+            this.label4.Margin = new System.Windows.Forms.Padding(5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 12);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "纵轴主刻度：";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(127, 66);
+            this.label5.Margin = new System.Windows.Forms.Padding(5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 12);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "1000 ms";
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.LargeChange = 1;
+            this.trackBar2.Location = new System.Drawing.Point(0, 80);
+            this.trackBar2.Margin = new System.Windows.Forms.Padding(0);
+            this.trackBar2.Maximum = 8;
+            this.trackBar2.Minimum = 1;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(180, 45);
+            this.trackBar2.TabIndex = 8;
+            this.trackBar2.TickFrequency = 100;
+            this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.trackBar2.Value = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(2, 66);
+            this.label6.Margin = new System.Windows.Forms.Padding(5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 12);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "纵轴主刻度：";
             // 
             // FormWave
             // 
@@ -354,6 +439,8 @@ namespace 震动监测系统
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wave1_timegap_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -381,5 +468,11 @@ namespace 震动监测系统
         private System.Windows.Forms.Label wave2_timeshow_label;
         public System.Windows.Forms.TrackBar wave2_timegap_TrackBar;
         public System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.TrackBar trackBar1;
+        public System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.TrackBar trackBar2;
+        public System.Windows.Forms.Label label6;
     }
 }

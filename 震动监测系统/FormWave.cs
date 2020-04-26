@@ -108,8 +108,17 @@ namespace 震动监测系统
             manageReadDataFlag = false;
             reflashWave1ThreadFlag = false;
             reflashWave2ThreadFlag = false;
-            MessageBox.Show("是否储存本次数据？", "储存数据", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
+            DialogResult dg = MessageBox.Show("是：保留本次采集数据\n否：不保留本次采集数据", "储存数据确认", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dg == DialogResult.No)
+            {
+                dg = MessageBox.Show("是：不保留本采集数据！\n否：保留本次采集数据", "确认不保留数据");
+                if (dg == DialogResult.Yes)
+                {
+                    cTMySql.dttb.Clear();
+                    return;
+                }
+            }
+            
         }
 
 
@@ -346,8 +355,20 @@ namespace 震动监测系统
             }
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
