@@ -41,6 +41,9 @@
             this.SP_Ttest = new System.Windows.Forms.ToolStripMenuItem();
             this.SP_Close = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelButton = new System.Windows.Forms.Panel();
+            this.myButton1 = new WindowsFormsControlLibrary1.MyButton();
+            this.myButton5 = new WindowsFormsControlLibrary1.MyButton();
+            this.myButton4 = new WindowsFormsControlLibrary1.MyButton();
             this.ButtonRealData = new WindowsFormsControlLibrary1.MyButton();
             this.ButtonHome = new WindowsFormsControlLibrary1.MyButton();
             this.menuStrip1.SuspendLayout();
@@ -143,6 +146,9 @@
             // PanelButton
             // 
             this.PanelButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.PanelButton.Controls.Add(this.myButton1);
+            this.PanelButton.Controls.Add(this.myButton5);
+            this.PanelButton.Controls.Add(this.myButton4);
             this.PanelButton.Controls.Add(this.ButtonRealData);
             this.PanelButton.Controls.Add(this.ButtonHome);
             this.PanelButton.Dock = System.Windows.Forms.DockStyle.Left;
@@ -152,6 +158,48 @@
             this.PanelButton.Size = new System.Drawing.Size(75, 556);
             this.PanelButton.TabIndex = 1;
             // 
+            // myButton1
+            // 
+            this.myButton1.BackColor = System.Drawing.Color.LightGray;
+            this.myButton1.BackColotAll = System.Drawing.Color.LightGray;
+            this.myButton1.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("myButton1.BackGroundImageAll")));
+            this.myButton1.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
+            this.myButton1.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.myButton1.Location = new System.Drawing.Point(0, 72);
+            this.myButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.myButton1.Name = "myButton1";
+            this.myButton1.Size = new System.Drawing.Size(75, 72);
+            this.myButton1.TabIndex = 4;
+            this.myButton1.TextAll = "通信设置";
+            // 
+            // myButton5
+            // 
+            this.myButton5.BackColor = System.Drawing.Color.LightGray;
+            this.myButton5.BackColotAll = System.Drawing.Color.LightGray;
+            this.myButton5.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("myButton5.BackGroundImageAll")));
+            this.myButton5.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
+            this.myButton5.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.myButton5.Location = new System.Drawing.Point(0, 216);
+            this.myButton5.Margin = new System.Windows.Forms.Padding(0);
+            this.myButton5.Name = "myButton5";
+            this.myButton5.Size = new System.Drawing.Size(75, 72);
+            this.myButton5.TabIndex = 3;
+            this.myButton5.TextAll = "历史数据";
+            // 
+            // myButton4
+            // 
+            this.myButton4.BackColor = System.Drawing.Color.LightGray;
+            this.myButton4.BackColotAll = System.Drawing.Color.LightGray;
+            this.myButton4.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("myButton4.BackGroundImageAll")));
+            this.myButton4.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
+            this.myButton4.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.myButton4.Location = new System.Drawing.Point(0, 288);
+            this.myButton4.Margin = new System.Windows.Forms.Padding(0);
+            this.myButton4.Name = "myButton4";
+            this.myButton4.Size = new System.Drawing.Size(75, 72);
+            this.myButton4.TabIndex = 2;
+            this.myButton4.TextAll = "用户管理";
+            // 
             // ButtonRealData
             // 
             this.ButtonRealData.BackColor = System.Drawing.Color.LightGray;
@@ -159,7 +207,7 @@
             this.ButtonRealData.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("ButtonRealData.BackGroundImageAll")));
             this.ButtonRealData.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
             this.ButtonRealData.FontColorAll = System.Drawing.SystemColors.ControlText;
-            this.ButtonRealData.Location = new System.Drawing.Point(0, 72);
+            this.ButtonRealData.Location = new System.Drawing.Point(0, 144);
             this.ButtonRealData.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonRealData.Name = "ButtonRealData";
             this.ButtonRealData.Size = new System.Drawing.Size(75, 72);
@@ -224,6 +272,9 @@
         private System.Windows.Forms.Panel PanelButton;
         private WindowsFormsControlLibrary1.MyButton ButtonRealData;
         private WindowsFormsControlLibrary1.MyButton ButtonHome;
+        private WindowsFormsControlLibrary1.MyButton myButton1;
+        private WindowsFormsControlLibrary1.MyButton myButton5;
+        private WindowsFormsControlLibrary1.MyButton myButton4;
         //private System.Windows.Forms.Panel panel1;
     }
 }
