@@ -20,10 +20,6 @@ namespace 震动监测系统
         public FormSaveWaiting()
         {
             InitializeComponent();
-
-            cm.CreateNewTable(CTMySql.dtst.Tables[0].TableName);
-            cm.CreateNewTable(CTMySql.dtst.Tables[1].TableName);
-
             Thread T1 = new Thread(D1);
             Thread T2 = new Thread(D2);
             T1.IsBackground = true;
@@ -38,12 +34,12 @@ namespace 震动监测系统
 
         void D1()
         {
-            SaveDelet1 sd1 = new SaveDelet1(CTMySql.dtst.Tables[0].TableName);
+            SaveDelet sd1 = new SaveDelet(CTMySql.dtst.Tables[0].TableName);
             sd1.Savep();
         }
         void D2()
         {
-            SaveDelet2 sd2 = new SaveDelet2(CTMySql.dtst.Tables[1].TableName);
+            SaveDelet sd2 = new SaveDelet(CTMySql.dtst.Tables[0].TableName);
             sd2.Savep();
         }
 
@@ -54,27 +50,23 @@ namespace 震动监测系统
             {
                 if (0 != pv1)
                 {
-                    o = (pv1 + o) / 2;
-                    //o = pv1;
+                    v = (pv1 + o) / 2;
+                    o = pv1;
                 }
-                progressBar1.Value = o;
-
-                label1.Text = o.ToString();
+                progressBar1.Value = v;
                 Thread.Sleep(100);
             }
-            progressBar1.Value = 100;
-            label1.Text = "储存完成";
         }
     }
 
-    class SaveDelet1
+    class SaveDelet
     {
         CTMySql cm = new CTMySql();
         DataTable dt;
 
         string tn;
 
-        public SaveDelet1(string _tn)
+        public SaveDelet(string _tn)
         {
             tn = _tn;
             dt = CTMySql.dtst.Tables[_tn];
@@ -82,60 +74,7 @@ namespace 震动监测系统
 
         public void Savep()
         {
-            int num = 100, start = 0, all, loop;
-            all = dt.Rows.Count;
-            if (all <= 100)
-            {
-                loop = 1;
-            }
-            else
-            {
-                loop = all / 100 + 1;
-            }
-            for (int i = 0; i < loop; i++)
-            {
-                lock (FormSaveWaiting.tLock)
-                {
-                    if (i == loop - 1)
-                    {
-                        if (loop != 1)
-                        {
-                            cm.AddOrUpdataTableFromDataset2Databass(tn, all % (loop - 1), start);
-                        }
-                    }
-                    else
-                    {
-                        cm.AddOrUpdataTableFromDataset2Databass(tn, num, start);
-                        start += num;
-                    }
-                    FormSaveWaiting.pv1 = i * 100 / loop;
-                }
-            }
-            Delet();
-            FormSaveWaiting.pv1 = 100;
-        }
-
-        private void Delet()
-        {
-            CTMySql.dtst.Tables[tn].Clear();
-        }
-    }
-
-    class SaveDelet2
-    {
-        CTMySql cm = new CTMySql();
-        DataTable dt;
-
-        string tn;
-
-        public SaveDelet2(string _tn)
-        {
-            tn = _tn;
-            dt = CTMySql.dtst.Tables[_tn];
-        }
-
-        public void Savep()
-        {
+            cm.CreateNewTable(tn);
             int num = 100, start = 0, all, loop;
             all = dt.Rows.Count;
             if (all <= 100)

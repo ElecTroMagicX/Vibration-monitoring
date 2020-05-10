@@ -17,7 +17,7 @@ namespace 震动监测系统
         static public bool isSignIn = false;//用户是否登录标志
         static public bool isUserAdmin = false;//用户是否为管理员账户标志
 
-        static MySqlConnection conn = new MySqlConnection();
+        static MySqlConnection conn;
         static MySqlCommand cmd = new MySqlCommand();
         static MySqlCommandBuilder cmdb = new MySqlCommandBuilder();
         static MySqlDataAdapter dtadp = new MySqlDataAdapter();
@@ -41,6 +41,7 @@ namespace 震动监测系统
             //Password = password;
             //Port = port;
 
+            conn = new MySqlConnection();
             conn.ConnectionString = string.Format("server={0};port={1};uid={2};pwd={3};database={4}"
                 , server, port, user, password, databass);
         }
@@ -74,8 +75,6 @@ namespace 震动监测系统
             cmd.CommandText = "account";
             cmd.Connection = conn;
             cmd.CommandType = CommandType.TableDirect;
-            conn = new MySqlConnection();
-            conn.ConnectionString = string.Format("server=localhost;port=3306;uid=root;pwd=000000;database=震动监测系统");
             ConnectDatabass();
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -98,7 +97,6 @@ namespace 震动监测系统
                 }
             }
             reader.Close();
-            reader.Dispose();
             conn.Dispose();
             return false;
         }
@@ -134,6 +132,7 @@ namespace 震动监测系统
             try
             {
                 conn.Open();
+                cmd.ExecuteNonQuery();
                 //conn.Dispose();
             }
             catch (Exception)
@@ -141,7 +140,6 @@ namespace 震动监测系统
 
             }
 
-            cmd.ExecuteNonQuery();
             Console.WriteLine("new table has create!!");
             Console.WriteLine(cmd.CommandText);
             Console.WriteLine();
@@ -175,7 +173,7 @@ namespace 震动监测系统
         {
             dttb = dtst.Tables[tablename];
             for(int i = 0; i < datavalue.Length; i++)
-                dttb.Rows.Add(dataid++, datatime, datavalue[i]);
+                dttb.Rows.Add(dataid, datatime, datavalue[i]);
         }
 
         /// <summary>
@@ -210,7 +208,7 @@ namespace 震动监测系统
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
             sb.Clear();
-            //conn.Dispose();
+            conn.Dispose();
         }
         /// <summary>
         /// 将指定位置和数量的内存表增加、更新到数据表
@@ -220,7 +218,6 @@ namespace 震动监测系统
         /// <param name="start"></param>
         public void AddOrUpdataTableFromDataset2Databass(string tablename, int num, int start)
         {
-            MySqlCommand cmd1 = new MySqlCommand();
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO `" + tablename + "` (");
             for (int i = 0; i < dtst.Tables[tablename].Columns.Count; i++)
@@ -241,25 +238,6 @@ namespace 震动监测系统
             }
             sb.Remove(sb.ToString().LastIndexOf(','), 1);
             sb.Append(";");
-
-            cmd1.CommandText = sb.ToString();
-            cmd1.CommandType = CommandType.Text;
-            cmd1.Connection = conn;
-            //bool a = ConnectDatabass();
-            //Console.WriteLine(sb);
-            if (conn.State == ConnectionState.Closed)
-                ConnectDatabass();
-            //try
-            //{
-            //    conn.Open();
-            //}
-            //catch (Exception)
-            //{
-            //}
-            cmd1.ExecuteNonQuery();
-            cmd1.Dispose();
-            //sb.Clear();
-            //conn.Dispose();
         }
 
         /// <summary>
@@ -267,12 +245,8 @@ namespace 震动监测系统
         /// </summary>
         public void ClearDataSet()
         {
-            dtst.Tables[0].Clear();
-            dtst.Tables[1].Clear();
-            dtst.Tables[0].Dispose();
-            dtst.Tables[1].Dispose();
             dtst.Clear();
-            //dtst.Dispose();
+            dtst.Dispose();
         }
 
         /// <summary>

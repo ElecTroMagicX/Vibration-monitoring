@@ -82,13 +82,13 @@ namespace 震动监测系统
                 reflashWave1ThreadFlag = true;
                 Thread rfwave1 = new Thread(ReflashWave1Thread);
                 rfwave1.IsBackground = true;
-                rfwave1.Start(tablename + "_channel1");
+                rfwave1.Start();
 
                 //波形2绘制线程
                 reflashWave2ThreadFlag = true;
                 Thread rfwave2 = new Thread(ReflashWave2Thread);
                 rfwave2.IsBackground = true;
-                rfwave2.Start(tablename + "_channel2");
+                rfwave2.Start();
 
                 Console.WriteLine("开始接收数据");
             }
@@ -127,7 +127,7 @@ namespace 震动监测系统
         void ManageReadDataThread()
         {
             Console.WriteLine("开始接收数据线程");
-            int dataID = 1, oldID = 0;//定义通道一和二的数据ID变量
+            int dataID = 0, oldID = 0;//定义通道一和二的数据ID变量
             byte[] bt = new byte[200];//定义接收数据的byte数组
             string dateTime = "";
             UInt16[] channel1 = new UInt16[50];
@@ -166,26 +166,25 @@ namespace 震动监测系统
 
                         cTMySql.InsertData2DSTable(tablename + "_channel1", dataID, dateTime.ToString(), ref channel1);
                         cTMySql.InsertData2DSTable(tablename + "_channel2", dataID, dateTime.ToString(), ref channel2);
-                    //if (dataID - oldID >= 100)
-                    //{
-                    //    oldID = dataID;
-                    //    cTMySql.AddOrUpdataTableFromDataset2Databass(tablename + "_channel1");
-                    //    cTMySql.AddOrUpdataTableFromDataset2Databass(tablename + "_channel2");
-                    //}
-                    dataID += 50;
-                }
+                        //if (dataID - oldID >= 100)
+                        //{
+                        //    oldID = dataID;
+                        //    cTMySql.AddOrUpdataTableFromDataset2Databass(tablename + "_channel1");
+                        //    cTMySql.AddOrUpdataTableFromDataset2Databass(tablename + "_channel2");
+                        //}
+                        //dataID++;
+                    }
 
                 //}
             }
             manageReadDataFlag = false;//线程结束后将信号灯标志置为禁止
         }
 
-        public void ReflashWave1Thread(object _tn)
+        public void ReflashWave1Thread()
         {
-            string tn = (string)_tn;
             int gap = 500;
             DrawWave dw = new DrawWave(ref pictureBox1);
-            DataTable dttb = dtst.Tables[tn];
+            DataTable dttb = dtst.Tables[0];
             while (reflashWave1ThreadFlag)
             {
                 lock (DrawWave.wavelock)
@@ -223,12 +222,11 @@ namespace 震动监测系统
             }
         }
 
-        public void ReflashWave2Thread(object _tn)
+        public void ReflashWave2Thread()
         {
-            string tn = (string)_tn;
             int gap = 500;
             DrawWave dw = new DrawWave(ref pictureBox2);
-            DataTable dttb = dtst.Tables[tn];
+            DataTable dttb = dtst.Tables[1];
             while (reflashWave2ThreadFlag)
             {
                 lock (DrawWave.wavelock)
