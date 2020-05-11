@@ -30,7 +30,6 @@ namespace Õğ¶¯¼à²âÏµÍ³
         struct wavepram
         {
             public int timegap;
-
             public int valuegap;
         };
 

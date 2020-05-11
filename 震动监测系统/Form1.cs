@@ -16,6 +16,7 @@ namespace 震动监测系统
         CTMySql cTMySql = new CTMySql();
         FormWave fw = new FormWave();
         static bool fwIsShow = false;
+        static bool fhIsShow = false;
 
         public Form1()
         {
@@ -73,7 +74,7 @@ namespace 震动监测系统
                 Thread.Sleep(500);
                 xxxxxxx++;
                 //Console.WriteLine("From1 Reflash:{0}", xxxxxxx);
-                /******************用户登录、管理员权限检测************************************************************************************/
+                /******************用户登录、管理员权限检测***************************************************************/
                 if (CTMySql.isSignIn)   //用户已登录时
                 {
                     UserLogOut.Enabled = true;//退出登录按钮 解锁
@@ -99,7 +100,7 @@ namespace 震动监测系统
                 {
                     UserManage.Enabled = false;//用户管理按钮 锁定
                 }
-                /****************串口开启检测*************************************************************************************/
+                /****************串口开启检测********************************************************************************/
                 if (CTSerialPort.IsComOpen())   //串口开启时
                 {
                     this.SP_Ttest.Enabled = true;//连接测试按钮  解锁
@@ -117,7 +118,7 @@ namespace 震动监测系统
         private void Form1_MouseEnter(object sender, EventArgs e)
         {
             //Console.WriteLine("mouse enter!!!");
-            ///******************用户登录、管理员权限检测************************************************************************************/
+            ///******************用户登录、管理员权限检测********************************************************************/
             //if (CTMySql.isSignIn)   //用户已登录时
             //{
             //    UserLogOut.Enabled = true;//退出登录按钮 解锁
@@ -215,14 +216,29 @@ namespace 震动监测系统
         private void ButtonRealData_MyButtonClickEvent(object sender, EventArgs e)
         {
             Console.WriteLine("FormWave RealData have show.");
-            if (fwIsShow)
-            {
-                return;
-            }
+            //if (fwIsShow)
+            //{
+            //    return;
+            //}
+            fwIsShow = true;
             fw.MdiParent = this;
             fw.WindowState = FormWindowState.Maximized;
             fw.Show();
-            ////////fwIsShow = true;
+        }
+
+        //历史数据按钮    点击
+        private void ButtonHistoryData_MyButtonClickEvent(object sender, EventArgs e)
+        {
+            FormHistoryData fh = new FormHistoryData();
+            Console.WriteLine("FormHistoryData have show.");
+            //if(fhIsShow)
+            //{
+            //    return;
+            //}
+            fhIsShow = true;
+            fh.MdiParent = this;
+            fh.WindowState = FormWindowState.Maximized;
+            fh.Show();
         }
     }
 }

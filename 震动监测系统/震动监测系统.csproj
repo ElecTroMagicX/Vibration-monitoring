@@ -58,7 +58,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -108,6 +108,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHistoryData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHistoryData.Designer.cs">
+      <DependentUpon>FormHistoryData.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSaveWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,8 +146,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="震动监测系统DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>震动监测系统DataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHistoryData.resx">
+      <DependentUpon>FormHistoryData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSaveWaiting.resx">
       <DependentUpon>FormSaveWaiting.cs</DependentUpon>
@@ -177,6 +191,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="震动监测系统DataSet.xsc">
+      <DependentUpon>震动监测系统DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="震动监测系统DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>震动监测系统DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="震动监测系统DataSet.xss">
+      <DependentUpon>震动监测系统DataSet.xsd</DependentUpon>
+    </None>
     <None Include="震动监测系统_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

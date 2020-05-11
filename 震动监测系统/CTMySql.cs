@@ -74,8 +74,8 @@ namespace 震动监测系统
             cmd.CommandText = "account";
             cmd.Connection = conn;
             cmd.CommandType = CommandType.TableDirect;
-            conn = new MySqlConnection();
-            conn.ConnectionString = string.Format("server=localhost;port=3306;uid=root;pwd=000000;database=震动监测系统");
+            //conn = new MySqlConnection();
+            //conn.ConnectionString = string.Format("server=localhost;port=3306;uid=root;pwd=000000;database=震动监测系统");
             ConnectDatabass();
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -93,13 +93,13 @@ namespace 震动监测系统
                         isUserAdmin = false;
                     }
                     reader.Close();
-                    conn.Dispose();
+                    CloseConnect();
                     return true;
                 }
             }
             reader.Close();
             reader.Dispose();
-            conn.Dispose();
+            CloseConnect();
             return false;
         }
 
@@ -115,6 +115,27 @@ namespace 震动监测系统
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 获取所有表名
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetAllDatatable()
+        {
+            ConnectDatabass();
+            List<string> s = new List<string>(); 
+            string sql = "show tables;";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                string t = reader.GetString(0);
+                s.Add(t);
+            }
+            reader.Close();
+            CloseConnect();
+            return s;
         }
 
         /// <summary>
