@@ -13,6 +13,7 @@ namespace 震动监测系统
     public partial class FormHistoryData : Form
     {
         DataSet ds = new DataSet();
+        DataTable dt;
         CTMySql cm = new CTMySql("localhost", "root", "震动监测系统", "000000", "3306");
 
         public FormHistoryData()
@@ -27,19 +28,38 @@ namespace 震动监测系统
             listBox2.Items.Clear();
             List<string> s = null;
             s = cm.GetAllDatatable();
-            for(int i = 1; i < s.Count; i++)
+            for(int i = 0; i < s.Count - 1; i++)
             {
                 this.listBox1.Items.Add(s[i]);
                 this.listBox2.Items.Add(s[i]);
             }
         }
 
-        void DrawHistoryWave()
+        //绘制波形
+        void DrawHistoryWave(ref PictureBox pictureBox, ushort[] data)
         {
-            DrawWave dw1 = new DrawWave(ref pictureBox1);
-            DrawWave dw2 = new DrawWave(ref pictureBox2);
-            dw1.GetBoxSize(ref pictureBox1);
-            dw2.GetBoxSize(ref pictureBox2);
+            DrawWave dw = new DrawWave(ref pictureBox);
+            dw.ClearToBackcolor(ref pictureBox);
+            dw.DrawXaxis(ref pictureBox, 1, 5);
+            dw.DrawYaxis(ref pictureBox, 1, 5);
+            dw.Wave(ref data, ref pictureBox, 1, 1);
+        }
+
+        void SelectShowData()
+
+        //波形显示1按钮    点击
+        private void WaveShow1Button_Click(object sender, EventArgs e)
+        {
+            string tablename = listBox1.SelectedItem.ToString();
+
+            dt = new DataTable(tablename);
+            ds.Tables.Add(dt);
+        }
+
+        //波形显示2按钮   点击
+        private void WaveShow2Button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

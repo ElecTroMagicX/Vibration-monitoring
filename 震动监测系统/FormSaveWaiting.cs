@@ -21,8 +21,9 @@ namespace 震动监测系统
         {
             InitializeComponent();
 
-            cm.CreateNewTable(CTMySql.dtst.Tables[0].TableName);
-            cm.CreateNewTable(CTMySql.dtst.Tables[1].TableName);
+            int dtstnum = CTMySql.dtst.Tables.Count;
+            cm.CreateNewTable(CTMySql.dtst.Tables[dtstnum - 2].TableName);
+            cm.CreateNewTable(CTMySql.dtst.Tables[dtstnum - 1].TableName);
 
             Thread T1 = new Thread(D1);
             Thread T2 = new Thread(D2);
