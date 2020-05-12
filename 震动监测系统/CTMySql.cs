@@ -9,6 +9,7 @@ using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Windows.Forms;
 
 namespace 震动监测系统
 {
@@ -103,6 +104,24 @@ namespace 震动监测系统
             return false;
         }
 
+        public DataTable GetTableValue(string tn)
+        {
+            if(conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
+            {
+                if(!ConnectDatabass())
+                {
+                    MessageBox.Show("连接数据库失败");
+                    return null;
+                }
+            }
+            string sql = "select * from `" + tn + "`;";
+            DataTable tdt = new DataTable(tn);
+            MySqlDataAdapter adp = new MySqlDataAdapter(sql, conn);
+            adp.Fill(tdt);
+
+            return tdt;
+        }
+
         /// <summary>
         /// 断开数据库连接
         /// </summary>
@@ -118,10 +137,10 @@ namespace 震动监测系统
         }
 
         /// <summary>
-        /// 获取所有表名
+        /// 获取数据库所有数据表名
         /// </summary>
         /// <returns></returns>
-        public List<string> GetAllDatatable()
+        public List<string> GetAllDatatableName()
         {
             ConnectDatabass();
             List<string> s = new List<string>(); 

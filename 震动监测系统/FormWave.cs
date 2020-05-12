@@ -43,6 +43,8 @@ namespace 震动监测系统
             wave2pram.timegap = 8;
             wave1_timegap_TrackBar_Scroll(null, null);
             wave2_timegap_TrackBar_Scroll(null, null);
+
+            ButtonStop.Enabled = false;
         }
 
         /// <summary>
@@ -90,6 +92,9 @@ namespace 震动监测系统
                 rfwave2.Start(tablename + "_channel2");
 
                 Console.WriteLine("开始接收数据");
+
+                ButtonStop.Enabled = true;
+                ButtonStart.Enabled = false;
             }
             else
             {
@@ -117,6 +122,10 @@ namespace 震动监测系统
                     return;
                 }
             }
+
+            ButtonStart.Enabled = true;
+            ButtonStop.Enabled = false;
+
             FormSaveWaiting fsw = new FormSaveWaiting();
             fsw.ShowDialog();
         }

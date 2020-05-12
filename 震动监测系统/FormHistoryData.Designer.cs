@@ -30,39 +30,39 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.WaveShow2Button = new System.Windows.Forms.Button();
             this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.WaveShow1Button = new System.Windows.Forms.Button();
-            this.震动监测系统DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.震动监测系统DataSet = new 震动监测系统.震动监测系统DataSet();
-            this.ListShow1Button = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.ListShow2Button = new System.Windows.Forms.Button();
             this.wave1_timeshow_label = new System.Windows.Forms.Label();
             this.wave1_timegap_TrackBar = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.wave2_timeshow_label = new System.Windows.Forms.Label();
             this.wave2_timegap_TrackBar = new System.Windows.Forms.TrackBar();
             this.label3 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.ListShow1Button = new System.Windows.Forms.Button();
+            this.WaveShow1Button = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.ListShow2Button = new System.Windows.Forms.Button();
+            this.WaveShow2Button = new System.Windows.Forms.Button();
+            this.震动监测系统DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.震动监测系统DataSet = new 震动监测系统.震动监测系统DataSet();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wave1_timegap_TrackBar)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wave2_timegap_TrackBar)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSet)).BeginInit();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wave1_timegap_TrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wave2_timegap_TrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -90,19 +90,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 561);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // WaveShow2Button
-            // 
-            this.WaveShow2Button.AutoSize = true;
-            this.WaveShow2Button.Dock = System.Windows.Forms.DockStyle.Left;
-            this.WaveShow2Button.Location = new System.Drawing.Point(0, 0);
-            this.WaveShow2Button.Margin = new System.Windows.Forms.Padding(0);
-            this.WaveShow2Button.Name = "WaveShow2Button";
-            this.WaveShow2Button.Size = new System.Drawing.Size(75, 21);
-            this.WaveShow2Button.TabIndex = 1;
-            this.WaveShow2Button.Text = "图形显示";
-            this.WaveShow2Button.UseVisualStyleBackColor = true;
-            this.WaveShow2Button.Click += new System.EventHandler(this.WaveShow2Button_Click);
             // 
             // hScrollBar2
             // 
@@ -141,6 +128,7 @@
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(634, 20);
             this.hScrollBar1.TabIndex = 2;
+            this.hScrollBar1.ValueChanged += new System.EventHandler(this.hScrollBar1_ValueChanged);
             // 
             // panel1
             // 
@@ -154,108 +142,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(350, 260);
             this.panel1.TabIndex = 4;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(350, 148);
-            this.listBox1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.wave2_timeshow_label);
-            this.panel2.Controls.Add(this.wave2_timegap_TrackBar);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.listBox2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(634, 280);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(350, 260);
-            this.panel2.TabIndex = 5;
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 12;
-            this.listBox2.Location = new System.Drawing.Point(0, 0);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(350, 148);
-            this.listBox2.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.ListShow1Button);
-            this.panel3.Controls.Add(this.WaveShow1Button);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(634, 260);
-            this.panel3.Margin = new System.Windows.Forms.Padding(0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(350, 20);
-            this.panel3.TabIndex = 6;
-            // 
-            // WaveShow1Button
-            // 
-            this.WaveShow1Button.AutoSize = true;
-            this.WaveShow1Button.Dock = System.Windows.Forms.DockStyle.Left;
-            this.WaveShow1Button.Location = new System.Drawing.Point(0, 0);
-            this.WaveShow1Button.Margin = new System.Windows.Forms.Padding(0);
-            this.WaveShow1Button.Name = "WaveShow1Button";
-            this.WaveShow1Button.Size = new System.Drawing.Size(75, 20);
-            this.WaveShow1Button.TabIndex = 0;
-            this.WaveShow1Button.Text = "图形显示";
-            this.WaveShow1Button.UseVisualStyleBackColor = true;
-            this.WaveShow1Button.Click += new System.EventHandler(this.WaveShow1Button_Click);
-            // 
-            // 震动监测系统DataSetBindingSource
-            // 
-            this.震动监测系统DataSetBindingSource.DataSource = this.震动监测系统DataSet;
-            this.震动监测系统DataSetBindingSource.Position = 0;
-            // 
-            // 震动监测系统DataSet
-            // 
-            this.震动监测系统DataSet.DataSetName = "震动监测系统DataSet";
-            this.震动监测系统DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ListShow1Button
-            // 
-            this.ListShow1Button.AutoSize = true;
-            this.ListShow1Button.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ListShow1Button.Location = new System.Drawing.Point(75, 0);
-            this.ListShow1Button.Margin = new System.Windows.Forms.Padding(0);
-            this.ListShow1Button.Name = "ListShow1Button";
-            this.ListShow1Button.Size = new System.Drawing.Size(75, 20);
-            this.ListShow1Button.TabIndex = 1;
-            this.ListShow1Button.Text = "报表显示";
-            this.ListShow1Button.UseVisualStyleBackColor = true;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.ListShow2Button);
-            this.panel4.Controls.Add(this.WaveShow2Button);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(634, 540);
-            this.panel4.Margin = new System.Windows.Forms.Padding(0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(350, 21);
-            this.panel4.TabIndex = 7;
-            // 
-            // ListShow2Button
-            // 
-            this.ListShow2Button.AutoSize = true;
-            this.ListShow2Button.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ListShow2Button.Location = new System.Drawing.Point(75, 0);
-            this.ListShow2Button.Margin = new System.Windows.Forms.Padding(0);
-            this.ListShow2Button.Name = "ListShow2Button";
-            this.ListShow2Button.Size = new System.Drawing.Size(75, 21);
-            this.ListShow2Button.TabIndex = 2;
-            this.ListShow2Button.Text = "报表显示";
-            this.ListShow2Button.UseVisualStyleBackColor = true;
             // 
             // wave1_timeshow_label
             // 
@@ -280,6 +166,7 @@
             this.wave1_timegap_TrackBar.TickFrequency = 100;
             this.wave1_timegap_TrackBar.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.wave1_timegap_TrackBar.Value = 8;
+            this.wave1_timegap_TrackBar.ValueChanged += new System.EventHandler(this.wave1_timegap_TrackBar_ValueChanged);
             // 
             // label1
             // 
@@ -290,6 +177,29 @@
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 4;
             this.label1.Text = "时间轴主刻度：";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(0, 0);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(350, 148);
+            this.listBox1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.wave2_timeshow_label);
+            this.panel2.Controls.Add(this.wave2_timegap_TrackBar);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.listBox2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(634, 280);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(350, 260);
+            this.panel2.TabIndex = 5;
             // 
             // wave2_timeshow_label
             // 
@@ -325,6 +235,98 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "时间轴主刻度：";
             // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 12;
+            this.listBox2.Location = new System.Drawing.Point(0, 0);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(350, 148);
+            this.listBox2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.ListShow1Button);
+            this.panel3.Controls.Add(this.WaveShow1Button);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(634, 260);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(350, 20);
+            this.panel3.TabIndex = 6;
+            // 
+            // ListShow1Button
+            // 
+            this.ListShow1Button.AutoSize = true;
+            this.ListShow1Button.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ListShow1Button.Location = new System.Drawing.Point(75, 0);
+            this.ListShow1Button.Margin = new System.Windows.Forms.Padding(0);
+            this.ListShow1Button.Name = "ListShow1Button";
+            this.ListShow1Button.Size = new System.Drawing.Size(75, 20);
+            this.ListShow1Button.TabIndex = 1;
+            this.ListShow1Button.Text = "报表显示";
+            this.ListShow1Button.UseVisualStyleBackColor = true;
+            // 
+            // WaveShow1Button
+            // 
+            this.WaveShow1Button.AutoSize = true;
+            this.WaveShow1Button.Dock = System.Windows.Forms.DockStyle.Left;
+            this.WaveShow1Button.Location = new System.Drawing.Point(0, 0);
+            this.WaveShow1Button.Margin = new System.Windows.Forms.Padding(0);
+            this.WaveShow1Button.Name = "WaveShow1Button";
+            this.WaveShow1Button.Size = new System.Drawing.Size(75, 20);
+            this.WaveShow1Button.TabIndex = 0;
+            this.WaveShow1Button.Text = "图形显示";
+            this.WaveShow1Button.UseVisualStyleBackColor = true;
+            this.WaveShow1Button.Click += new System.EventHandler(this.WaveShow1Button_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.ListShow2Button);
+            this.panel4.Controls.Add(this.WaveShow2Button);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(634, 540);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(350, 21);
+            this.panel4.TabIndex = 7;
+            // 
+            // ListShow2Button
+            // 
+            this.ListShow2Button.AutoSize = true;
+            this.ListShow2Button.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ListShow2Button.Location = new System.Drawing.Point(75, 0);
+            this.ListShow2Button.Margin = new System.Windows.Forms.Padding(0);
+            this.ListShow2Button.Name = "ListShow2Button";
+            this.ListShow2Button.Size = new System.Drawing.Size(75, 21);
+            this.ListShow2Button.TabIndex = 2;
+            this.ListShow2Button.Text = "报表显示";
+            this.ListShow2Button.UseVisualStyleBackColor = true;
+            // 
+            // WaveShow2Button
+            // 
+            this.WaveShow2Button.AutoSize = true;
+            this.WaveShow2Button.Dock = System.Windows.Forms.DockStyle.Left;
+            this.WaveShow2Button.Location = new System.Drawing.Point(0, 0);
+            this.WaveShow2Button.Margin = new System.Windows.Forms.Padding(0);
+            this.WaveShow2Button.Name = "WaveShow2Button";
+            this.WaveShow2Button.Size = new System.Drawing.Size(75, 21);
+            this.WaveShow2Button.TabIndex = 1;
+            this.WaveShow2Button.Text = "图形显示";
+            this.WaveShow2Button.UseVisualStyleBackColor = true;
+            this.WaveShow2Button.Click += new System.EventHandler(this.WaveShow2Button_Click);
+            // 
+            // 震动监测系统DataSetBindingSource
+            // 
+            this.震动监测系统DataSetBindingSource.DataSource = this.震动监测系统DataSet;
+            this.震动监测系统DataSetBindingSource.Position = 0;
+            // 
+            // 震动监测系统DataSet
+            // 
+            this.震动监测系统DataSet.DataSetName = "震动监测系统DataSet";
+            this.震动监测系统DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // FormHistoryData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -339,16 +341,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wave1_timegap_TrackBar)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wave2_timegap_TrackBar)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSet)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wave1_timegap_TrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.wave2_timegap_TrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
