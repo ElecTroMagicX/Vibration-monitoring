@@ -14,7 +14,6 @@ namespace 震动监测系统
     public partial class FormHistoryData : Form
     {
         DataSet ds = new DataSet();
-        DataTable dt;
         //CTMySql cm = new CTMySql("localhost", "root", "震动监测系统", "000000", "3306");
         CTMySql cm = new CTMySql();
 
@@ -33,7 +32,7 @@ namespace 震动监测系统
         {
             listBox1.Items.Clear();
             listBox2.Items.Clear();
-            List<string> s = null;
+            List<string> s;
             s = cm.GetAllDatatableName();
             for(int i = 0; i < s.Count - 1; i++)
             {
@@ -48,27 +47,33 @@ namespace 震动监测系统
         }
 
         // select data point and draw wave
-        void SelectShowData(string tablename, ref PictureBox pictureBox)
+        void SelectShowData(string tablename, ref PictureBox pictureBox, ref HScrollBar hScrollBar, ref TrackBar trackBar)
         {        
             DrawWave dw = new DrawWave(ref pictureBox);
 
             ushort[] data;
             int gap;  //x axis timegap
             int datanum = (dw.boxSize.X - 40) / 5;
-            gap = timgap[wave1_timegap_TrackBar.Value];
+            gap = timgap[trackBar.Value];
             data = new ushort[datanum];
 
             // set hScrollBar
-            hScrollBar1.Maximum = ds.Tables[tablename].Rows.Count / gap - datanum;
-            hScrollBar1.Minimum = 0;
-            hScrollBar1.LargeChange = 1;
-            hScrollBar1.SmallChange = 1;
-            if (hScrollBar1.Maximum < 0) hScrollBar1.Maximum = 0;
+            hScrollBar.LargeChange = 50 * gap;
+            hScrollBar.SmallChange = 5 * gap;
+            hScrollBar.Maximum = ds.Tables[tablename].Rows.Count - (datanum + 1) * gap;
+            hScrollBar.Minimum = 0;
+            if (hScrollBar.Maximum < 0) hScrollBar.Maximum = 0;
 
             for(int i = 0; i < datanum; i++)
             {
-                if (hScrollBar1.Maximum > 0) data[i] = (ushort)ds.Tables[tablename].Rows[i * gap + hScrollBar1.Value][2];
-                else break;
+                try
+                {
+                    data[i] = (ushort)ds.Tables[tablename].Rows[i * gap + hScrollBar.Value][2];
+                }
+                catch (Exception)
+                {
+                    break;
+                }
             }
 
             dw.ClearToBackcolor(ref pictureBox);
@@ -77,7 +82,7 @@ namespace 震动监测系统
             dw.Wave(ref data, ref pictureBox, 1, 1);
         }
 
-        //波形显示1按钮    点击
+        //波形1显示按钮    点击
         private void WaveShow1Button_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex < 0)
@@ -85,38 +90,68 @@ namespace 震动监测系统
                 MessageBox.Show("请选择需显示的数据", "请选择数据", MessageBoxButtons.OK);
                 return;
             }
+
             tablename1 = listBox1.SelectedItem.ToString();
+
             try
             {
                 ds.Tables.Add(cm.GetTableValue(tablename1));
             }
-            catch (Exception)
-            {
+            catch (Exception) { }
 
-            }
-            SelectShowData(tablename1, ref pictureBox1);
+            SelectShowData(tablename1, ref pictureBox1, ref hScrollBar1, ref wave1_timegap_TrackBar);
 
             hScrollBar1.Value = 0;
             hScrollBar1.Enabled = true;
             wave1_timegap_TrackBar.Enabled = true;
         }
 
-        //波形显示2按钮   点击
+        //波形2显示按钮   点击
         private void WaveShow2Button_Click(object sender, EventArgs e)
         {
+            if (listBox2.SelectedIndex < 0)
+            {
+                MessageBox.Show("请选择需显示的数据", "请选择数据", MessageBoxButtons.OK);
+                return;
+            }
+
+            tablename2 = listBox2.SelectedItem.ToString();
+
+            try
+            {
+                ds.Tables.Add(cm.GetTableValue(tablename2));
+            }
+            catch (Exception) { }
+
+            SelectShowData(tablename2, ref pictureBox2, ref hScrollBar2, ref wave2_timegap_TrackBar);
+
+            hScrollBar2.Value = 0;
+            hScrollBar2.Enabled = true;
+            wave2_timegap_TrackBar.Enabled = true;
         }
 
-        // hScrollBar value changed
+        // hScrollBar1 value changed
         private void hScrollBar1_ValueChanged(object sender, EventArgs e)
         {
-            SelectShowData(tablename1, ref pictureBox1);
+            SelectShowData(tablename1, ref pictureBox1, ref hScrollBar1, ref wave1_timegap_TrackBar);
         }
 
-        // trackBar value changed
+        // trackBar1 value changed
         private void wave1_timegap_TrackBar_ValueChanged(object sender, EventArgs e)
         {
             wave1_timeshow_label.Text = timlable[wave1_timegap_TrackBar.Value];
-            SelectShowData(tablename1, ref pictureBox1);
+            SelectShowData(tablename1, ref pictureBox1, ref hScrollBar1, ref wave1_timegap_TrackBar);
+        }
+
+        private void hScrollBar2_ValueChanged(object sender, EventArgs e)
+        {
+            SelectShowData(tablename2, ref pictureBox2, ref hScrollBar2, ref wave2_timegap_TrackBar);
+        }
+
+        private void wave2_timegap_TrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            wave2_timeshow_label.Text = timlable[wave2_timegap_TrackBar.Value];
+            SelectShowData(tablename2, ref pictureBox2, ref hScrollBar2, ref wave2_timegap_TrackBar);
         }
     }
 }

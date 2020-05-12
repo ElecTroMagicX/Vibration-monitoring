@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,10 +49,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.ListShow2Button = new System.Windows.Forms.Button();
             this.WaveShow2Button = new System.Windows.Forms.Button();
+            this.Wave1Panel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.震动监测系统DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.震动监测系统DataSet = new 震动监测系统.震动监测系统DataSet();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wave1_timegap_TrackBar)).BeginInit();
@@ -61,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.wave2_timegap_TrackBar)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.Wave1Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSet)).BeginInit();
             this.SuspendLayout();
@@ -71,13 +73,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F));
             this.tableLayoutPanel1.Controls.Add(this.hScrollBar2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.hScrollBar1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.Wave1Panel, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -98,17 +100,7 @@
             this.hScrollBar2.Name = "hScrollBar2";
             this.hScrollBar2.Size = new System.Drawing.Size(634, 21);
             this.hScrollBar2.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(634, 260);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.hScrollBar2.ValueChanged += new System.EventHandler(this.hScrollBar2_ValueChanged);
             // 
             // pictureBox2
             // 
@@ -118,6 +110,7 @@
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(634, 260);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
@@ -224,6 +217,7 @@
             this.wave2_timegap_TrackBar.TickFrequency = 100;
             this.wave2_timegap_TrackBar.TickStyle = System.Windows.Forms.TickStyle.Both;
             this.wave2_timegap_TrackBar.Value = 8;
+            this.wave2_timegap_TrackBar.ValueChanged += new System.EventHandler(this.wave2_timegap_TrackBar_ValueChanged);
             // 
             // label3
             // 
@@ -317,6 +311,29 @@
             this.WaveShow2Button.UseVisualStyleBackColor = true;
             this.WaveShow2Button.Click += new System.EventHandler(this.WaveShow2Button_Click);
             // 
+            // Wave1Panel
+            // 
+            this.Wave1Panel.AutoScroll = true;
+            this.Wave1Panel.Controls.Add(this.pictureBox1);
+            this.Wave1Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Wave1Panel.Location = new System.Drawing.Point(0, 0);
+            this.Wave1Panel.Margin = new System.Windows.Forms.Padding(0);
+            this.Wave1Panel.Name = "Wave1Panel";
+            this.Wave1Panel.Size = new System.Drawing.Size(634, 260);
+            this.Wave1Panel.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(634, 260);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // 震动监测系统DataSetBindingSource
             // 
             this.震动监测系统DataSetBindingSource.DataSource = this.震动监测系统DataSet;
@@ -337,7 +354,7 @@
             this.Name = "FormHistoryData";
             this.Text = "FormHistoryData";
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -349,6 +366,9 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.Wave1Panel.ResumeLayout(false);
+            this.Wave1Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSet)).EndInit();
             this.ResumeLayout(false);
@@ -380,5 +400,6 @@
         private System.Windows.Forms.Label wave2_timeshow_label;
         public System.Windows.Forms.TrackBar wave2_timegap_TrackBar;
         public System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel Wave1Panel;
     }
 }
