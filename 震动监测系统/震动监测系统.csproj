@@ -126,6 +126,12 @@
     <Compile Include="FormSignIn.Designer.cs">
       <DependentUpon>FormSignIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUserManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUserManage.Designer.cs">
+      <DependentUpon>FormUserManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSignIn.resx">
       <DependentUpon>FormSignIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUserManage.resx">
+      <DependentUpon>FormUserManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWave.resx">
       <DependentUpon>FormWave.cs</DependentUpon>

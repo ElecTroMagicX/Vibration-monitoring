@@ -200,6 +200,7 @@
             this.myButton4.Size = new System.Drawing.Size(75, 72);
             this.myButton4.TabIndex = 2;
             this.myButton4.TextAll = "用户管理";
+            this.myButton4.MyButtonClickEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonClickHandle(this.UserManage_Click);
             // 
             // ButtonRealData
             // 

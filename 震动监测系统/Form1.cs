@@ -140,7 +140,13 @@ namespace 震动监测系统
         //用户管理按钮    点击
         private void UserManage_Click(object sender, EventArgs e)
         {
-            if (CTMySql.isUserAdmin) { }
+            if (CTMySql.isUserAdmin) 
+            {
+                FormUserManage fum = new FormUserManage();
+                fum.MdiParent = this;
+                fum.WindowState = FormWindowState.Maximized;
+                fum.Show();
+            }
             else
             {
                 MessageBox.Show("此用户没有管理权限");
