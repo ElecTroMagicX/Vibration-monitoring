@@ -104,6 +104,11 @@ namespace 震动监测系统
             return false;
         }
 
+        /// <summary>
+        /// 获取数据表所有内容
+        /// </summary>
+        /// <param name="tn">需查询的数据表名</param>
+        /// <returns></returns>
         public DataTable GetTableValue(string tn)
         {
             if(conn.State == ConnectionState.Closed || conn.State == ConnectionState.Broken)
