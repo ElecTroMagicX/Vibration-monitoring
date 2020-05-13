@@ -15,6 +15,229 @@ namespace 震动监测系统
         public FormUserManage()
         {
             InitializeComponent();
+            InitForm();
+        }
+
+        void InitForm()
+        {
+
+            #region 初始锁定控件
+            //初始锁定控件
+            NewUserNameTextbox.Enabled = false;
+            NewUserPasswordTextbox.Enabled = false;
+            NewUserAdminNoRadioButton.Enabled = false;
+            NewUserAdminYesRadioButton.Enabled = false;
+
+            NewUserAddButton.Enabled = false;
+
+            UserNameTextbox.Enabled = false;
+            ChangeAdminNoRadioButton.Enabled = false;
+            ChangeAdminYesRadioButton.Enabled = false;
+            DeletUserButton.Enabled = false;
+            ShowPasswordButton.Enabled = false;
+            ShowPasswordTextbox.Enabled = false;
+            ChangePasswordButton.Enabled = false;
+            ChangePasswordTextbox.Enabled = false;
+            #endregion
+
+            #region 获取所有用户信息
+            //获取所有用户信息
+            UserListView.BeginUpdate();
+
+            UserListView.View = View.Details;
+            UserListView.Items.Clear();
+            UserListView.Columns.Add("用户名（双击选择用户）", 200, HorizontalAlignment.Right);
+            UserListView.Columns.Add("管理员", 50, HorizontalAlignment.Center);
+            UserListView.FullRowSelect = true;
+
+            DataTable dt = new DataTable("Account");
+            CTMySql cm = new CTMySql();
+
+            dt = cm.GetTableValue("Account");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string name;
+                ulong admin;
+                name = (string)dt.Rows[i]["Account"];
+                admin = (ulong)dt.Rows[i]["Level"];
+
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = name;
+                if (admin == 1)
+                {
+                    lvi.SubItems.Add("是");
+                }
+                else
+                {
+                    lvi.SubItems.Add("否");
+                }
+                UserListView.Items.Add(lvi);
+            }
+            UserListView.EndUpdate();
+            #endregion
+        }
+
+
+        struct PanelAndControlSize
+        {
+            public int parentX;
+            public int parentY;
+            public int controlX;
+            public int controlY;
+        };
+        PanelAndControlSize PCSNewUserButton;
+
+        PanelAndControlSize PCSNewUserNameLable;
+        PanelAndControlSize PCSNewUserPassWordLable;
+        PanelAndControlSize PCSNewUserAdminLable;
+        PanelAndControlSize PCSNewUserNameTextbox;
+        PanelAndControlSize PCSNewUserPassWordTextbox;
+        PanelAndControlSize PCSNewUserAdminYesRadioButton;
+        PanelAndControlSize PCSNewUserAdminNoRadioButton;
+
+        PanelAndControlSize PCSNewUserAddButton;
+
+        PanelAndControlSize PCSUserNameLable;
+        PanelAndControlSize PCSUserNameTextbox;
+
+        PanelAndControlSize PCSChangeAdminLable;
+        PanelAndControlSize PCSChangeAdminYesRadioButton;
+        PanelAndControlSize PCSChangeAdminNoRadioButton;
+
+        PanelAndControlSize PCSDeletUserButton;
+
+        #region 获取控件及父控件的尺寸
+        void PCS_Get(ref Panel parent, ref Button control, ref PanelAndControlSize pcs)
+        {
+            pcs.parentX = parent.Width;
+            pcs.parentY = parent.Height;
+            pcs.controlX = control.Width;
+            pcs.controlY = control.Height;
+        }
+        void PCS_Get(ref Panel parent, ref Label control, ref PanelAndControlSize pcs)
+        {
+            pcs.parentX = parent.Width;
+            pcs.parentY = parent.Height;
+            pcs.controlX = control.Width;
+            pcs.controlY = control.Height;
+        }
+        void PCS_Get(ref Panel parent, ref TextBox control, ref PanelAndControlSize pcs)
+        {
+            pcs.parentX = parent.Width;
+            pcs.parentY = parent.Height;
+            pcs.controlX = control.Width;
+            pcs.controlY = control.Height;
+        }
+        void PCS_Get(ref Panel parent, ref RadioButton control, ref PanelAndControlSize pcs)
+        {
+            pcs.parentX = parent.Width;
+            pcs.parentY = parent.Height;
+            pcs.controlX = control.Width;
+            pcs.controlY = control.Height;
+        }
+        #endregion
+
+        #region 调整位置
+        Point AdjustControlLocation(PanelAndControlSize pcs, int rt, int dn)
+        {
+            Point cp = new Point((pcs.parentX / 2) - (pcs.controlX / 2), (pcs.parentY / 2) - (pcs.controlY / 2));
+            if(rt > 0)
+            {
+                cp.X += pcs.controlX / 2 + rt;
+            }
+            else if(rt < 0)
+            {
+                cp.X += -pcs.controlX / 2 + rt;
+            }
+            if (dn > 0)
+            {
+                cp.Y += pcs.controlY / 2 + dn;
+            }
+            else if (dn < 0)
+            {
+                cp.Y += -pcs.controlY / 2 + dn;
+            }
+            return cp;
+        }
+        #endregion
+
+        //调整控件位置
+        void InitPCS()
+        {
+            PCS_Get(ref NewUserPanel, ref NewUserButton, ref PCSNewUserButton);
+
+            PCS_Get(ref NewUserSetPanel, ref NewUserNameLable, ref PCSNewUserNameLable);
+            PCS_Get(ref NewUserSetPanel, ref NewUserPassWordLable, ref PCSNewUserPassWordLable);
+            PCS_Get(ref NewUserSetPanel, ref NewUserAdminLable, ref PCSNewUserAdminLable);
+            PCS_Get(ref NewUserSetPanel, ref NewUserNameTextbox, ref PCSNewUserNameTextbox);
+            PCS_Get(ref NewUserSetPanel, ref NewUserPasswordTextbox, ref PCSNewUserPassWordTextbox);
+            PCS_Get(ref NewUserSetPanel, ref NewUserAdminYesRadioButton, ref PCSNewUserAdminYesRadioButton);
+            PCS_Get(ref NewUserSetPanel, ref NewUserAdminNoRadioButton, ref PCSNewUserAdminNoRadioButton);
+
+            PCS_Get(ref NewUserAddPanel, ref NewUserAddButton, ref PCSNewUserAddButton);
+
+            PCS_Get(ref UserNamePanel, ref UserNameTextbox, ref PCSUserNameTextbox);
+            PCS_Get(ref UserNamePanel, ref UserNameLable, ref PCSUserNameLable);
+
+            PCS_Get(ref ChangeAdminPanel, ref ChangeAdminLable, ref PCSChangeAdminLable);
+            PCS_Get(ref ChangeAdminPanel, ref ChangeAdminYesRadioButton, ref PCSChangeAdminYesRadioButton);
+            PCS_Get(ref ChangeAdminPanel, ref ChangeAdminNoRadioButton, ref PCSChangeAdminNoRadioButton);
+
+            PCS_Get(ref DeletUserPanel, ref DeletUserButton, ref PCSDeletUserButton);
+
+
+            NewUserButton.Location = AdjustControlLocation(PCSNewUserButton, 0, 0);
+
+            NewUserNameLable.Location = AdjustControlLocation(PCSNewUserNameLable, -10, -25);
+            NewUserNameTextbox.Location = AdjustControlLocation(PCSNewUserNameTextbox, 10, -25);
+            NewUserPassWordLable.Location = AdjustControlLocation(PCSNewUserPassWordLable, -10, 0);
+            NewUserPasswordTextbox.Location = AdjustControlLocation(PCSNewUserPassWordTextbox, 10, 0);
+            NewUserAdminLable.Location = AdjustControlLocation(PCSNewUserAdminLable, -10, 25);
+            NewUserAdminYesRadioButton.Location = AdjustControlLocation(PCSNewUserAdminYesRadioButton, 10, 25);
+            NewUserAdminNoRadioButton.Location = AdjustControlLocation(PCSNewUserAdminNoRadioButton, 10, 50);
+
+            NewUserAddButton.Location = AdjustControlLocation(PCSNewUserAddButton, 0, 0);
+
+            UserNameLable.Location = AdjustControlLocation(PCSUserNameLable, 0, -5);
+            UserNameTextbox.Location = AdjustControlLocation(PCSUserNameTextbox, 0, 5);
+
+            ChangeAdminLable.Location = AdjustControlLocation(PCSChangeAdminLable, 0, -10);
+            ChangeAdminYesRadioButton.Location = AdjustControlLocation(PCSChangeAdminYesRadioButton, 0, 0);
+            ChangeAdminNoRadioButton.Location = AdjustControlLocation(PCSChangeAdminNoRadioButton, 0, 10);
+
+            DeletUserButton.Location = AdjustControlLocation(PCSDeletUserButton, 0, 0);
+        }
+
+        private void FormUserManage_Shown(object sender, EventArgs e)
+        {
+            //调整控件位置
+            InitPCS();
+        }
+
+        private void UserListView_DoubleClick(object sender, EventArgs e)
+        {
+            // 解锁相关控件
+            UserNameTextbox.Enabled = true;
+            ChangeAdminYesRadioButton.Enabled = true;
+            ChangeAdminNoRadioButton.Enabled = true;
+            DeletUserButton.Enabled = true;
+            ShowPasswordButton.Enabled = true;
+            ShowPasswordTextbox.Enabled = true;
+            ChangePasswordButton.Enabled = true;
+            ChangePasswordTextbox.Enabled = true;
+
+            UserNameTextbox.Text = UserListView.SelectedItems[0].Text;
+            if(UserListView.SelectedItems[0].SubItems[1].ToString() == "是")
+            {
+                ChangeAdminYesRadioButton.Checked = true;
+                ChangeAdminNoRadioButton.Checked = false;
+            }
+            else
+            {
+                ChangeAdminYesRadioButton.Checked = false;
+                ChangeAdminNoRadioButton.Checked = true;
+            }
         }
     }
 }
