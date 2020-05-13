@@ -45,7 +45,7 @@ namespace 震动监测系统
             UserListView.BeginUpdate();
 
             UserListView.View = View.Details;
-            UserListView.Items.Clear();
+            UserListView.Clear();
             UserListView.Columns.Add("用户名（双击选择用户）", 200, HorizontalAlignment.Right);
             UserListView.Columns.Add("管理员", 50, HorizontalAlignment.Center);
             UserListView.FullRowSelect = true;
@@ -229,7 +229,7 @@ namespace 震动监测系统
             ChangePasswordTextbox.Enabled = true;
 
             UserNameTextbox.Text = UserListView.SelectedItems[0].Text;
-            if(UserListView.SelectedItems[0].SubItems[1].ToString() == "是")
+            if(UserListView.SelectedItems[0].SubItems[1].Text == "是")
             {
                 ChangeAdminYesRadioButton.Checked = true;
                 ChangeAdminNoRadioButton.Checked = false;
@@ -239,6 +239,10 @@ namespace 震动监测系统
                 ChangeAdminYesRadioButton.Checked = false;
                 ChangeAdminNoRadioButton.Checked = true;
             }
+
+            // 刷新相关控件
+            ShowPasswordTextbox.Text = "";
+            ChangePasswordTextbox.Text = "";
         }
 
         // 新建用户 点击
@@ -261,7 +265,14 @@ namespace 震动监测系统
                 NewUserAdminNoRadioButton.Enabled = true;
                 NewUserAdminNoRadioButton.Checked = true;
                 NewUserAdminNoRadioButton.Checked = false;
+                NewUserAddButton.Enabled = true;
+                ChangePasswordButton.Enabled = true;
+                ShowPasswordButton.Enabled = true;
+                ChangePasswordTextbox.Enabled = true;
             }
+
+            NewUserAdminYesRadioButton.Checked = false;
+            NewUserAdminNoRadioButton.Checked = true;
         }
 
         // 添加用户按钮
@@ -284,13 +295,209 @@ namespace 震动监测系统
                 MessageBox.Show("密码不能为空，请重试");
                 return;
             }
-            DialogResult dr = DialogResult.No;
+            DialogResult dr = DialogResult.Yes;
             if(NewUserAdminYesRadioButton.Checked)
             {
                 dr = MessageBox.Show("确定添加的新用户为管理员用户？", "", MessageBoxButtons.YesNo);
             }
             if (dr == DialogResult.No) return;
+            int level = 0;
+            if (NewUserAdminYesRadioButton.Checked) level = 1;
+            if (NewUserAdminNoRadioButton.Checked) level = 0;
+            string[] data = new string[3];
+            data[0] = NewUserPasswordTextbox.Text;
+            data[1] = NewUserNameTextbox.Text;
+            data[2] = level.ToString();
+            cm.AddRowtoDatabass(data, "Account");
 
+            #region 获取所有用户信息
+            //获取所有用户信息
+            UserListView.BeginUpdate();
+
+            UserListView.View = View.Details;
+            UserListView.Clear();
+            UserListView.Columns.Add("用户名（双击选择用户）", 200, HorizontalAlignment.Right);
+            UserListView.Columns.Add("管理员", 50, HorizontalAlignment.Center);
+            UserListView.FullRowSelect = true;
+
+            dt = cm.GetTableValue("Account");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string name;
+                ulong admin;
+                name = (string)dt.Rows[i]["Account"];
+                admin = (ulong)dt.Rows[i]["Level"];
+
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = name;
+                if (admin == 1)
+                {
+                    lvi.SubItems.Add("是");
+                }
+                else
+                {
+                    lvi.SubItems.Add("否");
+                }
+                UserListView.Items.Add(lvi);
+            }
+            UserListView.EndUpdate();
+            #endregion
+
+            MessageBox.Show("新用户添加成功！");
+        }
+
+        // 删除用户按钮   点击
+        private void DeletUserButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = new DialogResult();
+            dr = MessageBox.Show("确认删除用户 " + UserNameTextbox.Text + "?", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.No) return;
+            DataTable dt = new DataTable("Account");
+            CTMySql cm = new CTMySql();
+            dt = cm.GetTableValue("Account");
+            int pkvalue = -1;
+            string pkname = dt.Columns[0].ColumnName;
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (UserNameTextbox.Text == dt.Rows[i]["Account"].ToString())
+                {
+                    pkvalue = Convert.ToInt32(dt.Rows[i][0]);
+                    break;
+                }
+            }
+            cm.DeletRowfromDatabass("Account", pkname, pkvalue);
+            MessageBox.Show("删除用户成功！");
+
+            #region 获取所有用户信息
+            //获取所有用户信息
+            UserListView.BeginUpdate();
+
+            UserListView.View = View.Details;
+            UserListView.Clear();
+            UserListView.Columns.Add("用户名（双击选择用户）", 200, HorizontalAlignment.Right);
+            UserListView.Columns.Add("管理员", 50, HorizontalAlignment.Center);
+            UserListView.FullRowSelect = true;
+
+            dt = cm.GetTableValue("Account");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string name;
+                ulong admin;
+                name = (string)dt.Rows[i]["Account"];
+                admin = (ulong)dt.Rows[i]["Level"];
+
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = name;
+                if (admin == 1)
+                {
+                    lvi.SubItems.Add("是");
+                }
+                else
+                {
+                    lvi.SubItems.Add("否");
+                }
+                UserListView.Items.Add(lvi);
+            }
+            UserListView.EndUpdate();
+            #endregion
+        }
+
+        private void ChangeAdminYesRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            CTMySql cm = new CTMySql();
+            dt = cm.GetTableValue("Account");
+            int pkvalue = -1;
+            string pkname = dt.Columns[0].ColumnName;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (UserNameTextbox.Text == dt.Rows[i]["Account"].ToString())
+                {
+                    pkvalue = Convert.ToInt32(dt.Rows[i][0]);
+                    break;
+                }
+            }
+            if(ChangeAdminYesRadioButton.Checked)
+                cm.UpdataDatabass("Account", "1", "Level", pkname, pkvalue);
+            else
+                cm.UpdataDatabass("Account", "0", "Level", pkname, pkvalue);
+
+            #region 获取所有用户信息
+            //获取所有用户信息
+            UserListView.BeginUpdate();
+
+            UserListView.View = View.Details;
+            UserListView.Clear();
+            UserListView.Columns.Add("用户名（双击选择用户）", 200, HorizontalAlignment.Right);
+            UserListView.Columns.Add("管理员", 50, HorizontalAlignment.Center);
+            UserListView.FullRowSelect = true;
+
+            dt = cm.GetTableValue("Account");
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string name;
+                ulong admin;
+                name = (string)dt.Rows[i]["Account"];
+                admin = (ulong)dt.Rows[i]["Level"];
+
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = name;
+                if (admin == 1)
+                {
+                    lvi.SubItems.Add("是");
+                }
+                else
+                {
+                    lvi.SubItems.Add("否");
+                }
+                UserListView.Items.Add(lvi);
+            }
+            UserListView.EndUpdate();
+            #endregion
+        }
+
+        private void ShowPasswordButton_Click(object sender, EventArgs e)
+        {
+            ShowPasswordTextbox.Enabled = true;
+            DataTable dt = new DataTable();
+            CTMySql cm = new CTMySql();
+            dt = cm.GetTableValue("Account");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (UserNameTextbox.Text == dt.Rows[i]["Account"].ToString())
+                {
+                    ShowPasswordTextbox.Text = dt.Rows[i]["Password"].ToString();
+                    break;
+                }
+            }
+        }
+
+        private void ChangePasswordButton_Click(object sender, EventArgs e)
+        {
+            if(ChangePasswordTextbox.Text == "")
+            {
+                MessageBox.Show("密码只能由字母、数字、点、下划线组成，且不能为空！");
+            }
+            ShowPasswordTextbox.Enabled = true;
+            DataTable dt = new DataTable();
+            CTMySql cm = new CTMySql();
+            dt = cm.GetTableValue("Account");
+            int pkvalue = -1;
+            string pkname = dt.Columns[0].ColumnName;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (UserNameTextbox.Text == dt.Rows[i]["Account"].ToString())
+                {
+                    pkvalue = Convert.ToInt32(dt.Rows[i][0]);
+                    break;
+                }
+            }
+            cm.UpdataDatabass("account", ChangePasswordTextbox.Text, "Password", pkname, pkvalue);
+            MessageBox.Show("密码修改成功！");
+            ShowPasswordTextbox.Text = ChangePasswordTextbox.Text;
         }
     }
 }

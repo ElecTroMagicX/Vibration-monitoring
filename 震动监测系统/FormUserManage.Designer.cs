@@ -111,7 +111,7 @@
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Location = new System.Drawing.Point(305, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(432, 382);
+            this.panel1.Size = new System.Drawing.Size(483, 384);
             this.panel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -126,7 +126,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(432, 382);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(483, 384);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -144,16 +144,16 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(426, 185);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(477, 186);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // NewUserAddPanel
             // 
             this.NewUserAddPanel.Controls.Add(this.NewUserAddButton);
             this.NewUserAddPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NewUserAddPanel.Location = new System.Drawing.Point(322, 4);
+            this.NewUserAddPanel.Location = new System.Drawing.Point(360, 4);
             this.NewUserAddPanel.Name = "NewUserAddPanel";
-            this.NewUserAddPanel.Size = new System.Drawing.Size(100, 177);
+            this.NewUserAddPanel.Size = new System.Drawing.Size(113, 178);
             this.NewUserAddPanel.TabIndex = 4;
             // 
             // NewUserAddButton
@@ -176,9 +176,9 @@
             this.NewUserSetPanel.Controls.Add(this.NewUserNameLable);
             this.NewUserSetPanel.Controls.Add(this.NewUserNameTextbox);
             this.NewUserSetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NewUserSetPanel.Location = new System.Drawing.Point(110, 4);
+            this.NewUserSetPanel.Location = new System.Drawing.Point(123, 4);
             this.NewUserSetPanel.Name = "NewUserSetPanel";
-            this.NewUserSetPanel.Size = new System.Drawing.Size(205, 177);
+            this.NewUserSetPanel.Size = new System.Drawing.Size(230, 178);
             this.NewUserSetPanel.TabIndex = 1;
             // 
             // NewUserAdminNoRadioButton
@@ -224,7 +224,7 @@
             // NewUserPasswordTextbox
             // 
             this.NewUserPasswordTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.NewUserPasswordTextbox.Location = new System.Drawing.Point(85, 79);
+            this.NewUserPasswordTextbox.Location = new System.Drawing.Point(85, 80);
             this.NewUserPasswordTextbox.Margin = new System.Windows.Forms.Padding(10);
             this.NewUserPasswordTextbox.Name = "NewUserPasswordTextbox";
             this.NewUserPasswordTextbox.Size = new System.Drawing.Size(100, 21);
@@ -242,7 +242,7 @@
             // NewUserNameTextbox
             // 
             this.NewUserNameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.NewUserNameTextbox.Location = new System.Drawing.Point(79, 44);
+            this.NewUserNameTextbox.Location = new System.Drawing.Point(79, 45);
             this.NewUserNameTextbox.Margin = new System.Windows.Forms.Padding(10);
             this.NewUserNameTextbox.Name = "NewUserNameTextbox";
             this.NewUserNameTextbox.Size = new System.Drawing.Size(100, 21);
@@ -254,7 +254,7 @@
             this.NewUserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NewUserPanel.Location = new System.Drawing.Point(4, 4);
             this.NewUserPanel.Name = "NewUserPanel";
-            this.NewUserPanel.Size = new System.Drawing.Size(99, 177);
+            this.NewUserPanel.Size = new System.Drawing.Size(112, 178);
             this.NewUserPanel.TabIndex = 3;
             // 
             // NewUserButton
@@ -279,12 +279,12 @@
             this.tableLayoutPanel5.Controls.Add(this.ChangeAdminPanel, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.DeletUserPanel, 2, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 194);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 195);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(426, 185);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 186);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // tableLayoutPanel3
@@ -303,23 +303,24 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(418, 85);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(469, 86);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // ChangePasswordButton
             // 
             this.ChangePasswordButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChangePasswordButton.Location = new System.Drawing.Point(124, 52);
+            this.ChangePasswordButton.Location = new System.Drawing.Point(149, 53);
             this.ChangePasswordButton.Margin = new System.Windows.Forms.Padding(10);
             this.ChangePasswordButton.Name = "ChangePasswordButton";
             this.ChangePasswordButton.Size = new System.Drawing.Size(75, 23);
             this.ChangePasswordButton.TabIndex = 2;
             this.ChangePasswordButton.Text = "修改密码";
             this.ChangePasswordButton.UseVisualStyleBackColor = true;
+            this.ChangePasswordButton.Click += new System.EventHandler(this.ChangePasswordButton_Click);
             // 
             // ChangePasswordTextbox
             // 
-            this.ChangePasswordTextbox.Location = new System.Drawing.Point(219, 52);
+            this.ChangePasswordTextbox.Location = new System.Drawing.Point(244, 53);
             this.ChangePasswordTextbox.Margin = new System.Windows.Forms.Padding(10);
             this.ChangePasswordTextbox.Name = "ChangePasswordTextbox";
             this.ChangePasswordTextbox.Size = new System.Drawing.Size(100, 21);
@@ -328,18 +329,19 @@
             // ShowPasswordButton
             // 
             this.ShowPasswordButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ShowPasswordButton.Location = new System.Drawing.Point(124, 10);
+            this.ShowPasswordButton.Location = new System.Drawing.Point(149, 11);
             this.ShowPasswordButton.Margin = new System.Windows.Forms.Padding(10);
             this.ShowPasswordButton.Name = "ShowPasswordButton";
             this.ShowPasswordButton.Size = new System.Drawing.Size(75, 22);
             this.ShowPasswordButton.TabIndex = 0;
             this.ShowPasswordButton.Text = "查询密码";
             this.ShowPasswordButton.UseVisualStyleBackColor = true;
+            this.ShowPasswordButton.Click += new System.EventHandler(this.ShowPasswordButton_Click);
             // 
             // ShowPasswordTextbox
             // 
             this.ShowPasswordTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ShowPasswordTextbox.Location = new System.Drawing.Point(219, 11);
+            this.ShowPasswordTextbox.Location = new System.Drawing.Point(244, 12);
             this.ShowPasswordTextbox.Margin = new System.Windows.Forms.Padding(10);
             this.ShowPasswordTextbox.Name = "ShowPasswordTextbox";
             this.ShowPasswordTextbox.ReadOnly = true;
@@ -353,7 +355,7 @@
             this.UserNamePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UserNamePanel.Location = new System.Drawing.Point(4, 4);
             this.UserNamePanel.Name = "UserNamePanel";
-            this.UserNamePanel.Size = new System.Drawing.Size(134, 85);
+            this.UserNamePanel.Size = new System.Drawing.Size(151, 85);
             this.UserNamePanel.TabIndex = 4;
             // 
             // UserNameLable
@@ -361,7 +363,7 @@
             this.UserNameLable.AutoSize = true;
             this.UserNameLable.Location = new System.Drawing.Point(3, 3);
             this.UserNameLable.Name = "UserNameLable";
-            this.UserNameLable.Size = new System.Drawing.Size(71, 10);
+            this.UserNameLable.Size = new System.Drawing.Size(89, 12);
             this.UserNameLable.TabIndex = 5;
             this.UserNameLable.Text = "当前选择用户：";
             // 
@@ -381,9 +383,9 @@
             this.ChangeAdminPanel.Controls.Add(this.ChangeAdminYesRadioButton);
             this.ChangeAdminPanel.Controls.Add(this.ChangeAdminLable);
             this.ChangeAdminPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChangeAdminPanel.Location = new System.Drawing.Point(145, 4);
+            this.ChangeAdminPanel.Location = new System.Drawing.Point(162, 4);
             this.ChangeAdminPanel.Name = "ChangeAdminPanel";
-            this.ChangeAdminPanel.Size = new System.Drawing.Size(134, 85);
+            this.ChangeAdminPanel.Size = new System.Drawing.Size(151, 85);
             this.ChangeAdminPanel.TabIndex = 3;
             // 
             // ChangeAdminNoRadioButton
@@ -407,13 +409,14 @@
             this.ChangeAdminYesRadioButton.TabStop = true;
             this.ChangeAdminYesRadioButton.Text = "是";
             this.ChangeAdminYesRadioButton.UseVisualStyleBackColor = true;
+            this.ChangeAdminYesRadioButton.CheckedChanged += new System.EventHandler(this.ChangeAdminYesRadioButton_CheckedChanged);
             // 
             // ChangeAdminLable
             // 
             this.ChangeAdminLable.AutoSize = true;
             this.ChangeAdminLable.Location = new System.Drawing.Point(3, 0);
             this.ChangeAdminLable.Name = "ChangeAdminLable";
-            this.ChangeAdminLable.Size = new System.Drawing.Size(71, 10);
+            this.ChangeAdminLable.Size = new System.Drawing.Size(89, 12);
             this.ChangeAdminLable.TabIndex = 0;
             this.ChangeAdminLable.Text = "设置为管理员：";
             // 
@@ -421,9 +424,9 @@
             // 
             this.DeletUserPanel.Controls.Add(this.DeletUserButton);
             this.DeletUserPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeletUserPanel.Location = new System.Drawing.Point(286, 4);
+            this.DeletUserPanel.Location = new System.Drawing.Point(320, 4);
             this.DeletUserPanel.Name = "DeletUserPanel";
-            this.DeletUserPanel.Size = new System.Drawing.Size(136, 85);
+            this.DeletUserPanel.Size = new System.Drawing.Size(153, 85);
             this.DeletUserPanel.TabIndex = 2;
             // 
             // DeletUserButton
@@ -434,6 +437,7 @@
             this.DeletUserButton.TabIndex = 3;
             this.DeletUserButton.Text = "删除用户";
             this.DeletUserButton.UseVisualStyleBackColor = true;
+            this.DeletUserButton.Click += new System.EventHandler(this.DeletUserButton_Click);
             // 
             // FormUserManage
             // 

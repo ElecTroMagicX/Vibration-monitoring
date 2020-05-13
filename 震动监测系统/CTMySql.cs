@@ -10,6 +10,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
 using System.Windows.Forms;
+using Org.BouncyCastle.Pkix;
 
 namespace 震动监测系统
 {
@@ -305,6 +306,82 @@ namespace 震动监测系统
             cmd1.Dispose();
             //sb.Clear();
             //conn.Dispose();
+        }
+
+        public void AddRowtoDatabass(string[] data, string tablename)
+        {
+            DataTable tdt = new DataTable();
+            tdt = GetTableValue("Account");
+            sbyte[] ida = new sbyte[tdt.Rows.Count];
+            sbyte id = 0;
+            for (int i = 0; i < tdt.Rows.Count; i++)
+            {
+                ida[i] = (sbyte)tdt.Rows[i][0];
+            }
+            for (; id < tdt.Rows.Count; id++)
+            {
+                if (Array.IndexOf(ida, id) == -1) break;
+            }
+
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("insert into `" + tablename + "` (");
+            for (int i = 0; i < tdt.Columns.Count; i++)
+            {
+                sb.Append(tdt.Columns[i].ColumnName + ",");
+            }
+            sb.Remove(sb.ToString().LastIndexOf(","), 1);
+            sb.Append(") values (" + id.ToString() + ",");
+            
+            for (int i = 0; i < data.Length; i++)
+            {
+                sb.Append("\"" + data[i] + "\"" + ",");
+            }
+            sb.Remove(sb.ToString().LastIndexOf(","), 1);
+            sb.Remove(sb.ToString().LastIndexOf("\""), 1);
+            sb.Remove(sb.ToString().LastIndexOf("\""), 1);
+            sb.Append(");");
+            Console.WriteLine("************************************************************");
+            Console.WriteLine(sb.ToString());
+            Console.WriteLine("************************************************************");
+            cmd.CommandText = sb.ToString();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            if (conn.State == ConnectionState.Closed) ConnectDatabass();
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            tdt.Dispose();
+        }
+
+        public void DeletRowfromDatabass(string tablename, string pkname, int pkvalue)
+        {
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("delete from `" + tablename + "` where (" + pkname + " = " + pkvalue.ToString() + ");");
+
+            cmd.CommandText = sb.ToString();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            if (conn.State == ConnectionState.Closed) ConnectDatabass();
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+        }
+
+        public void UpdataDatabass(string tablename, string data, string dataname, string pkname, int pkvalue)
+        {
+            MySqlCommand cmd = new MySqlCommand();
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("update `" + tablename + "` set " + dataname + " = "+ data + " where (" + pkname + " = " + pkvalue.ToString() + ");");
+
+            cmd.CommandText = sb.ToString();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            if (conn.State == ConnectionState.Closed) ConnectDatabass();
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
         }
 
         /// <summary>
