@@ -164,6 +164,7 @@
             this.NewUserAddButton.TabIndex = 2;
             this.NewUserAddButton.Text = "添加";
             this.NewUserAddButton.UseVisualStyleBackColor = true;
+            this.NewUserAddButton.Click += new System.EventHandler(this.NewUserAddButton_Click);
             // 
             // NewUserSetPanel
             // 
@@ -264,6 +265,7 @@
             this.NewUserButton.TabIndex = 0;
             this.NewUserButton.Text = "新建用户";
             this.NewUserButton.UseVisualStyleBackColor = true;
+            this.NewUserButton.Click += new System.EventHandler(this.NewUserButton_Click);
             // 
             // tableLayoutPanel5
             // 

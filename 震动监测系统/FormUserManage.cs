@@ -215,6 +215,7 @@ namespace 震动监测系统
             InitPCS();
         }
 
+        // listview双击选择
         private void UserListView_DoubleClick(object sender, EventArgs e)
         {
             // 解锁相关控件
@@ -238,6 +239,58 @@ namespace 震动监测系统
                 ChangeAdminYesRadioButton.Checked = false;
                 ChangeAdminNoRadioButton.Checked = true;
             }
+        }
+
+        // 新建用户 点击
+        private void NewUserButton_Click(object sender, EventArgs e)
+        {
+            if(NewUserAddButton.Enabled == true)
+            {
+                // 如果已经解锁，则刷新控件
+                NewUserNameLable.Text = "";
+                NewUserPasswordTextbox.Text = "";
+                NewUserAdminNoRadioButton.Checked = true;
+                NewUserAdminYesRadioButton.Checked = false;
+            }
+            else
+            {
+                // 解锁相关控件
+                NewUserNameTextbox.Enabled = true;
+                NewUserPasswordTextbox.Enabled = true;
+                NewUserAdminYesRadioButton.Enabled = true;
+                NewUserAdminNoRadioButton.Enabled = true;
+                NewUserAdminNoRadioButton.Checked = true;
+                NewUserAdminNoRadioButton.Checked = false;
+            }
+        }
+
+        // 添加用户按钮
+        private void NewUserAddButton_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable("Account");
+            CTMySql cm = new CTMySql();
+            cm.ConnectDatabass();
+            dt = cm.GetTableValue("Account");
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                if(NewUserNameTextbox.Text == (string)dt.Rows[i]["Account"])
+                {
+                    MessageBox.Show("用户已经存在，请更改用户名");
+                    return;
+                }
+            }
+            if(NewUserPasswordTextbox.Text == "")
+            {
+                MessageBox.Show("密码不能为空，请重试");
+                return;
+            }
+            DialogResult dr = DialogResult.No;
+            if(NewUserAdminYesRadioButton.Checked)
+            {
+                dr = MessageBox.Show("确定添加的新用户为管理员用户？", "", MessageBoxButtons.YesNo);
+            }
+            if (dr == DialogResult.No) return;
+
         }
     }
 }
