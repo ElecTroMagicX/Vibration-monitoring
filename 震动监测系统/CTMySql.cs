@@ -18,6 +18,7 @@ namespace 震动监测系统
     {
         static public bool isSignIn = false;//用户是否登录标志
         static public bool isUserAdmin = false;//用户是否为管理员账户标志
+        static public string signInUserName = "";
 
         static MySqlConnection conn = new MySqlConnection();
         static MySqlCommand cmd = new MySqlCommand();
@@ -37,14 +38,42 @@ namespace 震动监测系统
         public CTMySql() { }
         public CTMySql(string server, string user, string databass, string password, string port)
         {
-            //Server = server;
-            //User = user;
-            //Databass = databass;
-            //Password = password;
-            //Port = port;
-
+            if(conn.State != ConnectionState.Closed)
+            {
+                CloseConnect();
+            }
             conn.ConnectionString = string.Format("server={0};port={1};uid={2};pwd={3};database={4}"
                 , server, port, user, password, databass);
+        }
+
+        public bool IsUserAdmin()
+        {
+            ConnectDatabass();
+            MySqlCommand tcmd = new MySqlCommand();
+            tcmd.CommandText = "Account";
+            tcmd.CommandType = CommandType.TableDirect;
+            tcmd.Connection = conn;
+            ConnectDatabass();
+            MySqlDataReader reader = tcmd.ExecuteReader();
+            while(reader.Read())
+            {
+                if(reader[2].ToString() == signInUserName)
+                {
+                    if(reader[3].ToString() == "1")
+                    {
+                        isUserAdmin = true;
+                    }
+                    else
+                    {
+                        isUserAdmin = false;
+                    }
+                    break;
+                }
+            }
+            reader.Close();
+            reader.Dispose();
+            tcmd.Dispose();
+            return isUserAdmin;
         }
 
         /// <summary>
@@ -76,8 +105,6 @@ namespace 震动监测系统
             cmd.CommandText = "account";
             cmd.Connection = conn;
             cmd.CommandType = CommandType.TableDirect;
-            //conn = new MySqlConnection();
-            //conn.ConnectionString = string.Format("server=localhost;port=3306;uid=root;pwd=000000;database=震动监测系统");
             ConnectDatabass();
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -136,7 +163,7 @@ namespace 震动监测系统
         {
             if (conn.State == ConnectionState.Open || conn.State == ConnectionState.Connecting)
             {
-                conn.Dispose();
+                conn.Close();
                 return true;
             }
             return false;

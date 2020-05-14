@@ -37,8 +37,10 @@ namespace 震动监测系统
             if (a)
             {
                 MessageBox.Show("登陆成功");
+                CTMySql.signInUserName = txtbxAccount.Text;
                 if (f1t.IsAlive)
                 {
+                    f1.CloseAllMdiForms();
                     this.Close();
                     return;
                 }
@@ -64,6 +66,7 @@ namespace 震动监测系统
         private void FormSignIn_Shown(object sender, EventArgs e)
         {
             cTMySql = new CTMySql("localhost", "root", "震动监测系统", "000000", "3306");//设置连接参数
+            CTMySql.isSignIn = false;
             if (cTMySql.ConnectDatabass())//打开连接，判断连接是否成功
             {
                 //MessageBox.Show("Success To Connect MySQL");

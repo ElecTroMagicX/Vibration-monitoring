@@ -98,6 +98,7 @@ namespace 震动监测系统
         //参数设置按钮    点击
         private void SP_Set_Click(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             Form_SP_Set form_SP_Set = new Form_SP_Set();
             form_SP_Set.ShowDialog();
         }
@@ -105,6 +106,7 @@ namespace 震动监测系统
         //测试连接按钮    点击
         private void SP_Ttest_Click(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             Form_SP_Test form_sp_test = new Form_SP_Test();
             form_sp_test.ShowDialog();
         }
@@ -112,12 +114,14 @@ namespace 震动监测系统
         //断开连接按钮    点击
         private void SP_Close_Click(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             CTSerialPort.CloseSP();
         }
 
         //用户登录按钮    点击
         private void UserSignIn_Click(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             FormSignIn formSignIn = new FormSignIn();
             formSignIn.ShowDialog();
         }
@@ -125,13 +129,17 @@ namespace 震动监测系统
         //退出登录按钮    点击
         private void UserLogOut_Click(object sender, EventArgs e)
         {
+            CloseAllMdiForms();
             CTMySql.isSignIn = false;
+            CTMySql.isUserAdmin = false;
+            if (!IsSignIn()) return;
             CTMySql.isUserAdmin = false;
         }
 
         //切换用户按钮    点击
         private void UserSwitch_Click(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             CTMySql.isSignIn = false;
             FormSignIn formSignIn = new FormSignIn();
             formSignIn.ShowDialog();
@@ -140,6 +148,7 @@ namespace 震动监测系统
         //用户管理按钮    点击
         private void UserManage_Click(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             CloseAllMdiForms();
             if (CTMySql.isUserAdmin) 
             {
@@ -157,6 +166,7 @@ namespace 震动监测系统
         //实时数据按钮    点击
         private void ButtonRealData_MyButtonClickEvent(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             CloseAllMdiForms();
             FormWave fw = new FormWave();
             Console.WriteLine("FormWave RealData have show.");
@@ -168,6 +178,7 @@ namespace 震动监测系统
         //历史数据按钮    点击
         private void ButtonHistoryData_MyButtonClickEvent(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             CloseAllMdiForms();
             FormHistoryData fh = new FormHistoryData();
             Console.WriteLine("FormHistoryData have show.");
@@ -179,6 +190,7 @@ namespace 震动监测系统
         //通信设置按钮    点击
         private void ButtonSeriportSet_MyButtonClickEvent(object sender, EventArgs e)
         {
+            if (!IsSignIn()) return;
             CloseAllMdiForms();
             Form_SP_Test fspt = new Form_SP_Test();
             fspt.MdiParent = this;
@@ -191,7 +203,8 @@ namespace 震动监测系统
             this.LayoutMdi(MdiLayout.TileVertical);
         }
 
-        void CloseAllMdiForms()
+        // 关闭所有mdichild窗口
+        public void CloseAllMdiForms()
         {
             if (this.MdiChildren.Length != 0)
             {
@@ -201,6 +214,16 @@ namespace 震动监测系统
                     this.MdiChildren[0].Close();
                 }
             }
+        }
+
+        // 判断是否登录
+        bool IsSignIn()
+        {
+            if(!CTMySql.isSignIn)
+            {
+                MessageBox.Show("请先登录！");
+            }
+            return CTMySql.isSignIn;
         }
     }
 }

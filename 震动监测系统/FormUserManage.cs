@@ -76,6 +76,14 @@ namespace 震动监测系统
             }
             UserListView.EndUpdate();
             #endregion
+
+            #region 检测管理员权限
+            if(!CTMySql.isUserAdmin)
+            {
+                UserListView.Enabled = false;
+                NewUserButton.Enabled = false;
+            }
+            #endregion
         }
 
 
@@ -411,6 +419,11 @@ namespace 震动监测系统
             dt = cm.GetTableValue("Account");
             int pkvalue = -1;
             string pkname = dt.Columns[0].ColumnName;
+            if (dt.Rows[0]["Account"].ToString() == UserNameTextbox.Text)
+            {
+                MessageBox.Show("此默认账户不能被设为非管理员用户！");
+                return;
+            }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (UserNameTextbox.Text == dt.Rows[i]["Account"].ToString())
@@ -423,7 +436,8 @@ namespace 震动监测系统
                 cm.UpdataDatabass("Account", "1", "Level", pkname, pkvalue);
             else
                 cm.UpdataDatabass("Account", "0", "Level", pkname, pkvalue);
-
+            cm.IsUserAdmin();
+            this.Refresh();
             #region 获取所有用户信息
             //获取所有用户信息
             UserListView.BeginUpdate();
