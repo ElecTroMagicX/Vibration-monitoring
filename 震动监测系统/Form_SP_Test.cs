@@ -25,6 +25,11 @@ namespace 震动监测系统
         //开始测试按钮    点击
         public void Button_sp_test_Click(object sender, EventArgs e)
         {
+            if (!CTSerialPort.IsComOpen())
+            {
+                MessageBox.Show("串口未打开");
+                return;
+            }
             button_sp_test_close.Focus();//焦点置于停止测试按钮
             button_sp_test_close.Enabled = true;//停止测试按钮    解锁
             button_sp_tests_start.Enabled = false;//开始测试按钮  锁定

@@ -41,7 +41,7 @@
             this.SP_Ttest = new System.Windows.Forms.ToolStripMenuItem();
             this.SP_Close = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelButton = new System.Windows.Forms.Panel();
-            this.myButton1 = new WindowsFormsControlLibrary1.MyButton();
+            this.ButtonSeriportSet = new WindowsFormsControlLibrary1.MyButton();
             this.ButtonHistoryData = new WindowsFormsControlLibrary1.MyButton();
             this.myButton4 = new WindowsFormsControlLibrary1.MyButton();
             this.ButtonRealData = new WindowsFormsControlLibrary1.MyButton();
@@ -125,28 +125,28 @@
             // SP_Set
             // 
             this.SP_Set.Name = "SP_Set";
-            this.SP_Set.Size = new System.Drawing.Size(124, 22);
+            this.SP_Set.Size = new System.Drawing.Size(180, 22);
             this.SP_Set.Text = "串口设置";
             this.SP_Set.Click += new System.EventHandler(this.SP_Set_Click);
             // 
             // SP_Ttest
             // 
             this.SP_Ttest.Name = "SP_Ttest";
-            this.SP_Ttest.Size = new System.Drawing.Size(124, 22);
+            this.SP_Ttest.Size = new System.Drawing.Size(180, 22);
             this.SP_Ttest.Text = "连接测试";
             this.SP_Ttest.Click += new System.EventHandler(this.SP_Ttest_Click);
             // 
             // SP_Close
             // 
             this.SP_Close.Name = "SP_Close";
-            this.SP_Close.Size = new System.Drawing.Size(124, 22);
+            this.SP_Close.Size = new System.Drawing.Size(180, 22);
             this.SP_Close.Text = "断开连接";
             this.SP_Close.Click += new System.EventHandler(this.SP_Close_Click);
             // 
             // PanelButton
             // 
             this.PanelButton.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.PanelButton.Controls.Add(this.myButton1);
+            this.PanelButton.Controls.Add(this.ButtonSeriportSet);
             this.PanelButton.Controls.Add(this.ButtonHistoryData);
             this.PanelButton.Controls.Add(this.myButton4);
             this.PanelButton.Controls.Add(this.ButtonRealData);
@@ -158,19 +158,20 @@
             this.PanelButton.Size = new System.Drawing.Size(75, 556);
             this.PanelButton.TabIndex = 1;
             // 
-            // myButton1
+            // ButtonSeriportSet
             // 
-            this.myButton1.BackColor = System.Drawing.Color.LightGray;
-            this.myButton1.BackColotAll = System.Drawing.Color.LightGray;
-            this.myButton1.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("myButton1.BackGroundImageAll")));
-            this.myButton1.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
-            this.myButton1.FontColorAll = System.Drawing.SystemColors.ControlText;
-            this.myButton1.Location = new System.Drawing.Point(0, 72);
-            this.myButton1.Margin = new System.Windows.Forms.Padding(0);
-            this.myButton1.Name = "myButton1";
-            this.myButton1.Size = new System.Drawing.Size(75, 72);
-            this.myButton1.TabIndex = 4;
-            this.myButton1.TextAll = "通信设置";
+            this.ButtonSeriportSet.BackColor = System.Drawing.Color.LightGray;
+            this.ButtonSeriportSet.BackColotAll = System.Drawing.Color.LightGray;
+            this.ButtonSeriportSet.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("ButtonSeriportSet.BackGroundImageAll")));
+            this.ButtonSeriportSet.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonSeriportSet.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.ButtonSeriportSet.Location = new System.Drawing.Point(0, 72);
+            this.ButtonSeriportSet.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonSeriportSet.Name = "ButtonSeriportSet";
+            this.ButtonSeriportSet.Size = new System.Drawing.Size(75, 72);
+            this.ButtonSeriportSet.TabIndex = 4;
+            this.ButtonSeriportSet.TextAll = "通信设置";
+            this.ButtonSeriportSet.MyButtonClickEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonClickHandle(this.ButtonSeriportSet_MyButtonClickEvent);
             // 
             // ButtonHistoryData
             // 
@@ -274,7 +275,7 @@
         private System.Windows.Forms.Panel PanelButton;
         private WindowsFormsControlLibrary1.MyButton ButtonRealData;
         private WindowsFormsControlLibrary1.MyButton ButtonHome;
-        private WindowsFormsControlLibrary1.MyButton myButton1;
+        private WindowsFormsControlLibrary1.MyButton ButtonSeriportSet;
         private WindowsFormsControlLibrary1.MyButton ButtonHistoryData;
         private WindowsFormsControlLibrary1.MyButton myButton4;
         //private System.Windows.Forms.Panel panel1;

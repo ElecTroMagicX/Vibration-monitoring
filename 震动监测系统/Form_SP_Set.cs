@@ -61,6 +61,7 @@ namespace 震动监测系统
         //打开端口按钮
         private void Opencom_button_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
             bool a, b;
             a = CTSerialPort.SetSP(com_list.Text, bode_list.Text, data_box.Text, stop_box.Text);
             b = CTSerialPort.OpenSP();
@@ -73,6 +74,8 @@ namespace 震动监测系统
                 controlconfig.AddOrModifyItem("datanum", data_box.Text);
                 controlconfig.AddOrModifyItem("stopnum", stop_box.Text);
 
+                if (btn.FindForm().IsMdiChild)
+                    return;
                 this.Close();
                 Form_SP_Test form_sp_test = new Form_SP_Test();
                 form_sp_test.ShowDialog();

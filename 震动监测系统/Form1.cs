@@ -172,5 +172,18 @@ namespace Õð¶¯¼à²âÏµÍ³
             fh.WindowState = FormWindowState.Maximized;
             fh.Show();
         }
+
+        private void ButtonSeriportSet_MyButtonClickEvent(object sender, EventArgs e)
+        {
+            Form_SP_Test fspt = new Form_SP_Test();
+            fspt.MdiParent = this;
+            fspt.WindowState = FormWindowState.Normal;
+            fspt.Show();
+            Form_SP_Set fsps = new Form_SP_Set();
+            fsps.MdiParent = this;
+            fsps.WindowState = FormWindowState.Normal;
+            fsps.Show();
+            this.LayoutMdi(MdiLayout.TileVertical);
+        }
     }
 }

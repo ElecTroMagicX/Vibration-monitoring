@@ -97,6 +97,11 @@ namespace 震动监测系统
                 return false;
             }
             //sp.ReadBufferSize = 1;
+            if(comnum == "")
+            {
+                MessageBox.Show("端口号不能为空");
+                return false;
+            }
             sp.PortName = comnum;
             sp.BaudRate = int.Parse(bodenum);
             sp.DataBits = int.Parse(datanum);
