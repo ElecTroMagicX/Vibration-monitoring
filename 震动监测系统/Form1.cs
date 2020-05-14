@@ -140,6 +140,7 @@ namespace 震动监测系统
         //用户管理按钮    点击
         private void UserManage_Click(object sender, EventArgs e)
         {
+            CloseAllMdiForms();
             if (CTMySql.isUserAdmin) 
             {
                 FormUserManage fum = new FormUserManage();
@@ -156,6 +157,7 @@ namespace 震动监测系统
         //实时数据按钮    点击
         private void ButtonRealData_MyButtonClickEvent(object sender, EventArgs e)
         {
+            CloseAllMdiForms();
             FormWave fw = new FormWave();
             Console.WriteLine("FormWave RealData have show.");
             fw.MdiParent = this;
@@ -166,6 +168,7 @@ namespace 震动监测系统
         //历史数据按钮    点击
         private void ButtonHistoryData_MyButtonClickEvent(object sender, EventArgs e)
         {
+            CloseAllMdiForms();
             FormHistoryData fh = new FormHistoryData();
             Console.WriteLine("FormHistoryData have show.");
             fh.MdiParent = this;
@@ -173,8 +176,10 @@ namespace 震动监测系统
             fh.Show();
         }
 
+        //通信设置按钮    点击
         private void ButtonSeriportSet_MyButtonClickEvent(object sender, EventArgs e)
         {
+            CloseAllMdiForms();
             Form_SP_Test fspt = new Form_SP_Test();
             fspt.MdiParent = this;
             fspt.WindowState = FormWindowState.Normal;
@@ -184,6 +189,18 @@ namespace 震动监测系统
             fsps.WindowState = FormWindowState.Normal;
             fsps.Show();
             this.LayoutMdi(MdiLayout.TileVertical);
+        }
+
+        void CloseAllMdiForms()
+        {
+            if (this.MdiChildren.Length != 0)
+            {
+                int n = this.MdiChildren.Length;
+                for (int i = 0; i < n; i++)
+                {
+                    this.MdiChildren[0].Close();
+                }
+            }
         }
     }
 }
