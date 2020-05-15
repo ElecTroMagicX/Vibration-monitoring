@@ -293,6 +293,7 @@ namespace 震动监测系统
         /// <param name="start"></param>
         public void AddOrUpdataTableFromDataset2Databass(string tablename, int num, int start)
         {
+            bool valuesIsNull = true;
             MySqlCommand cmd1 = new MySqlCommand();
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO `" + tablename + "` (");
@@ -304,6 +305,7 @@ namespace 震动监测系统
             sb.Append(") VALUES ");
             for (int i = 0; i < num; i++)
             {
+                valuesIsNull = false;
                 sb.Append("(");
                 for (int j = 0; j < dtst.Tables[tablename].Columns.Count; j++)
                 {
@@ -329,7 +331,7 @@ namespace 震动监测系统
             //catch (Exception)
             //{
             //}
-            cmd1.ExecuteNonQuery();
+            if (!valuesIsNull) cmd1.ExecuteNonQuery();
             cmd1.Dispose();
             //sb.Clear();
             //conn.Dispose();

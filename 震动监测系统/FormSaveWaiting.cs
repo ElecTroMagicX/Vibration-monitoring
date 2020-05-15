@@ -39,12 +39,14 @@ namespace 震动监测系统
 
         void D1()
         {
-            SaveDelet1 sd1 = new SaveDelet1(CTMySql.dtst.Tables[0].TableName);
+            int dtstnum = CTMySql.dtst.Tables.Count;
+            SaveDelet1 sd1 = new SaveDelet1(CTMySql.dtst.Tables[dtstnum - 2].TableName);
             sd1.Savep();
         }
         void D2()
         {
-            SaveDelet2 sd2 = new SaveDelet2(CTMySql.dtst.Tables[1].TableName);
+            int dtstnum = CTMySql.dtst.Tables.Count;
+            SaveDelet2 sd2 = new SaveDelet2(CTMySql.dtst.Tables[dtstnum - 1].TableName);
             sd2.Savep();
         }
 

@@ -121,7 +121,6 @@ namespace 震动监测系统
         //用户登录按钮    点击
         private void UserSignIn_Click(object sender, EventArgs e)
         {
-            if (!IsSignIn()) return;
             FormSignIn formSignIn = new FormSignIn();
             formSignIn.ShowDialog();
         }
@@ -139,9 +138,10 @@ namespace 震动监测系统
         //切换用户按钮    点击
         private void UserSwitch_Click(object sender, EventArgs e)
         {
-            if (!IsSignIn()) return;
+            CloseAllMdiForms();
             CTMySql.isSignIn = false;
             FormSignIn formSignIn = new FormSignIn();
+            if (!IsSignIn()) return;
             formSignIn.ShowDialog();
         }
 

@@ -119,6 +119,8 @@ namespace Õð¶¯¼à²âÏµÍ³
                 if (dg == DialogResult.Yes)
                 {
                     cTMySql.ClearDataSet();
+                    ButtonStart.Enabled = true;
+                    ButtonStop.Enabled = false;
                     return;
                 }
             }
