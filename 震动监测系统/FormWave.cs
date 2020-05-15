@@ -45,6 +45,9 @@ namespace 震动监测系统
             wave2_timegap_TrackBar_Scroll(null, null);
 
             ButtonStop.Enabled = false;
+
+            LableTip1.Enabled = false;
+            LableTip2.Enabled = false;
         }
 
         /// <summary>
@@ -62,13 +65,23 @@ namespace 震动监测系统
                 MessageBox.Show("already start!");
                 return;
             }
+            if(TextBoxName1.Text == "") //判断进口编号是否已经输入
+            {
+                MessageBox.Show("请先输入通道1井口编号！\r\n井口编号只能由字母、数字、下划线组成！");
+                return;
+            }
+            if (TextBoxName2.Text == "")    //判断进口编号是否已经输入
+            {
+                MessageBox.Show("请先输入通道1井口编号！\r\n井口编号只能由字母、数字、下划线组成！");
+                return;
+            }
 
 
             if (CTSerialPort.SetSP() && CTSerialPort.OpenSP())//判断串口是否能开启
             {
                 tablename = DateTime.Now.ToString();//定义内存表名时间前缀
-                cTMySql.CreateDSTable(tablename + "_channel1");//创建内存表
-                cTMySql.CreateDSTable(tablename + "_channel2");//创建内存表
+                cTMySql.CreateDSTable(tablename + "_channel1 " + TextBoxName1.Text);//创建内存表
+                cTMySql.CreateDSTable(tablename + "_channel2 " + TextBoxName2.Text);//创建内存表
                 CTSerialPort.SendSP("E");
                 Thread.Sleep(10);
                 CTSerialPort.ClearInBuffer();
@@ -83,18 +96,21 @@ namespace 震动监测系统
                 reflashWave1ThreadFlag = true;
                 Thread rfwave1 = new Thread(ReflashWave1Thread);
                 rfwave1.IsBackground = true;
-                rfwave1.Start(tablename + "_channel1");
+                rfwave1.Start(tablename + "_channel1 " + TextBoxName1.Text);
 
                 //波形2绘制线程
                 reflashWave2ThreadFlag = true;
                 Thread rfwave2 = new Thread(ReflashWave2Thread);
                 rfwave2.IsBackground = true;
-                rfwave2.Start(tablename + "_channel2");
+                rfwave2.Start(tablename + "_channel2 " + TextBoxName2.Text);
 
                 Console.WriteLine("开始接收数据");
 
                 ButtonStop.Enabled = true;
                 ButtonStart.Enabled = false;
+
+                TextBoxName1.Enabled = false;
+                TextBoxName2.Enabled = false;
             }
             else
             {
@@ -127,6 +143,9 @@ namespace 震动监测系统
 
             ButtonStart.Enabled = true;
             ButtonStop.Enabled = false;
+
+            TextBoxName1.Enabled = true;
+            TextBoxName2.Enabled = true;
 
             FormSaveWaiting fsw = new FormSaveWaiting();
             fsw.ShowDialog();
@@ -174,8 +193,8 @@ namespace 震动监测系统
                         textBox1.AppendText(string.Join(" ", channel1));
                         textBox2.AppendText(string.Join(" ", channel2));
 
-                        cTMySql.InsertData2DSTable(tablename + "_channel1", dataID, dateTime.ToString(), ref channel1);
-                        cTMySql.InsertData2DSTable(tablename + "_channel2", dataID, dateTime.ToString(), ref channel2);
+                        cTMySql.InsertData2DSTable(tablename + "_channel1 " + TextBoxName1.Text, dataID, dateTime.ToString(), ref channel1);
+                        cTMySql.InsertData2DSTable(tablename + "_channel2 " + TextBoxName2.Text, dataID, dateTime.ToString(), ref channel2);
                     //if (dataID - oldID >= 100)
                     //{
                     //    oldID = dataID;
@@ -365,6 +384,95 @@ namespace 震动监测系统
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void TextBoxName1_Enter(object sender, EventArgs e)
+        {
+            if(TextBoxName1.Text != null || TextBoxName1.Text != "")
+            {
+                LableTip1.Visible = false;
+            }
+        }
+
+        private void TextBoxName2_Enter(object sender, EventArgs e)
+        {
+            if (TextBoxName2.Text != null || TextBoxName2.Text != "")
+            {
+                LableTip2.Visible = false;
+            }
+        }
+
+        private void TextBoxName1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Byte[] a = { 0 };
+            Encoding.ASCII.GetBytes(e.KeyChar.ToString(), 0, 1, a, 0);//将按键字符转为ASCII码，存入数组a
+            Console.WriteLine("keychar:" + e.KeyChar);
+            Console.WriteLine("keyascii:" + a[0]);
+            Console.WriteLine();
+            int x = a[0];
+            //判断字符是否合法
+            if (
+                   (x >= 65 && x <= 90)//允许大写字母
+                   || (x >= 97 && x <= 122)//允许小写字母
+                   || (x >= 48 && x <= 57)//允许数字
+                   || (x == 8)//允许退格
+                   //|| (x == 32)//允许空格
+                   //|| (x == 46)//允许小数点
+                   || (x == 95)//允许下划线
+               )
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxName2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Byte[] a = { 0 };
+            Encoding.ASCII.GetBytes(e.KeyChar.ToString(), 0, 1, a, 0);//将按键字符转为ASCII码，存入数组a
+            Console.WriteLine("keychar:" + e.KeyChar);
+            Console.WriteLine("keyascii:" + a[0]);
+            Console.WriteLine();
+            int x = a[0];
+            //判断字符是否合法
+            if (
+                   (x >= 65 && x <= 90)//允许大写字母
+                   || (x >= 97 && x <= 122)//允许小写字母
+                   || (x >= 48 && x <= 57)//允许数字
+                   || (x == 8)//允许退格
+                   //|| (x == 32)//允许空格
+                   //|| (x == 46)//允许小数点
+                   || (x == 95)//允许下划线
+               )
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        private void TextBoxName1_Leave(object sender, EventArgs e)
+        {
+            // 井口编号输入框失焦时，判断输入框内容是否为空
+            if (TextBoxName1.Text == "")
+            {
+                LableTip1.Visible = true;
+            }
+        }
+
+        private void TextBoxName2_Leave(object sender, EventArgs e)
+        {
+            // 井口编号输入框失焦时，判断输入框内容是否为空
+            if (TextBoxName2.Text == "")
+            {
+                LableTip2.Visible = true;
             }
         }
 
