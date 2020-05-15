@@ -27,6 +27,8 @@
 
 由于Windows操作系统的非实时性，数据发送间隔无法达到实际下位机的400us
 
+Tips:请配合虚拟串口软件使用
+
 ### WindowsFormsControlLibrary1
 
 自定义控件项目，图标在**icon**文件夹中，**震动监测系统**需引用此项目
