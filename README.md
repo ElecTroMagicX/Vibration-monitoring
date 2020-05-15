@@ -60,5 +60,16 @@ Tips:请配合虚拟串口软件使用
   * 历史数据**波形显示**及**报表输出**界面
 * FormUserManage
   * 用户管理界面
-  
-<p align = "right">2020年5月14日</p>
+
+
+
+
+
+
+<p align = "right">
+by Deeplfree
+
+Tonystkx@gmail.com
+
+2020.05.15
+</p>
