@@ -34,7 +34,8 @@ namespace 震动监测系统
                 else
                     com_list.SelectedIndex = 0;
             else
-                com_list.SelectedIndex = 0;
+                //com_list.SelectedIndex = 0;
+                com_list.Text = "";
 
             //波特率选择
             int[] bode = { 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200 };
