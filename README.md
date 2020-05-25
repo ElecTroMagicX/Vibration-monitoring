@@ -27,6 +27,8 @@
 
 由于Windows操作系统的非实时性，数据发送间隔无法达到实际下位机的400us
 
+Tips:请配合虚拟串口软件使用
+
 ### WindowsFormsControlLibrary1
 
 自定义控件项目，图标在**icon**文件夹中，**震动监测系统**需引用此项目
@@ -58,5 +60,17 @@
   * 历史数据**波形显示**及**报表输出**界面
 * FormUserManage
   * 用户管理界面
-  
-<p align = "right">2020年5月14日</p>
+
+
+
+<p align = "right">
+by Deeplfree
+</p>
+
+<p align = "right">
+Tonystkx@gmail.com
+</p>
+
+<p align = "right">
+2020.05.15
+</p>
