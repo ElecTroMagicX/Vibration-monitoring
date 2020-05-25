@@ -85,6 +85,17 @@ namespace 震动监测系统
         //波形1显示按钮    点击
         private void WaveShow1Button_Click(object sender, EventArgs e)
         {
+            if (pictureBox1.Enabled == false && pictureBox1.Visible == false)
+            {
+                pictureBox1.Enabled = true;
+                pictureBox1.Visible = true;
+                hScrollBar1.Enabled = true;
+            }
+            if (dataGridView1.Enabled == true && dataGridView1.Visible == true)
+            {
+                dataGridView1.Visible = false;
+                dataGridView1.Enabled = false;
+            }
             if (listBox1.SelectedIndex < 0)
             {
                 MessageBox.Show("请选择需显示的数据", "请选择数据", MessageBoxButtons.OK);
@@ -109,6 +120,17 @@ namespace 震动监测系统
         //波形2显示按钮   点击
         private void WaveShow2Button_Click(object sender, EventArgs e)
         {
+            if (pictureBox2.Enabled == false && pictureBox2.Visible == false)
+            {
+                pictureBox2.Enabled = true;
+                pictureBox2.Visible = true;
+                hScrollBar2.Enabled = true;
+            }
+            if (dataGridView2.Enabled == true && dataGridView2.Visible == true)
+            {
+                dataGridView2.Visible = false;
+                dataGridView2.Enabled = false;
+            }
             if (listBox2.SelectedIndex < 0)
             {
                 MessageBox.Show("请选择需显示的数据", "请选择数据", MessageBoxButtons.OK);
@@ -152,6 +174,80 @@ namespace 震动监测系统
         {
             wave2_timeshow_label.Text = timlable[wave2_timegap_TrackBar.Value];
             SelectShowData(tablename2, ref pictureBox2, ref hScrollBar2, ref wave2_timegap_TrackBar);
+        }
+
+        // dataGridView Init
+        void InitDataGridView(DataGridView dg, string tn)
+        {
+            dg.DataSource = ds.Tables[tn];
+
+            dg.AllowDrop = false;
+            dg.AllowUserToAddRows = false;
+            dg.AllowUserToDeleteRows = false;
+            dg.ReadOnly = true;
+            dg.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void ListShow1Button_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Enabled == true && pictureBox1.Visible == true)
+            {
+                pictureBox1.Visible = false;
+                pictureBox1.Enabled = false;
+                hScrollBar1.Enabled = false;
+            }
+            if (dataGridView1.Enabled == false && dataGridView1.Visible == false)
+            {
+                dataGridView1.Visible = true;
+                dataGridView1.Enabled = true;
+            }
+
+            if (listBox1.SelectedIndex < 0)
+            {
+                MessageBox.Show("请选择需显示的数据", "请选择数据", MessageBoxButtons.OK);
+                return;
+            }
+
+            tablename1 = listBox1.SelectedItem.ToString();
+
+            try
+            {
+                ds.Tables.Add(cm.GetTableValue(tablename1));
+            }
+            catch (Exception) { }
+
+            InitDataGridView(dataGridView1, tablename1);
+        }
+
+        private void ListShow2Button_Click(object sender, EventArgs e)
+        {
+            if (pictureBox2.Enabled == true && pictureBox2.Visible == true)
+            {
+                pictureBox2.Visible = false;
+                pictureBox2.Enabled = false;
+                hScrollBar2.Enabled = false;
+            }
+            if (dataGridView2.Enabled == false && dataGridView2.Visible == false)
+            {
+                dataGridView2.Visible = true;
+                dataGridView2.Enabled = true;
+            }
+
+            if (listBox2.SelectedIndex < 0)
+            {
+                MessageBox.Show("请选择需显示的数据", "请选择数据", MessageBoxButtons.OK);
+                return;
+            }
+
+            tablename2 = listBox2.SelectedItem.ToString();
+
+            try
+            {
+                ds.Tables.Add(cm.GetTableValue(tablename2));
+            }
+            catch (Exception) { }
+
+            InitDataGridView(dataGridView2, tablename2);
         }
     }
 }

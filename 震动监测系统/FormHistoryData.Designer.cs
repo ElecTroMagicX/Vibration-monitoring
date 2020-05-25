@@ -53,6 +53,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.震动监测系统DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.震动监测系统DataSet = new 震动监测系统.震动监测系统DataSet();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Wave2Panel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -65,6 +68,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.Wave2Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -72,8 +78,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F));
+            this.tableLayoutPanel1.Controls.Add(this.Wave2Panel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.hScrollBar2, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.hScrollBar1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 2);
@@ -106,7 +112,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Black;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 280);
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(634, 260);
@@ -261,6 +267,7 @@
             this.ListShow1Button.TabIndex = 1;
             this.ListShow1Button.Text = "报表显示";
             this.ListShow1Button.UseVisualStyleBackColor = true;
+            this.ListShow1Button.Click += new System.EventHandler(this.ListShow1Button_Click);
             // 
             // WaveShow1Button
             // 
@@ -297,6 +304,7 @@
             this.ListShow2Button.TabIndex = 2;
             this.ListShow2Button.Text = "报表显示";
             this.ListShow2Button.UseVisualStyleBackColor = true;
+            this.ListShow2Button.Click += new System.EventHandler(this.ListShow2Button_Click);
             // 
             // WaveShow2Button
             // 
@@ -314,6 +322,7 @@
             // Wave1Panel
             // 
             this.Wave1Panel.AutoScroll = true;
+            this.Wave1Panel.Controls.Add(this.dataGridView1);
             this.Wave1Panel.Controls.Add(this.pictureBox1);
             this.Wave1Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Wave1Panel.Location = new System.Drawing.Point(0, 0);
@@ -344,6 +353,37 @@
             this.震动监测系统DataSet.DataSetName = "震动监测系统DataSet";
             this.震动监测系统DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(634, 260);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 23;
+            this.dataGridView2.Size = new System.Drawing.Size(634, 260);
+            this.dataGridView2.TabIndex = 2;
+            // 
+            // Wave2Panel
+            // 
+            this.Wave2Panel.Controls.Add(this.dataGridView2);
+            this.Wave2Panel.Controls.Add(this.pictureBox2);
+            this.Wave2Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Wave2Panel.Location = new System.Drawing.Point(0, 280);
+            this.Wave2Panel.Margin = new System.Windows.Forms.Padding(0);
+            this.Wave2Panel.Name = "Wave2Panel";
+            this.Wave2Panel.Size = new System.Drawing.Size(634, 260);
+            this.Wave2Panel.TabIndex = 3;
+            // 
             // FormHistoryData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -354,7 +394,6 @@
             this.Name = "FormHistoryData";
             this.Text = "FormHistoryData";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -371,6 +410,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.震动监测系统DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.Wave2Panel.ResumeLayout(false);
+            this.Wave2Panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -401,5 +444,8 @@
         public System.Windows.Forms.TrackBar wave2_timegap_TrackBar;
         public System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel Wave1Panel;
+        private System.Windows.Forms.Panel Wave2Panel;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
