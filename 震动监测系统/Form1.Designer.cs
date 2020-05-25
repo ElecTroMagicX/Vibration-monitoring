@@ -43,7 +43,7 @@
             this.PanelButton = new System.Windows.Forms.Panel();
             this.ButtonSeriportSet = new WindowsFormsControlLibrary1.MyButton();
             this.ButtonHistoryData = new WindowsFormsControlLibrary1.MyButton();
-            this.myButton4 = new WindowsFormsControlLibrary1.MyButton();
+            this.ButtonUserManage = new WindowsFormsControlLibrary1.MyButton();
             this.ButtonRealData = new WindowsFormsControlLibrary1.MyButton();
             this.ButtonHome = new WindowsFormsControlLibrary1.MyButton();
             this.menuStrip1.SuspendLayout();
@@ -52,7 +52,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.文件ToolStripMenuItem,
@@ -67,7 +67,7 @@
             // 
             // 文件ToolStripMenuItem
             // 
-            this.文件ToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
+            this.文件ToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.文件ToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
@@ -87,28 +87,28 @@
             // UserSignIn
             // 
             this.UserSignIn.Name = "UserSignIn";
-            this.UserSignIn.Size = new System.Drawing.Size(124, 22);
+            this.UserSignIn.Size = new System.Drawing.Size(180, 22);
             this.UserSignIn.Text = "用户登录";
             this.UserSignIn.Click += new System.EventHandler(this.UserSignIn_Click);
             // 
             // UserSwitch
             // 
             this.UserSwitch.Name = "UserSwitch";
-            this.UserSwitch.Size = new System.Drawing.Size(124, 22);
+            this.UserSwitch.Size = new System.Drawing.Size(180, 22);
             this.UserSwitch.Text = "切换用户";
             this.UserSwitch.Click += new System.EventHandler(this.UserSwitch_Click);
             // 
             // UserLogOut
             // 
             this.UserLogOut.Name = "UserLogOut";
-            this.UserLogOut.Size = new System.Drawing.Size(124, 22);
+            this.UserLogOut.Size = new System.Drawing.Size(180, 22);
             this.UserLogOut.Text = "退出登录";
             this.UserLogOut.Click += new System.EventHandler(this.UserLogOut_Click);
             // 
             // UserManage
             // 
             this.UserManage.Name = "UserManage";
-            this.UserManage.Size = new System.Drawing.Size(124, 22);
+            this.UserManage.Size = new System.Drawing.Size(180, 22);
             this.UserManage.Text = "用户管理";
             this.UserManage.Click += new System.EventHandler(this.UserManage_Click);
             // 
@@ -145,10 +145,10 @@
             // 
             // PanelButton
             // 
-            this.PanelButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.PanelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
             this.PanelButton.Controls.Add(this.ButtonSeriportSet);
             this.PanelButton.Controls.Add(this.ButtonHistoryData);
-            this.PanelButton.Controls.Add(this.myButton4);
+            this.PanelButton.Controls.Add(this.ButtonUserManage);
             this.PanelButton.Controls.Add(this.ButtonRealData);
             this.PanelButton.Controls.Add(this.ButtonHome);
             this.PanelButton.Dock = System.Windows.Forms.DockStyle.Left;
@@ -160,11 +160,11 @@
             // 
             // ButtonSeriportSet
             // 
-            this.ButtonSeriportSet.BackColor = System.Drawing.Color.LightGray;
-            this.ButtonSeriportSet.BackColotAll = System.Drawing.Color.LightGray;
+            this.ButtonSeriportSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
+            this.ButtonSeriportSet.BackColotAll = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
             this.ButtonSeriportSet.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("ButtonSeriportSet.BackGroundImageAll")));
             this.ButtonSeriportSet.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonSeriportSet.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.ButtonSeriportSet.FontColorAll = System.Drawing.Color.White;
             this.ButtonSeriportSet.Location = new System.Drawing.Point(0, 72);
             this.ButtonSeriportSet.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonSeriportSet.Name = "ButtonSeriportSet";
@@ -172,14 +172,16 @@
             this.ButtonSeriportSet.TabIndex = 4;
             this.ButtonSeriportSet.TextAll = "通信设置";
             this.ButtonSeriportSet.MyButtonClickEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonClickHandle(this.ButtonSeriportSet_MyButtonClickEvent);
+            this.ButtonSeriportSet.MouseInEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseInHandle(this.ButtonHome_MouseInEvent);
+            this.ButtonSeriportSet.MouseLeaveEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseLevaeHandle(this.ButtonHome_MouseLeaveEvent);
             // 
             // ButtonHistoryData
             // 
-            this.ButtonHistoryData.BackColor = System.Drawing.Color.LightGray;
-            this.ButtonHistoryData.BackColotAll = System.Drawing.Color.LightGray;
+            this.ButtonHistoryData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
+            this.ButtonHistoryData.BackColotAll = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
             this.ButtonHistoryData.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("ButtonHistoryData.BackGroundImageAll")));
             this.ButtonHistoryData.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonHistoryData.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.ButtonHistoryData.FontColorAll = System.Drawing.Color.White;
             this.ButtonHistoryData.Location = new System.Drawing.Point(0, 216);
             this.ButtonHistoryData.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonHistoryData.Name = "ButtonHistoryData";
@@ -187,29 +189,33 @@
             this.ButtonHistoryData.TabIndex = 3;
             this.ButtonHistoryData.TextAll = "历史数据";
             this.ButtonHistoryData.MyButtonClickEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonClickHandle(this.ButtonHistoryData_MyButtonClickEvent);
+            this.ButtonHistoryData.MouseInEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseInHandle(this.ButtonHome_MouseInEvent);
+            this.ButtonHistoryData.MouseLeaveEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseLevaeHandle(this.ButtonHome_MouseLeaveEvent);
             // 
-            // myButton4
+            // ButtonUserManage
             // 
-            this.myButton4.BackColor = System.Drawing.Color.LightGray;
-            this.myButton4.BackColotAll = System.Drawing.Color.LightGray;
-            this.myButton4.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("myButton4.BackGroundImageAll")));
-            this.myButton4.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
-            this.myButton4.FontColorAll = System.Drawing.SystemColors.ControlText;
-            this.myButton4.Location = new System.Drawing.Point(0, 288);
-            this.myButton4.Margin = new System.Windows.Forms.Padding(0);
-            this.myButton4.Name = "myButton4";
-            this.myButton4.Size = new System.Drawing.Size(75, 72);
-            this.myButton4.TabIndex = 2;
-            this.myButton4.TextAll = "用户管理";
-            this.myButton4.MyButtonClickEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonClickHandle(this.UserManage_Click);
+            this.ButtonUserManage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
+            this.ButtonUserManage.BackColotAll = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
+            this.ButtonUserManage.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("ButtonUserManage.BackGroundImageAll")));
+            this.ButtonUserManage.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
+            this.ButtonUserManage.FontColorAll = System.Drawing.Color.White;
+            this.ButtonUserManage.Location = new System.Drawing.Point(0, 288);
+            this.ButtonUserManage.Margin = new System.Windows.Forms.Padding(0);
+            this.ButtonUserManage.Name = "ButtonUserManage";
+            this.ButtonUserManage.Size = new System.Drawing.Size(75, 72);
+            this.ButtonUserManage.TabIndex = 2;
+            this.ButtonUserManage.TextAll = "用户管理";
+            this.ButtonUserManage.MyButtonClickEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonClickHandle(this.UserManage_Click);
+            this.ButtonUserManage.MouseInEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseInHandle(this.ButtonHome_MouseInEvent);
+            this.ButtonUserManage.MouseLeaveEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseLevaeHandle(this.ButtonHome_MouseLeaveEvent);
             // 
             // ButtonRealData
             // 
-            this.ButtonRealData.BackColor = System.Drawing.Color.LightGray;
-            this.ButtonRealData.BackColotAll = System.Drawing.Color.LightGray;
+            this.ButtonRealData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
+            this.ButtonRealData.BackColotAll = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
             this.ButtonRealData.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("ButtonRealData.BackGroundImageAll")));
             this.ButtonRealData.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonRealData.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.ButtonRealData.FontColorAll = System.Drawing.Color.White;
             this.ButtonRealData.Location = new System.Drawing.Point(0, 144);
             this.ButtonRealData.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonRealData.Name = "ButtonRealData";
@@ -217,20 +223,24 @@
             this.ButtonRealData.TabIndex = 1;
             this.ButtonRealData.TextAll = "实时数据";
             this.ButtonRealData.MyButtonClickEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonClickHandle(this.ButtonRealData_MyButtonClickEvent);
+            this.ButtonRealData.MouseInEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseInHandle(this.ButtonHome_MouseInEvent);
+            this.ButtonRealData.MouseLeaveEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseLevaeHandle(this.ButtonHome_MouseLeaveEvent);
             // 
             // ButtonHome
             // 
-            this.ButtonHome.BackColor = System.Drawing.Color.LightGray;
-            this.ButtonHome.BackColotAll = System.Drawing.Color.LightGray;
+            this.ButtonHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
+            this.ButtonHome.BackColotAll = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(179)))), ((int)(((byte)(0)))));
             this.ButtonHome.BackGroundImageAll = ((System.Drawing.Image)(resources.GetObject("ButtonHome.BackGroundImageAll")));
             this.ButtonHome.BackgroundImageLayoutAll = System.Windows.Forms.ImageLayout.Zoom;
-            this.ButtonHome.FontColorAll = System.Drawing.SystemColors.ControlText;
+            this.ButtonHome.FontColorAll = System.Drawing.Color.White;
             this.ButtonHome.Location = new System.Drawing.Point(0, 0);
             this.ButtonHome.Margin = new System.Windows.Forms.Padding(0);
             this.ButtonHome.Name = "ButtonHome";
             this.ButtonHome.Size = new System.Drawing.Size(75, 72);
             this.ButtonHome.TabIndex = 0;
             this.ButtonHome.TextAll = "主页";
+            this.ButtonHome.MouseInEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseInHandle(this.ButtonHome_MouseInEvent);
+            this.ButtonHome.MouseLeaveEvent += new WindowsFormsControlLibrary1.MyButton.MyButtonMouseLevaeHandle(this.ButtonHome_MouseLeaveEvent);
             // 
             // Form1
             // 
@@ -277,7 +287,7 @@
         private WindowsFormsControlLibrary1.MyButton ButtonHome;
         private WindowsFormsControlLibrary1.MyButton ButtonSeriportSet;
         private WindowsFormsControlLibrary1.MyButton ButtonHistoryData;
-        private WindowsFormsControlLibrary1.MyButton myButton4;
+        private WindowsFormsControlLibrary1.MyButton ButtonUserManage;
         //private System.Windows.Forms.Panel panel1;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using WindowsFormsControlLibrary1;
 
 namespace 震动监测系统
 {
@@ -224,6 +225,63 @@ namespace 震动监测系统
                 MessageBox.Show("请先登录！");
             }
             return CTMySql.isSignIn;
+        }
+
+        static int inr = 221, ing = 255, inb = 204;
+        static int ler = 59, leg = 179, leb = 0;
+
+        private void ButtonHome_MouseInEvent(object sender, EventArgs e)
+        {
+            MyButton b = (MyButton)sender;
+            b.BackColotAll = Color.FromArgb(inr, ing, inb);
+            b.FontColorAll = Color.Black;
+            switch (b.Name)
+            {
+                case "ButtonHome":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/首页.png");
+                    break;
+                case "ButtonSeriportSet":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/通信.png");
+                    break;
+                case "ButtonRealData":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/波形.png");
+                    break;
+                case "ButtonHistoryData":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/数据库.png");
+                    break;
+                case "ButtonUserManage":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/用户.png");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ButtonHome_MouseLeaveEvent(object sender, EventArgs e)
+        {
+            MyButton b = (MyButton)sender;
+            b.BackColotAll = Color.FromArgb(ler, leg, leb);
+            b.FontColorAll = Color.White;
+            switch (b.Name)
+            {
+                case "ButtonHome":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/首页(1).png");
+                    break;
+                case "ButtonSeriportSet":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/通信(1).png");
+                    break;
+                case "ButtonRealData":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/波形(1).png");
+                    break;
+                case "ButtonHistoryData":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/数据库(1).png");
+                    break;
+                case "ButtonUserManage":
+                    b.BackGroundImageAll = Image.FromFile(Application.StartupPath + @"/icon/用户(1).png");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -104,7 +104,7 @@ namespace WindowsFormsControlLibrary1
             size = new Size(this.Width, this.Height);
         }
 
-        
+        // 点击事件
         public delegate void MyButtonClickHandle(object sender, EventArgs e);//委托声明
         [Category("自定义事件")]
         public event MyButtonClickHandle MyButtonClickEvent;//事件声明
@@ -130,6 +130,67 @@ namespace WindowsFormsControlLibrary1
             if (MyButtonClickEvent != null)
             {
                 MyButtonClickEvent(sender, new EventArgs());
+            }
+        }
+
+        // 鼠标进入事件
+        public delegate void MyButtonMouseInHandle(object sender, EventArgs e);
+        [Category("自定义事件")]
+        public event MyButtonMouseInHandle MouseInEvent;
+
+        private void MyButton_MouseEnter(object sender, EventArgs e)
+        {
+            if (MouseInEvent != null)
+            {
+                MouseInEvent(sender, e);
+            }
+        }
+
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            if (MouseInEvent != null)
+            {
+                MouseInEvent((object)(((PictureBox)sender).Parent), e);
+            }
+        }
+
+
+        private void label1_MouseEnter(object sender, EventArgs e)
+        {
+            if (MouseInEvent != null)
+            {
+                MouseInEvent((object)(((Label)sender).Parent), e);
+            }
+        }
+
+
+        // 鼠标离开事件
+        public delegate void MyButtonMouseLevaeHandle(object sender, EventArgs e);
+        [Category("自定义事件")]
+        public event MyButtonMouseLevaeHandle MouseLeaveEvent;
+
+        private void label1_MouseLeave(object sender, EventArgs e)
+        {
+            if (MouseInEvent != null)
+            {
+                MouseLeaveEvent((object)(((Label)sender).Parent), e);
+            }
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            if (MouseInEvent != null)
+            {
+                MouseLeaveEvent((object)(((PictureBox)sender).Parent), e);
+            }
+        }
+
+        private void MyButton_MouseLeave(object sender, EventArgs e)
+        {
+            if (MouseInEvent != null)
+            {
+                MouseLeaveEvent(sender, e);
             }
         }
     }
