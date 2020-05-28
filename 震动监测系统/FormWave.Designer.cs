@@ -30,6 +30,9 @@ namespace 震动监测系统
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.LableTip2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TextBoxName2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.wave2_timeshow_label = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
@@ -50,18 +53,15 @@ namespace 震动监测系统
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StateLable = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LableTip1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TextBoxName1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.wave1_timeshow_label = new System.Windows.Forms.Label();
             this.wave1_timegap_TrackBar = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.TextBoxName1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.LableTip1 = new System.Windows.Forms.Label();
-            this.LableTip2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TextBoxName2 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -126,6 +126,39 @@ namespace 震动监测系统
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(180, 160);
             this.panel2.TabIndex = 12;
+            // 
+            // LableTip2
+            // 
+            this.LableTip2.AutoSize = true;
+            this.LableTip2.BackColor = System.Drawing.Color.Transparent;
+            this.LableTip2.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LableTip2.ForeColor = System.Drawing.Color.Gray;
+            this.LableTip2.Location = new System.Drawing.Point(3, 140);
+            this.LableTip2.Margin = new System.Windows.Forms.Padding(0);
+            this.LableTip2.Name = "LableTip2";
+            this.LableTip2.Size = new System.Drawing.Size(145, 10);
+            this.LableTip2.TabIndex = 12;
+            this.LableTip2.Text = "只能由字母、数字、下划线组成";
+            this.LableTip2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 121);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(149, 12);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "开始前请先设置井口编号：";
+            // 
+            // TextBoxName2
+            // 
+            this.TextBoxName2.Location = new System.Drawing.Point(0, 136);
+            this.TextBoxName2.Name = "TextBoxName2";
+            this.TextBoxName2.Size = new System.Drawing.Size(180, 21);
+            this.TextBoxName2.TabIndex = 10;
+            this.TextBoxName2.Enter += new System.EventHandler(this.TextBoxName2_Enter);
+            this.TextBoxName2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxName2_KeyPress);
+            this.TextBoxName2.Leave += new System.EventHandler(this.TextBoxName2_Leave);
             // 
             // label5
             // 
@@ -361,6 +394,39 @@ namespace 震动监测系统
             this.panel1.Size = new System.Drawing.Size(180, 160);
             this.panel1.TabIndex = 11;
             // 
+            // LableTip1
+            // 
+            this.LableTip1.AutoSize = true;
+            this.LableTip1.BackColor = System.Drawing.Color.Transparent;
+            this.LableTip1.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LableTip1.ForeColor = System.Drawing.Color.Gray;
+            this.LableTip1.Location = new System.Drawing.Point(3, 140);
+            this.LableTip1.Margin = new System.Windows.Forms.Padding(0);
+            this.LableTip1.Name = "LableTip1";
+            this.LableTip1.Size = new System.Drawing.Size(145, 10);
+            this.LableTip1.TabIndex = 9;
+            this.LableTip1.Text = "只能由字母、数字、下划线组成";
+            this.LableTip1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 121);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(149, 12);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "开始前请先设置井口编号：";
+            // 
+            // TextBoxName1
+            // 
+            this.TextBoxName1.Location = new System.Drawing.Point(0, 136);
+            this.TextBoxName1.Name = "TextBoxName1";
+            this.TextBoxName1.Size = new System.Drawing.Size(180, 21);
+            this.TextBoxName1.TabIndex = 7;
+            this.TextBoxName1.Enter += new System.EventHandler(this.TextBoxName1_Enter);
+            this.TextBoxName1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxName1_KeyPress);
+            this.TextBoxName1.Leave += new System.EventHandler(this.TextBoxName1_Leave);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -434,72 +500,6 @@ namespace 震动监测系统
             this.label1.Size = new System.Drawing.Size(89, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "时间轴主刻度：";
-            // 
-            // TextBoxName1
-            // 
-            this.TextBoxName1.Location = new System.Drawing.Point(0, 136);
-            this.TextBoxName1.Name = "TextBoxName1";
-            this.TextBoxName1.Size = new System.Drawing.Size(180, 21);
-            this.TextBoxName1.TabIndex = 7;
-            this.TextBoxName1.Enter += new System.EventHandler(this.TextBoxName1_Enter);
-            this.TextBoxName1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxName1_KeyPress);
-            this.TextBoxName1.Leave += new System.EventHandler(this.TextBoxName1_Leave);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 121);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(149, 12);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "开始前请先设置井口编号：";
-            // 
-            // LableTip1
-            // 
-            this.LableTip1.AutoSize = true;
-            this.LableTip1.BackColor = System.Drawing.Color.Transparent;
-            this.LableTip1.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LableTip1.ForeColor = System.Drawing.Color.Gray;
-            this.LableTip1.Location = new System.Drawing.Point(3, 140);
-            this.LableTip1.Margin = new System.Windows.Forms.Padding(0);
-            this.LableTip1.Name = "LableTip1";
-            this.LableTip1.Size = new System.Drawing.Size(145, 10);
-            this.LableTip1.TabIndex = 9;
-            this.LableTip1.Text = "只能由字母、数字、下划线组成";
-            this.LableTip1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LableTip2
-            // 
-            this.LableTip2.AutoSize = true;
-            this.LableTip2.BackColor = System.Drawing.Color.Transparent;
-            this.LableTip2.Font = new System.Drawing.Font("宋体", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LableTip2.ForeColor = System.Drawing.Color.Gray;
-            this.LableTip2.Location = new System.Drawing.Point(3, 140);
-            this.LableTip2.Margin = new System.Windows.Forms.Padding(0);
-            this.LableTip2.Name = "LableTip2";
-            this.LableTip2.Size = new System.Drawing.Size(145, 10);
-            this.LableTip2.TabIndex = 12;
-            this.LableTip2.Text = "只能由字母、数字、下划线组成";
-            this.LableTip2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 121);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(149, 12);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "开始前请先设置井口编号：";
-            // 
-            // TextBoxName2
-            // 
-            this.TextBoxName2.Location = new System.Drawing.Point(0, 136);
-            this.TextBoxName2.Name = "TextBoxName2";
-            this.TextBoxName2.Size = new System.Drawing.Size(180, 21);
-            this.TextBoxName2.TabIndex = 10;
-            this.TextBoxName2.Enter += new System.EventHandler(this.TextBoxName2_Enter);
-            this.TextBoxName2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxName2_KeyPress);
-            this.TextBoxName2.Leave += new System.EventHandler(this.TextBoxName2_Leave);
             // 
             // FormWave
             // 
