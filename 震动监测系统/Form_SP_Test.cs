@@ -20,6 +20,8 @@ namespace 震动监测系统
         public Form_SP_Test()
         {
             InitializeComponent();
+
+            UpdataCOMandBoud();
         }
 
         //开始测试按钮    点击
@@ -78,6 +80,8 @@ namespace 震动监测系统
         //读取串口数据    开始之前要先让信号灯通过
         public void ReadSpData(object readSize)
         {
+            UpdataCOMandBoud();
+
             byte[] spData = new byte[4];
             int num = 0;
 
@@ -116,6 +120,12 @@ namespace 震动监测系统
             boxtest_result.Text += "\r\n测试失败，未接收到完整数据\r\n";
             SendSpData("E");
             return;
+        }
+
+        void UpdataCOMandBoud()
+        {
+            boxtest_bode_num.Text = controlconfig.valueItem("bodenum");
+            boxtest_com_num.Text = controlconfig.valueItem("portnum");
         }
     }
 }
