@@ -39,10 +39,10 @@
             // 
             this.btmSignIn.AutoSize = true;
             this.btmSignIn.Font = new System.Drawing.Font("宋体", 12F);
-            this.btmSignIn.Location = new System.Drawing.Point(14, 77);
-            this.btmSignIn.Margin = new System.Windows.Forms.Padding(5);
+            this.btmSignIn.Location = new System.Drawing.Point(10, 62);
+            this.btmSignIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btmSignIn.Name = "btmSignIn";
-            this.btmSignIn.Size = new System.Drawing.Size(246, 30);
+            this.btmSignIn.Size = new System.Drawing.Size(184, 26);
             this.btmSignIn.TabIndex = 2;
             this.btmSignIn.Text = "登录";
             this.btmSignIn.UseVisualStyleBackColor = true;
@@ -54,10 +54,10 @@
             this.lblAccount.BackColor = System.Drawing.SystemColors.Control;
             this.lblAccount.CausesValidation = false;
             this.lblAccount.Font = new System.Drawing.Font("宋体", 9F);
-            this.lblAccount.Location = new System.Drawing.Point(14, 14);
-            this.lblAccount.Margin = new System.Windows.Forms.Padding(5);
+            this.lblAccount.Location = new System.Drawing.Point(10, 11);
+            this.lblAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lblAccount.Name = "lblAccount";
-            this.lblAccount.Size = new System.Drawing.Size(52, 15);
+            this.lblAccount.Size = new System.Drawing.Size(41, 12);
             this.lblAccount.TabIndex = 1;
             this.lblAccount.Text = "账号：";
             // 
@@ -65,10 +65,10 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.CausesValidation = false;
-            this.lblPassword.Location = new System.Drawing.Point(14, 47);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(5);
+            this.lblPassword.Location = new System.Drawing.Point(10, 38);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(52, 15);
+            this.lblPassword.Size = new System.Drawing.Size(41, 12);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "密码：";
             // 
@@ -76,12 +76,12 @@
             // 
             this.txtbxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtbxPassword.Font = new System.Drawing.Font("宋体", 9F);
-            this.txtbxPassword.Location = new System.Drawing.Point(60, 42);
-            this.txtbxPassword.Margin = new System.Windows.Forms.Padding(5);
+            this.txtbxPassword.Location = new System.Drawing.Point(45, 34);
+            this.txtbxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtbxPassword.MaxLength = 16;
             this.txtbxPassword.Name = "txtbxPassword";
             this.txtbxPassword.PasswordChar = '*';
-            this.txtbxPassword.Size = new System.Drawing.Size(200, 25);
+            this.txtbxPassword.Size = new System.Drawing.Size(150, 21);
             this.txtbxPassword.TabIndex = 1;
             this.txtbxPassword.UseSystemPasswordChar = true;
             this.txtbxPassword.WordWrap = false;
@@ -89,22 +89,25 @@
             // 
             // txtbxAccount
             // 
-            this.txtbxAccount.Location = new System.Drawing.Point(60, 9);
+            this.txtbxAccount.Location = new System.Drawing.Point(45, 7);
+            this.txtbxAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtbxAccount.Name = "txtbxAccount";
-            this.txtbxAccount.Size = new System.Drawing.Size(200, 25);
+            this.txtbxAccount.Size = new System.Drawing.Size(151, 21);
             this.txtbxAccount.TabIndex = 0;
             this.txtbxAccount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxAccount_KeyPress);
             // 
             // FormSignIn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 121);
+            this.ClientSize = new System.Drawing.Size(206, 97);
             this.Controls.Add(this.txtbxAccount);
             this.Controls.Add(this.txtbxPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblAccount);
             this.Controls.Add(this.btmSignIn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FormSignIn";
             this.ShowIcon = false;
