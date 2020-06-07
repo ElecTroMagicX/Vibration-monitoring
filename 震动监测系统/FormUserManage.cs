@@ -421,7 +421,7 @@ namespace 震动监测系统
             string pkname = dt.Columns[0].ColumnName;
             if (dt.Rows[0]["Account"].ToString() == UserNameTextbox.Text)
             {
-                MessageBox.Show("此默认账户不能被设为非管理员用户！");
+                MessageBox.Show("此默认账户不能被修改！");
                 return;
             }
             for (int i = 0; i < dt.Rows.Count; i++)
