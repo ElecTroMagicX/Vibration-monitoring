@@ -64,10 +64,6 @@ Tips:请配合虚拟串口软件使用
 
 
 <p align = "right">
-by Deeplfree
-</p>
-
-<p align = "right">
 Tonystkx@gmail.com
 </p>
 
